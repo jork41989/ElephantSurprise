@@ -19,7 +19,26 @@ const UserSchema = new Schema({
   date: {
     type: Date,
     default: Date.now
-  }
+  },
+  hosted_exchanges: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Exchange'
+    }
+  ],
+  participated_exchanges: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Exchange'
+    }
+  ],
+  owned_lists: [
+    {
+      type: Schema.Types.ObjectId,
+      ref:'Lists'
+    }
+  ]
+
 })
 
 module.exports = mongoose.model("users", UserSchema);
