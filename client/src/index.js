@@ -20,16 +20,27 @@ const cache = new InMemoryCache({
 });
 
 
-const httpLink = createHttpLink({
-  uri: "http://localhost:5000/graphql",
-  headers: {
-    authorization: localStorage.getItem("auth-token")
-  }
-});
+
 
 // make sure we log any additional errors we receive
 const errorLink = onError(({ graphQLErrors }) => {
   if (graphQLErrors) graphQLErrors.map(({ message }) => console.log(message));
+});
+
+let uri;
+if (process.env.NODE_ENV === "production") {
+  uri = `/graphql`;
+} else {
+  uri = "http://localhost:5000/graphql";
+}
+
+const httpLink = createHttpLink({
+  uri,
+  headers: {
+    // heroku can get a little buggy with headers and
+    // localStorage so we'll just ensure a value is always in the header
+    authorization: localStorage.getItem("auth-token") || ""
+  }
 });
 
 const client = new ApolloClient({

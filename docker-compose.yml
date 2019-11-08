@@ -1,0 +1,9 @@
+version: '3.3'
+services:
+  frontend:
+    image: jork41989/elephant-surprise-node
+    build: .
+    ports: 
+      - 5000:5000
+    env_file: .env
+
