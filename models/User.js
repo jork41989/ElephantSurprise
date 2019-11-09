@@ -41,16 +41,60 @@ const UserSchema = new Schema({
 
 })
 
-UserSchema.statics.addWishlist = (exchangeId, listId) => {
+UserSchema.statics.addWishList = (exchangeId, listId, userId) => {
   const Exchange = mongoose.model('exchanges');
   const User =  mongoose.model('users');
 
   return Exchange.findById(exchangeId).then(exchange => {
+    return User.findById(userId).then(user =>{
       exchange.wish_list_ids.push(listId);
-      return User.owned_lists.push(listId);
+      user.owned_lists.push(listId);
+
+      return Promise.all([user.save(), exchange.save()])
+       .then( ([ user, exchange ]) => user )
+
+    })
+    .catch(err=> res.json(err))
+     
   })
   .catch(err => res.json(err))
 }
+
+UserSchema.statics.removeWishList = (exchangeId, listId, userId) => {
+  
+  const Exchange = mongoose.model('exchanges');
+  const User =  mongoose.model('users');
+
+  return Exchange.findById(exchangeId).then(exchange => {
+    return User.findById(userId).then(user => {
+      exchange.wish_list_ids.pull(listId);
+      User.owned_lists.pull(listId);
+
+
+      return Promise.all([exchange.save(), user.save()])
+       .then(([ user, exchange]) => user );
+
+    }).catch(err => res.json(err))
+
+  })
+  .catch(err => res.json(err))
+}
+
+UserSchema.statics.addHostedExchange = (exchangeId, listId) => {
+  const User = mongoose.model('users');
+
+  return User.findById(exchangeId).then(exchange => {
+    exchange.wish_list_ids.push(listId);
+    return User.owned_lists.push(listId);
+  })
+    .catch(err => res.json(err))
+}
+
+
+
+
+
+
 
 UserSchema.statics.fetchHostedExchanges = (userId) => {
   const User = mongoose.model('users');

@@ -56,7 +56,15 @@ const mutation = new GraphQLObjectType({
       resolve(_, args) {
         return AuthService.verifyUser(args);
       }
+    },
+    addWishList: {
+      type: ProductType,
+      args: { productId: { type: GraphQLID }, categoryId: { type: GraphQLID } },
+      resolve(parentValue, { productId, categoryId }) {
+        return Product.updateProductCategory(productId, categoryId);
+      }
     }
+
   //Add New Mutations Above
   
     }
