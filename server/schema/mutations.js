@@ -11,7 +11,7 @@ const {
 const AuthService = require("../services/auth");
 
       
-
+const User = require("../../models/User");
 const UserType = require("./types/user_type");
     
 const mutation = new GraphQLObjectType({
@@ -58,10 +58,17 @@ const mutation = new GraphQLObjectType({
       }
     },
     addWishList: {
-      type: ProductType,
-      args: { productId: { type: GraphQLID }, categoryId: { type: GraphQLID } },
-      resolve(parentValue, { productId, categoryId }) {
-        return Product.updateProductCategory(productId, categoryId);
+      type: UserType,
+      args: { exchangeId: { type: GraphQLID }, listId: { type: GraphQLID }, userId: { type: GraphQLID } },
+      resolve(parentValue, { exchangeId, listId, userId }) {
+        return User.addWishList(exchangeId, listId, userId);
+      }
+    },
+    removeWishList: {
+      type: UserType,
+      args: { exchangeId: { type: GraphQLID }, listId: { type: GraphQLID }, userId: { type: GraphQLID } },
+      resolve(parentValue, { exchangeId, listId, userId }) {
+        return User.removeWishList(exchangeId, listId, userId);
       }
     }
 
