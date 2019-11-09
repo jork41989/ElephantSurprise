@@ -80,21 +80,44 @@ UserSchema.statics.removeWishList = (exchangeId, listId, userId) => {
   .catch(err => res.json(err))
 }
 
-UserSchema.statics.addHostedExchange = (exchangeId, listId) => {
+UserSchema.statics.addHostedExchange = (exchangeId, userId) => {
   const User = mongoose.model('users');
 
-  return User.findById(exchangeId).then(exchange => {
-    exchange.wish_list_ids.push(listId);
-    return User.owned_lists.push(listId);
+  return User.findById(userId).then(user => {
+    user.hosted_exchanges.push(exchangeId);
+    return user.save().then(user => user);
   })
-    .catch(err => res.json(err))
+  .catch(err => res.json(err))
 }
 
+UserSchema.statics.removeHostedExchange = (exchangeId, userId) => {
+  const User = mongoose.model('users');
 
+  return User.findById(userId).then(user =>{
+    user.hosted_exchanges.pull(exchangeId);
+    return user.save().then(user => user);
+  })
+}
 
+UserSchema.statics.addParticipatedExchange = (exchangeId, userId) => {
+  const User = mongoose.model('users');
 
+  return User.findById(userId).then(user => {
+    user.participated_exchanges.push(exchangeId);
+    return user.save().then(user => user);
+  })
+    .catch(err => res.json(err))
 
+}
 
+UserSchema.statics.removeParticipatedExchange = (exchangeId, userId) => {
+  const User = mongoose.model('users');
+
+  return User.findById(userId).then(user => {
+    user.participated_exchanges.pull(exchangeId);
+    return user.save().then(user => user);
+  })
+}
 
 UserSchema.statics.fetchHostedExchanges = (userId) => {
   const User = mongoose.model('users');
