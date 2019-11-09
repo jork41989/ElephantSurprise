@@ -30,6 +30,7 @@ class Nav extends Component {
               return (
                 <div>
                 <button
+                    className="navBtn"
                   onClick={e => {
                     e.preventDefault();
                     localStorage.removeItem("auth-token");
@@ -44,8 +45,8 @@ class Nav extends Component {
             } else {
               return (
                 <div>
-                  <button onClick={() => this.setState({ modal: true, type: "login" })}>Login</button>
-                  < button onClick={() => this.setState({modal: true, type: "signup"})}> Sign Up </ button>
+                  <button onClick={() => this.setState({ modal: true, type: "login" })} className="navBtn">Login</button>
+                  < button onClick={() => this.setState({ modal: true, type: "signup" })} className="navBtn"> Sign Up </ button>
                   <Modal closeModal={this.closeModal} type={this.state.type}/>
                 </div>
               );

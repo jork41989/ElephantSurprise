@@ -21,6 +21,15 @@
     margin-right: 5px;
 }
 
+.navBtn{
+  font-size: 20px;
+  margin-right: 10px;
+  padding: 5px 10px;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
 html, body, .root{
   min-height: 100%;
   background: lightgray;

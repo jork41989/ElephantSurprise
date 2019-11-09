@@ -53,6 +53,7 @@ class Signup extends Component {
                   });
                 }}
               >
+                <img src="https://img.icons8.com/carbon-copy/100/000000/elephant.png" className="elenav" /><h1>Elephant Surprise</h1>
                 <input
                   className="Authinput"
                   value={this.state.name}
