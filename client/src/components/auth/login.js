@@ -38,8 +38,8 @@ render() {
             update={(client, data) => this.updateCache(client, data)}
         >
         {loginUser => (
-          <div>
-            <form
+          <div className="signupModal">
+            <form className="signupForm"
               onSubmit={e => {
                 e.preventDefault();
                 loginUser({
@@ -51,17 +51,19 @@ render() {
               }}
             >
               <input
+                className="Authinput"
                 value={this.state.email}
                 onChange={this.update("email")}
                 placeholder="Email"
               />
               <input
+                className="Authinput"
                 value={this.state.password}
                 onChange={this.update("password")}
                 type="password"
                 placeholder="Password"
               />
-              <button type="submit">Log In</button>
+              <button type="submit" className="authButton">Log In</button>
             </form>
           </div>
         )}
