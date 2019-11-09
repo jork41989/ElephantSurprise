@@ -70,6 +70,34 @@ const mutation = new GraphQLObjectType({
       resolve(parentValue, { exchangeId, listId, userId }) {
         return User.removeWishList(exchangeId, listId, userId);
       }
+    },
+    addHostExchange: {
+      type: UserType,
+      args: { exchangeId: { type: GraphQLID }, userId: { type: GraphQLID } },
+      resolve(parentValue, { exchangeId, userId }) {
+        return User.addHostExchange(exchangeId, userId);
+      }
+    },
+    removeHostExchange: {
+      type: UserType,
+      args: { exchangeId: { type: GraphQLID }, userId: { type: GraphQLID } },
+      resolve(parentValue, { exchangeId, userId }) {
+        return User.removeHostExchange(exchangeId, userId);
+      }
+    },
+    addParticipatedExchange: {
+      type: UserType,
+      args: { exchangeId: { type: GraphQLID }, userId: { type: GraphQLID } },
+      resolve(parentValue, { exchangeId, userId }) {
+        return User.addParticipatedExchange(exchangeId, userId);
+      }
+    },
+    removeParticipatedExchange: {
+      type: UserType,
+      args: { exchangeId: { type: GraphQLID }, userId: { type: GraphQLID } },
+      resolve(parentValue, { exchangeId, userId }) {
+        return User.removeParticipatedExchange(exchangeId, userId);
+      }
     }
 
   //Add New Mutations Above
