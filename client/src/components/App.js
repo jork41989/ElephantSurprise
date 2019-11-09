@@ -5,16 +5,16 @@ import SignUp from './auth/signup';
 
 import AuthRoute from '../util/route_util';
 import Nav from './nav';
+import "./nav.css"
 
 function App() {
   return (
     <div>
-      <Link to='/'><h1>Elephant Surprise</h1></Link>
-      <Nav/>
-      <Switch/>
-        <AuthRoute exact path="/login" component={Login} routeType="auth" />
-        <AuthRoute exact path="/signup" component={SignUp} routeType="auth" />
-      <Switch/>
+      <div className={"navBarMain"}> 
+        <Link to='/' className={"logoNav"}><img src="https://img.icons8.com/carbon-copy/100/000000/elephant.png" className="elenav"/><h1>Elephant Surprise</h1></Link>
+        <Nav /> 
+      </div>
+    
 
     </div>
   );

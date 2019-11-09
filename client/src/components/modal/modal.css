@@ -1,0 +1,79 @@
+.modal-background {
+   position: fixed;
+   top: 0;
+   bottom: 0;
+   right: 0;
+   left: 0;
+   background: rgba(0, 0, 0, 0.7);
+   z-index: 999;
+ }
+
+ .modal-child {
+   position: absolute;
+   left: 50%;
+   transform: translate(-50%, 30%);
+ }
+
+ .close-x {
+   position: absolute;
+   top: 10px;
+   right: 10px;
+   cursor: pointer;
+ }
+
+ .login-form-container {
+   background-color: white;
+  padding: 40px;
+  border-radius: 5px;
+  text-align: center;
+ }
+
+
+
+ .login-input {
+   font-size: 20px;
+   margin-top: 10px;
+   border: 1px solid black;
+   border-radius: 5px;
+   text-indent: 7px;
+   width: 400px;
+   height: 35px;
+   
+ }
+
+.session-submit{
+   width: 402px;
+   height: 35px;
+   border-radius: 5px;
+   background-color: #f50;
+   color: white;
+   font-size: 24px;
+   margin-top: 10px;
+   cursor: pointer;
+}
+
+ .loginFormButtons {
+    border-radius: 5px;
+    background-color: #f50;
+    height: 20px;
+    color: white;
+    height: 25px;
+    font-size: 16px;
+    cursor: pointer;
+ }
+
+
+.formLogoDiv{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+ .formLogo{
+   height: 50px;
+   margin-right: 5px;
+ }
+
+ .formError{
+   list-style: none;
+ }
