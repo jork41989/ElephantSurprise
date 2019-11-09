@@ -12,10 +12,10 @@ function Modal ({type, closeModal}) {
   let component;
   switch(type){
     case 'login':
-      component = <Login />;
+      component = <Login closeModal={closeModal}/>;
       break;
     case 'signup':
-      component = <Signup />;
+      component = <Signup closeModal={closeModal}/>;
       break;
     default:
       return null;

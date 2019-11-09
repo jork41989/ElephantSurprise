@@ -34,7 +34,7 @@ class Signup extends Component {
               onCompleted={data => {
                   const { token } = data.register;
                   localStorage.setItem('auth-token', token);
-                  this.props.history.push('/');
+                this.props.closeModal();
               }}
               update={(client, data) => this.updateCache(client, data)}
           >

@@ -33,7 +33,7 @@ render() {
             onCompleted={data => {
                 const { token } = data.login;
                 localStorage.setItem('auth-token', token);
-                this.props.history.push('/');
+                this.props.closeModal();
             }}
             update={(client, data) => this.updateCache(client, data)}
         >
