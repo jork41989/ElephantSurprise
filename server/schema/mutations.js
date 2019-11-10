@@ -145,7 +145,15 @@ const mutation = new GraphQLObjectType({
         let params = {};
         for (let prop in args) if (args[prop]) params[prop] = args[prop];
         return Exchange.findOneAndUpdate({ _id: params.exchange_id }, params, { new: true })
-          .then(exchange => exchange);
+      }
+    },
+    deleteExchange: {
+      type: ExchangeType,
+      args: {
+        exchange_id: { type: GraphQLID }
+      },
+      resolve(_, { exchange_id }) {
+        return Exchange.findOneAndDelete({ _id: exchange_id });
       }
     }
   }
