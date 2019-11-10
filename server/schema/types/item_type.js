@@ -11,13 +11,13 @@ const ItemType = new GraphQLObjectType({
     url: { type: GraphQLString },
     price: { type: GraphQLFloat },
     purchased: { type: GraphQLBoolean },
-    owner_id: {
+    owner: {
       type: require("./user_type"),
       resolve(parentValue) {
         return User.findById(parentValue.owner_id)
       }
     },
-    wish_list_id: {
+    on_wish_list: {
       type: require("./wish_list_type"),
       resolve(parentValue) {
         return WishList.findById(parentValue.wish_list_id)

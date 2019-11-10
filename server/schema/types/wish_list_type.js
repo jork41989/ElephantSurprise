@@ -10,19 +10,19 @@ const WishListType = new GraphQLObjectType({
   fields: () => ({
     _id: { type: GraphQLID },
     shipping_address: { type: GraphQLString },
-    owner_id: {
+    owner: {
       type: require("./user_type"),
       resolve(parentValue) {
         return User.findById(parentValue.owner_id)
       }
     },
-    santa_id: {
+    santa: {
       type: require("./user_type"),
       resolve(parentValue) {
         return User.findById(parentValue.santa_id)
       }
     },
-    exchange_id: {
+    exchange: {
       type: require("./exchange_type"),
       resolve(parentValue) {
         return Exchange.findById(parentValue.exchange_id)

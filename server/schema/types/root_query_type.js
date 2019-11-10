@@ -9,12 +9,13 @@ const {
   GraphQLNonNull
 } = graphql;
 
+const User = mongoose.model("user");
 const UserType = require("./user_type");
-const User = mongoose.model("users");
+const Exchange = mongoose.model("exchange");
+const ExchangeType = require("./exchange_type");
 
 
-
-const secretKey = require("../../../config/keys");
+// const secretKey = require("../../../config/keys");
 
 
 
@@ -37,8 +38,24 @@ const RootQueryType = new GraphQLObjectType({
       resolve(_, args) {
         return User.findById(args._id);
       }
+    },
+    exchanges: {
+      type: new GraphQLList(ExchangeType),
+      resolve() {
+        return Exchange.find({});
+      }
+    },
+    exchange: {
+      type: ExchangeType,
+      args: {
+        _id: {
+          type: new GraphQLNonNull(GraphQLID)
+        }
+      },
+      resolve(_, args) {
+        return Exchange.findById(args._id);
+      }
     }
-
   })
 });
 

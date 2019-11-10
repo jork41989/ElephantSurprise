@@ -28,7 +28,7 @@ const WishListSchema = new Schema({
 WishListSchema.statics.findItems = (wishListId) => {
   const WishList = mongoose.model("wish_list");
   return WishList.findById(wishListId)
-    .populate("item_ids").then(wishList => wishList.item_ids)
+    .then(wishList => wishList.item_ids)
 };
 
 module.exports = mongoose.model("wish_list", WishListSchema);

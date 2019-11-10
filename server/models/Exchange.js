@@ -40,13 +40,13 @@ const ExchangeSchema = new Schema({
 ExchangeSchema.statics.findParticipants = (exchangeId) => {
   const Exchange = mongoose.model("exchange");
   return Exchange.findById(exchangeId)
-    .populate("participant_ids").then(exchange => exchange.participant_ids)
+    .then(exchange => exchange.participant_ids)
 };
 
 ExchangeSchema.statics.findWishLists = (exchangeId) => {
   const Exchange = mongoose.model("exchange");
   return Exchange.findById(exchangeId)
-    .populate("wish_list_ids").then(exchange => exchange.wish_list_ids)
+    .then(exchange => exchange.wish_list_ids)
 };
 
 module.exports = mongoose.model("exchange", ExchangeSchema);

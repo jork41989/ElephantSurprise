@@ -14,7 +14,7 @@ const ExchangeType = new GraphQLObjectType({
     ship_date: { type: GraphQLDate },
     budget: { type: GraphQLInt },
     santa_assigned: { type: GraphQLBoolean },
-    host_id: {
+    host: {
       type: require("./user_type"),
       resolve(parentValue) {
         return User.findById(parentValue.host_id)

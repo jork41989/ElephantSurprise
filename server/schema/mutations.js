@@ -12,9 +12,9 @@ const GraphQLDate = require('graphql-date');
       
 const AuthService = require("../services/auth");
 
-      
-const User = require("../../models/User");
+const User = require("../models/User");
 const UserType = require("./types/user_type");
+const Exchange = require("../models/Exchange");
 const ExchangeType = require("./types/exchange_type");
     
 const mutation = new GraphQLObjectType({
@@ -112,14 +112,40 @@ const mutation = new GraphQLObjectType({
         budget: { type: GraphQLInt },
         host_id: { type: GraphQLID }
       },
-      async resolve(_, { name, start_date, ship_date, budget, host_id }, ctx) {
-        const validUser = await AuthService.verifyUser({ token: ctx.token });
+      // async resolve(_, { name, start_date, ship_date, budget, host_id }, ctx) {
+      //   const validUser = await AuthService.verifyUser({ token: ctx.token });
 
-        if (validUser.loggedIn) {
-          return new Product({ name, start_date, ship_date, budget, host_id }).save();
-        } else {
-          throw new Error('Sorry, you need to be logged in to create a exchange.');
-        }
+      //   if (validUser.loggedIn) {
+      //     return new Exchange({ name, start_date, ship_date, budget, host_id }).save()
+      //       .then(exchange => {
+      //         User.addHostExchange(exchange._id, host_id);
+      //       });
+      //   } else {
+      //     throw new Error('Sorry, you need to be logged in to do that.');
+      //   }
+      // }
+      resolve(_, { name, start_date, ship_date, budget, host_id }) {
+        return new Exchange({ name, start_date, ship_date, budget, host_id }).save()
+          .then(exchange => {
+            User.addHostedExchange(exchange._id, host_id);
+            return exchange;
+          });
+      }
+    },
+    updateExchange: {
+      type: ExchangeType,
+      args: {
+        exchange_id: { type: GraphQLID },
+        name: { type: GraphQLString },
+        start_date: { type: GraphQLDate },
+        ship_date: { type: GraphQLDate },
+        budget: { type: GraphQLInt }
+      },
+      resolve(_, args) {
+        let params = {};
+        for (let prop in args) if (args[prop]) params[prop] = args[prop];
+        return Exchange.findOneAndUpdate({ _id: params.exchange_id }, params, { new: true })
+          .then(exchange => exchange);
       }
     }
   }
