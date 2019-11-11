@@ -41,7 +41,7 @@ export default {
 
 
     }
-  `
+  `,
   FETCH_USER: gql`
     query user($userId: ID!) {
       user(_id: $userId){

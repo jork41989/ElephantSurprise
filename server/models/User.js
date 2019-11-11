@@ -163,12 +163,12 @@ UserSchema.statics.fetchOwnedLists = (userId) => {
   })
 }
 
-UserSchema.statics.addInvite = (exchangeId, userId) => {
+UserSchema.statics.addInvite = (exchangeId, email) => {
   const Exchange = mongoose.model('exchange');
   const User = mongoose.model('user');
 
   return Exchange.findById(exchangeId).then(exchange => {
-    return User.findById(userId).then(user => {
+    return User.findOne({email: email}).then(user => {
       user.pendingInvites.push(exchangeId);
 
       return user.save()
