@@ -35,7 +35,9 @@ class Nav extends Component {
                   onClick={e => {
                     e.preventDefault();
                     localStorage.removeItem("auth-token");
-                    client.writeData({ data: { isLoggedIn: false } });
+                    localStorage.removeItem("currentUserID");
+                    localStorage.removeItem("currentUserName");
+                    client.writeData({ data: { isLoggedIn: false, CurrentUserID: '', CurrentUserName: '' } });
                     this.props.history.push("/");
                   }}
                 >

@@ -6,6 +6,8 @@ LOGIN_USER: gql `
     login(email: $email, password: $password) {
       token
       loggedIn
+      _id
+      name
     }
   }
   `,
@@ -14,6 +16,8 @@ SIGNUP_USER: gql `
     register(name: $name, email: $email, password: $password){
       token,
       loggedIn
+      name
+      _id
     }
   }
 `,
@@ -21,6 +25,8 @@ VERIFY_USER: gql `
 mutation VerifyUser($token: String!) {
   verifyUser(token: $token) {
     loggedIn
+    name
+    _id
   }
 }
 `

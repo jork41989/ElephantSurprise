@@ -22,7 +22,7 @@ class Login extends Component {
   }
   
   updateCache(client, {data}) {
-      console.log(data);
+      
       // here we can write directly to our cache with our returned mutation data
       client.writeData({
         data: { isLoggedIn: data.login.loggedIn }
@@ -62,8 +62,10 @@ render() {
         onError={err => this.setState({ errors: err.graphQLErrors})}
 
             onCompleted={data => {
-                const { token } = data.login;
+                const { token, _id, name } = data.login;
                 localStorage.setItem('auth-token', token);
+                localStorage.setItem('currentUserID', _id );
+                localStorage.setItem('currentUserName', name)
                 this.props.closeModal();
             }}
             update={(client, data) => this.updateCache(client, data)}

@@ -1,7 +1,5 @@
 import React from 'react';
 import {Route, Switch, withRouter, Link} from 'react-router-dom';
-import Login from './auth/login';
-import SignUp from './auth/signup';
 import Dashboard from './dashboard/dashboard'
 
 import AuthRoute from '../util/route_util';

@@ -6,5 +6,16 @@ export default {
       isLoggedIn @client
     }
   `,
+  CURRENT_USER: gql`
+    query CurrentUserFind {
+      CurrentUserID @client 
+      CurrentUserName @client 
+    }
+  `
 
 }
+
+// currentUser @client{
+//   name
+//   id
+// }
