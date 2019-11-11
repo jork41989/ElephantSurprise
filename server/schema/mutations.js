@@ -156,14 +156,42 @@ const mutation = new GraphQLObjectType({
       args: {
         exchange_id: { type: GraphQLID }
       },
-      resolve(_, { exchange_id }) {
-        return Exchange.findOneAndDelete({ _id: exchange_id }).then(
-          exchange => {
-            User.removeHostedExchange(exchange._id, exchange.host_id);
-            return exchange;
-          }
-        );
-      }
+      async resolve(_, { exchange_id }, ctx) {
+        const validUser = await AuthService.verifyUser({ token: ctx.token });
+
+        if (validUser.loggedIn) {
+          return Exchange.findOneAndDelete({ _id: exchange_id }).then(
+            exchange => {
+              User.removeHostedExchange(exchange._id, exchange.host_id);
+              exchange.wish_list_ids.foreach(id => {
+                WishList.findOneAndDelete({ _id: id })
+                  .then(wish_list => {
+                    User.removeWishList(wish_list.exchange_id, wish_list._id, wish_list.owner_id)
+                  }
+                  );
+              });
+              return exchange;
+            }
+          );
+        } else {
+          throw new Error('Sorry, you need to be logged in to do that.');
+        }
+      },
+      // resolve(_, { exchange_id }) {
+      //   return Exchange.findOneAndDelete({ _id: exchange_id }).then(
+      //     exchange => {
+      //       User.removeHostedExchange(exchange._id, exchange.host_id);
+      //       exchange.wish_list_ids.foreach(id => {
+      //         WishList.findOneAndDelete({ _id: id })
+      //           .then(wish_list => {
+      //             User.removeWishList(wish_list.exchange_id, wish_list._id, wish_list.owner_id)
+      //           }
+      //         );
+      //       });
+      //       return exchange;
+      //     }
+      //   );
+      // }
     },
     addParticipant: {
       type: ExchangeType,
