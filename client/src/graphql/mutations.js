@@ -30,13 +30,35 @@ mutation VerifyUser($token: String!) {
   }
 }
 `,
-
-  NEW_EXCHANGE: gql `
-  mutation createExchange($name: String!, $start_date: Date!, $ship_date: Date!, $budget: Int!){
-    newExchange(name: $name, start_date: $start_date, ship_date: $ship_date, budget: $budget){
-      name
-      _id
-    }
+NEW_EXCHANGE: gql `
+mutation createExchange($name: String!, $start_date: Date!, $ship_date: Date!, $budget: Int!){
+  newExchange(name: $name, start_date: $start_date, ship_date: $ship_date, budget: $budget){
+    name
+    _id
   }
-  `
+}
+  `,
+NEW_EXCHANGE: gql `
+mutation createExchange($name: String!, $start_date: Date!, $ship_date: Date!, $budget: Int!, $santa_assigned: Boolean!){
+  newExchange(name: $name, start_date: $start_date, ship_date: $ship_date, budget: $budget, santa_assigned: $santa_assigned){
+    name
+    _id
+  }
+}
+`,
+INVITE_USER: gql `
+mutation addInvite($exchangeId: ID!, $userId: ID!) {
+  addInvite( exchangeId: $exchangeId, userId: $userId ){
+    name
+  }
+}
+`,
+DELETE_INVITE: gql `
+mutation deleteInvite($$exchangeId: ID!, $$userId: ID!) {
+  deleteInvite( exchangeId: $exchangeId, userId: $userId ){
+    name
+  }
+}
+`
+
 }

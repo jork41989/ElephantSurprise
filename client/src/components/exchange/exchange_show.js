@@ -28,7 +28,8 @@
         <ExchangeUsers participants={data.participants}/>
         // <Errors />
 
-      ) }else{
+      )
+     }else{
 
       return(
 

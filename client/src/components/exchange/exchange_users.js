@@ -12,19 +12,19 @@ const ExchangeUsers = (participants) => {
 
         <Query query={FETCH_USER} 
         variables={{ userId: participant.id }}>
-        {({loading, error, data})=> {
-          if (loading) return <p>Loading...</p>;
-          if (error) return <p>Error</p>;
-
-          return(
-            <h3> data.name </h3>
-          ) 
-
-        }
-        }
+          {({loading, error, data})=> {
+            if (loading) return <p>Loading...</p>;
+            if (error) return <p>Error</p>;
+            return(
+              <h3>{data.name}</h3>
+            ) 
+          }}   
         </Query>
+
       })}
     </ul>
   )
 
 }
+
+export default ExchangeUsers;
