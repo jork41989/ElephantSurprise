@@ -18,11 +18,6 @@ const ItemSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "user",
     required: true
-  },
-  wish_list_id: {
-    type: Schema.Types.ObjectId,
-    ref: "wish_list",
-    required: true
   }
 })
 

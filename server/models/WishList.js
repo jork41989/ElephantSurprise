@@ -9,7 +9,7 @@ const WishListSchema = new Schema({
   },
   shipping_address: {
     type: String,
-    equired: true
+    required: true
   },
   santa_id: {
     type: Schema.Types.ObjectId,
@@ -17,7 +17,8 @@ const WishListSchema = new Schema({
   },
   exchange_id: {
     type: Schema.Types.ObjectId,
-    ref: "exchange"
+    ref: "exchange",
+    required: true
   },
   item_ids: [{
     type: Schema.Types.ObjectId,
