@@ -29,9 +29,18 @@ export default {
   `
 
 
-}
 
 // currentUser @client{
-//   name
-//   id
-// }
+  //   name
+  //   id
+  // }
+  
+  FETCH_EXCHANGE: gql`
+    query exchange($exchangeId: ID!) {
+      exchange(_id: $exchangeId )
+
+    }
+  `
+  
+}
+

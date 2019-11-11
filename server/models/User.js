@@ -37,6 +37,12 @@ const UserSchema = new Schema({
       type: Schema.Types.ObjectId,
       ref:'wish_list'
     }
+  ],
+  pendingInvites: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Exchange'
+    }
   ]
 
 })
