@@ -16,6 +16,8 @@ const User = require("../models/User");
 const UserType = require("./types/user_type");
 const Exchange = require("../models/Exchange");
 const ExchangeType = require("./types/exchange_type");
+const WishList = require("../models/WishList");
+const WishListType = require("./types/wish_list_type");
     
 const mutation = new GraphQLObjectType({
   name: "Mutation",
@@ -197,6 +199,22 @@ const mutation = new GraphQLObjectType({
             return exchange;
           }
         );
+      }
+    },
+    //wish list mutations
+    newWishList: {
+      type: WishListType,
+      args: {
+        owner_id: { type: GraphQLID },
+        shipping_address: { type: GraphQLString },
+        exchange_id: { type: GraphQLID }
+      },
+      resolve(_, { owner_id, shipping_address, exchange_id }) {
+        return new WishList({ owner_id, shipping_address, exchange_id }).save()
+          .then(wishList => {
+            User.addWishList(exchange_id, wishList._id, owner_id);
+            return wishList;
+          });
       }
     }
   }
