@@ -13,6 +13,8 @@ const User = mongoose.model("user");
 const UserType = require("./user_type");
 const Exchange = mongoose.model("exchange");
 const ExchangeType = require("./exchange_type");
+const WishList = mongoose.model("wish_list");
+const WishListType = require("./wish_list_type");
 
 
 // const secretKey = require("../../../config/keys");
@@ -54,6 +56,23 @@ const RootQueryType = new GraphQLObjectType({
       },
       resolve(_, args) {
         return Exchange.findById(args._id);
+      }
+    },
+    wish_lists: {
+      type: new GraphQLList(WishListType),
+      resolve() {
+        return WishList.find({});
+      }
+    },
+    wish_list: {
+      type: WishListType,
+      args: {
+        _id: {
+          type: new GraphQLNonNull(GraphQLID)
+        }
+      },
+      resolve(_, args) {
+        return WishList.findById(args._id);
       }
     }
   })

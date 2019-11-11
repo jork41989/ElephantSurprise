@@ -141,12 +141,14 @@ const mutation = new GraphQLObjectType({
         name: { type: GraphQLString },
         start_date: { type: GraphQLDate },
         ship_date: { type: GraphQLDate },
-        budget: { type: GraphQLInt }
+        budget: { type: GraphQLInt },
+        santa_assigned: { type: GraphQLBoolean },
+        host_id: { type: GraphQLID }
       },
       resolve(_, args) {
         let params = {};
         for (let prop in args) if (args[prop]) params[prop] = args[prop];
-        return Exchange.findOneAndUpdate({ _id: params.exchange_id }, params, { new: true })
+        return Exchange.findOneAndUpdate({ _id: params.exchange_id }, params, { new: true });
       }
     },
     deleteExchange: {
@@ -215,6 +217,19 @@ const mutation = new GraphQLObjectType({
             User.addWishList(exchange_id, wishList._id, owner_id);
             return wishList;
           });
+      }
+    },
+    updateWishList: {
+      type: WishListType,
+      args: {
+        wish_list_id: { type: GraphQLID },
+        shipping_address: { type: GraphQLString },
+        santa_id: { type: GraphQLID }
+      },
+      resolve(_, args) {
+        let params = {};
+        for (let prop in args) if (args[prop]) params[prop] = args[prop];
+        return WishList.findOneAndUpdate({ _id: params.wish_list_id }, params, { new: true });
       }
     }
   }
