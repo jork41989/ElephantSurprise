@@ -39,6 +39,15 @@ export default {
     query exchange($exchangeId: ID!) {
       exchange(_id: $exchangeId )
 
+
+    }
+  `
+  FETCH_USER: gql`
+    query user($userId: ID!) {
+      user(_id: $userId){
+        name
+        owned_lists
+      }
     }
   `
   
