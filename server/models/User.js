@@ -68,7 +68,7 @@ UserSchema.statics.removeWishList = (exchangeId, listId, userId) => {
   return Exchange.findById(exchangeId).then(exchange => {
     return User.findById(userId).then(user => {
       exchange.wish_list_ids.pull(listId);
-      User.owned_lists.pull(listId);
+      user.owned_lists.pull(listId);
 
 
       return Promise.all([exchange.save(), user.save()])

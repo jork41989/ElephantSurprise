@@ -231,6 +231,20 @@ const mutation = new GraphQLObjectType({
         for (let prop in args) if (args[prop]) params[prop] = args[prop];
         return WishList.findOneAndUpdate({ _id: params.wish_list_id }, params, { new: true });
       }
+    },
+    deleteWishList: {
+      type: WishListType,
+      args: {
+        wish_list_id: { type: GraphQLID }
+      },
+      resolve(_, { wish_list_id }) {
+        return WishList.findOneAndDelete({ _id: wish_list_id }).then(
+          wish_list => {
+            User.removeWishList(wish_list.exchange_id, wish_list._id, wish_list.owner_id);
+            return wish_list;
+          }
+        );
+      }
     }
   }
 });
