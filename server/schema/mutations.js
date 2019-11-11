@@ -179,6 +179,25 @@ const mutation = new GraphQLObjectType({
           }
         );
       }
+    },
+    removeParticipant: {
+      type: ExchangeType,
+      args: {
+        exchange_id: { type: GraphQLID },
+        user_id: { type: GraphQLID }
+      },
+      resolve(_, { exchange_id, user_id }) {
+        return Exchange.findOneAndUpdate(
+          { _id: exchange_id },
+          { $pull: { participant_ids: user_id } },
+          { new: true }
+        ).then(
+          exchange => {
+            User.removeParticipatedExchange(exchange_id, user_id);
+            return exchange;
+          }
+        );
+      }
     }
   }
 });
