@@ -48,13 +48,13 @@ mutation createExchange($name: String!, $start_date: Date!, $ship_date: Date!, $
 `,
 INVITE_USER: gql `
 mutation addInvite($exchangeId: ID!, $email: String!) {
-  addInvite( exchangeId: $exchangeId, email: $$email ){
+  addInvite( exchangeId: $exchangeId, email: $email ){
     name
   }
 }
 `,
 DELETE_INVITE: gql `
-mutation deleteInvite($$exchangeId: ID!, $$userId: ID!) {
+mutation deleteInvite($exchangeId: ID!, $userId: ID!) {
   deleteInvite( exchangeId: $exchangeId, userId: $userId ){
     name
   }
