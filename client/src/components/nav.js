@@ -29,6 +29,7 @@ class Nav extends Component {
             if (data.isLoggedIn) {
               return (
                 <div>
+                  <Link to="/dashboard" className="navBtn">Dashboard</Link>
                 <button
                     className="navBtn"
                   onClick={e => {

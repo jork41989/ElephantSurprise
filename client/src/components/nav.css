@@ -6,6 +6,13 @@
   margin-left: 10%;
   margin-right: 10%;
   background: whitesmoke;
+  border-bottom: rgba(0, 0, 0, 0.493) 1px solid;
+}
+.mainBody{
+  padding: 20px;
+  margin-left: 10%;
+  margin-right: 10%;
+  background: whitesmoke;
 }
 
 .logoNav{
@@ -28,6 +35,8 @@
   border: none;
   background: none;
   cursor: pointer;
+  text-decoration: none;
+  color: black;
 }
 
 html, body, .root{
