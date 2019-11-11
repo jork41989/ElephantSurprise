@@ -153,7 +153,12 @@ const mutation = new GraphQLObjectType({
         exchange_id: { type: GraphQLID }
       },
       resolve(_, { exchange_id }) {
-        return Exchange.findOneAndDelete({ _id: exchange_id });
+        return Exchange.findOneAndDelete({ _id: exchange_id }).then(
+          exchange => {
+            User.removeHostedExchange(exchange._id, exchange.host_id);
+            return exchange;
+          }
+        );
       }
     }
   }
