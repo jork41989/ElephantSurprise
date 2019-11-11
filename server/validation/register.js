@@ -5,25 +5,26 @@ module.exports = function validateLoginInput(data) {
   data.name = validText(data.name) ? data.name : "";
   data.email = validText(data.email) ? data.email : "";
   data.password = validText(data.password) ? data.password : "";
-
+  let errors = {}
   if (Validator.isEmpty(data.name)){
-    return { message: "Name is required", isValid: false};
+    errors.name = "Name is required"
   }
 
   if (!Validator.isEmail(data.email)) {
-    return { message: "Email is invalid", isValid: false };
+    errors.email = "Email is invalid"
   }
 
   if (Validator.isEmpty(data.email)) {
-    return { message: "Email field is required", isValid: false };
+    errors.email = "Email field is required"
   }
 
   if (Validator.isEmpty(data.password)) {
-    return { message: "Password field is required", isValid: false };
+    errors.password = "Password field is required"
   }
 
+
   return {
-    message: "",
-    isValid: true
+    errors,
+    isValid: Object.keys(errors).length === 0
   };
 };

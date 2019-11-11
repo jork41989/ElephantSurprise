@@ -9,10 +9,10 @@ const validateRegisterInput = require("../validation/register"),
 
 const register = async data => {
   try {
-    const { message, isValid } = validateRegisterInput(data);
+    const { errors, isValid } = validateRegisterInput(data);
 
     if (!isValid) {
-      throw new Error(message);
+      throw new Error(JSON.stringify(errors));
     }
     const { name, email, password } = data;
 

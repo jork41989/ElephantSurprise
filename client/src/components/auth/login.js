@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Mutation } from "react-apollo";
 import Mutations from '../../graphql/mutations'
+import ReactTooltip from 'react-tooltip'
 const { LOGIN_USER } = Mutations;
 
 
@@ -10,8 +11,10 @@ class Login extends Component {
 
     this.state = {
       email: "",
-      password: ""
+      password: "",
+      errors: null
     };
+    this.errorTips = this.errorTips.bind(this)
   }
 
   update(field) {
@@ -26,10 +29,38 @@ class Login extends Component {
       });
     }
 
+
+  errorTips(){
+    if(this.state.errors){
+      if (this.state.errors[0].message === "Email is invalid"){
+        return (
+          <ReactTooltip id="email" place="top" type="error" effect="solid">
+            <span>{this.state.errors[0].message}</span>
+          </ReactTooltip>
+        )
+      } else if (this.state.errors[0].message === "Password field is required"){
+        return (
+          <ReactTooltip id="password" place="top" type="error" effect="solid">
+            <span>{this.state.errors[0].message}</span>
+          </ReactTooltip>
+        )
+      } else if (this.state.errors[0].message === "There is no account associated with this email") {
+        return (
+          <ReactTooltip id="email" place="top" type="error" effect="solid">
+            <span>{this.state.errors[0].message}</span>
+          </ReactTooltip>
+        )
+      }
+  }
+}
+
+
 render() {
     return (
        <Mutation
             mutation={LOGIN_USER}
+        onError={err => this.setState({ errors: err.graphQLErrors})}
+
             onCompleted={data => {
                 const { token } = data.login;
                 localStorage.setItem('auth-token', token);
@@ -42,6 +73,7 @@ render() {
             <form className="signupForm"
               onSubmit={e => {
                 e.preventDefault();
+                this.setState({errors: null})
                 loginUser({
                   variables: {
                     email: this.state.email,
@@ -51,11 +83,14 @@ render() {
               }}
             >
               <img src="https://img.icons8.com/carbon-copy/100/000000/elephant.png" className="elenav" /><h1>Elephant Surprise</h1>
+              {this.errorTips()}
               <input
                 className="Authinput"
                 value={this.state.email}
                 onChange={this.update("email")}
                 placeholder="Email"
+                id={'email'}
+                data-tip data-for={'email'}
               />
               <input
                 className="Authinput"
@@ -63,6 +98,8 @@ render() {
                 onChange={this.update("password")}
                 type="password"
                 placeholder="Password"
+                id={'password'}
+                data-tip data-for={'password'}
               />
               <button type="submit" className="authButton">Log In</button>
             </form>

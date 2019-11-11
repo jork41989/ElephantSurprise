@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Mutation } from "react-apollo";
 import Mutations from '../../graphql/mutations';
+import ReactTooltip from 'react-tooltip'
 import './auth.css'
 const { SIGNUP_USER } = Mutations;
 
@@ -12,8 +13,10 @@ class Signup extends Component {
     this.state = {
       name: "",
       email: "",
-      password: ""
+      password: "",
+      errors: null
     };
+    this.errorTips = this.errorTips.bind(this)
   }
 
   update(field) {
@@ -27,11 +30,38 @@ class Signup extends Component {
         data: { isLoggedIn: data.register.loggedIn }
       });
     }
-
+  errorTips() {
+    let errArr = []
+    if (this.state.errors) {
+      if (this.state.errors.email){
+        errArr.push(
+        <ReactTooltip id="email" place="top" type="error" effect="solid">
+          <span>{this.state.errors.email}</span>
+        </ReactTooltip>
+        )
+      }
+      if (this.state.errors.name) {
+        errArr.push(
+        <ReactTooltip id="name" place="top" type="error" effect="solid">
+          <span>{this.state.errors.name}</span>
+        </ReactTooltip>
+        )
+      } 
+      if (this.state.errors.password) {
+        errArr.push(
+        <ReactTooltip id="password" place="top" type="error" effect="solid">
+          <span>{this.state.errors.password}</span>
+        </ReactTooltip>
+        )
+      }
+    }
+    return errArr
+  }
   render() {
       return (
         <Mutation
               mutation={SIGNUP_USER}
+          onError={err => this.setState({ errors: JSON.parse(err.graphQLErrors[0].message) })}
               onCompleted={data => {
                   const { token } = data.register;
                   localStorage.setItem('auth-token', token);
@@ -44,6 +74,7 @@ class Signup extends Component {
               <form className="signupForm"
                 onSubmit={e => {
                   e.preventDefault();
+                  this.setState({ errors: null })
                   signupUser({
                     variables: {
                       name: this.state.name,
@@ -54,17 +85,20 @@ class Signup extends Component {
                 }}
               >
                 <img src="https://img.icons8.com/carbon-copy/100/000000/elephant.png" className="elenav" /><h1>Elephant Surprise</h1>
+                {this.errorTips()}
                 <input
                   className="Authinput"
                   value={this.state.name}
                   onChange={this.update("name")}
                   placeholder="Name"
+                  data-tip data-for={'name'}
                 />
                 <input
                   className="Authinput"
                   value={this.state.email}
                   onChange={this.update("email")}
                   placeholder="Email"
+                  data-tip data-for={'email'}
                 />
                 <input
                   className="Authinput"
@@ -72,6 +106,7 @@ class Signup extends Component {
                   onChange={this.update("password")}
                   type="password"
                   placeholder="Password"
+                  data-tip data-for={'password'}
                 />
                 <button type="submit" className="authButton">Register</button>
               </form>
