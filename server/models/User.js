@@ -47,27 +47,6 @@ const UserSchema = new Schema({
 
 })
 
-
-UserSchema.statics.addInvite = (exchangeId, userId) => {
-  const Exchange = mongoose.model('exchange');
-  const User = mongoose.model('user');
-
-  return Exchange.findById(exchangeId).then(exchange => {
-    return User.findById(userId).then(user => {
-      user.pendingInvites.push(exchangeId);
-
-      return user.save()
-      .then(user => user)
-      .catch(err => res.json(err))
-    })
-      .catch(err => res.json(err))
-
-  })
-    .catch(err => res.json(err))
-
-}
-
-
 UserSchema.statics.addWishList = (exchangeId, listId, userId) => {
   const Exchange = mongoose.model('exchange');
   const User =  mongoose.model('user');
@@ -184,6 +163,42 @@ UserSchema.statics.fetchOwnedLists = (userId) => {
   })
 }
 
+UserSchema.statics.addInvite = (exchangeId, userId) => {
+  const Exchange = mongoose.model('exchange');
+  const User = mongoose.model('user');
 
+  return Exchange.findById(exchangeId).then(exchange => {
+    return User.findById(userId).then(user => {
+      user.pendingInvites.push(exchangeId);
+
+      return user.save()
+        .then(user => user)
+        .catch(err => res.json(err))
+    })
+      .catch(err => res.json(err))
+
+  })
+    .catch(err => res.json(err))
+
+}
+
+UserSchema.statics.deleteInvite = (exchangeId, userId) => {
+  const Exchange = mongoose.model('exchange');
+  const User = mongoose.model('user');
+
+  return Exchange.findById(exchangeId).then(exchange => {
+    return User.findById(userId).then(user => {
+      user.pendingInvites.pull(exchangeId);
+
+      return user.save()
+        .then(user => user)
+        .catch(err => res.json(err))
+    })
+      .catch(err => res.json(err))
+
+  })
+    .catch(err => res.json(err))
+
+}
 
 module.exports = mongoose.model("user", UserSchema);
