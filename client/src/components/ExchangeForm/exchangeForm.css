@@ -1,0 +1,10 @@
+.FormTextFeild{
+  height: 25px;
+  width: 150px
+}
+
+.FormDiv{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

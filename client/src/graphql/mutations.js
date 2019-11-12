@@ -29,5 +29,14 @@ mutation VerifyUser($token: String!) {
     _id
   }
 }
-`
+`,
+
+  NEW_EXCHANGE: gql `
+  mutation createExchange($name: String!, $start_date: Date!, $ship_date: Date!, $budget: Int!, $santa_assigned: Boolean!){
+    newExchange(name: $name, start_date: $start_date, ship_date: $ship_date, budget: $budget, santa_assigned: $santa_assigned){
+      name
+      _id
+    }
+  }
+  `
 }

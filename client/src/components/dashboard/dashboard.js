@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link} from "react-router-dom";
 import { Query } from "react-apollo";
 import Queries from '../../graphql/queries';
 import './dashboard.css'
@@ -29,6 +30,7 @@ class Dashboard extends Component {
                   <h2 className="dashboardGreeting">Hello {data.user.name}</h2>
                   <div className="dashboardExchangeDiv">
                     <h3>Exchanges</h3>
+                    <Link to="/newExchange"> Create a New Exchange</Link>
                   </div>
                 </div>
 
