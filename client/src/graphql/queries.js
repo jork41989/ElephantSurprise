@@ -15,6 +15,7 @@ export default {
   FETCH_USER: gql `
   query fecthUser($_id: ID!) {
     user(_id: $_id){
+      _id
       name,
       email
       participated_exchanges{
@@ -26,12 +27,26 @@ export default {
       }
     }
   }
-  `
-
-
+  `,
+  FETCH_EXCHANGE: gql`
+    query exchange($_id: ID!) {
+      exchange(_id: $_id ){
+        _id
+        name
+        start_date
+        ship_date
+        budget
+        santa_assigned
+        host{
+          _id
+          name
+        }
+        participants{
+          _id
+          name
+        }
+      }
+    }
+  `,  
 }
 
-// currentUser @client{
-//   name
-//   id
-// }
