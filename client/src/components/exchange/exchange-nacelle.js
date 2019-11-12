@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Query } from "react-apollo";
 import ExchangeShow from "./exchange_show";
 import Queries from '../../graphql/queries';
+import { withRouter } from 'react-router-dom';
 const { CURRENT_USER, FETCH_USER } = Queries;
 
 class ExchangeNacelle extends Component {
@@ -38,4 +39,4 @@ class ExchangeNacelle extends Component {
   }
 }
 
-export default ExchangeNacelle;
+export default withRouter(ExchangeNacelle);

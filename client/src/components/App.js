@@ -2,6 +2,7 @@ import React from 'react';
 import {Route, Switch, withRouter, Link} from 'react-router-dom';
 import Dashboard from './dashboard/dashboard'
 import ExchangeForm from './ExchangeForm/exchangeForm'
+import ExchangeNacelle from './exchange/exchange-nacelle'
 
 import AuthRoute from '../util/route_util';
 import Nav from './nav';
@@ -18,6 +19,7 @@ function App() {
         <Switch>
           <AuthRoute exact path="/dashboard" component={Dashboard} />
           <AuthRoute exact path="/newExchange" component={ExchangeForm} />
+          <AuthRoute exact path="/exchanges/:id" component={ExchangeNacelle} />
         </Switch>
       </div>
 

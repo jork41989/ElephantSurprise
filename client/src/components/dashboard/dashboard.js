@@ -34,7 +34,7 @@ class Dashboard extends Component {
                     <h3>Exchanges</h3>
                     <Link to="/newExchange"> Create a New Exchange</Link>
                     <DashboardExchanges exchanges={data.user.participated_exchanges} />
-                    <ExchangeNacelle/>
+                    {/* <ExchangeNacelle/> */}
                   </div>
                 </div>
 

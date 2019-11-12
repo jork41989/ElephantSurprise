@@ -43,12 +43,12 @@ class InviteUser extends Component{
 
   render() {
 
-    if (this.state.editing) {
+    // if (this.state.editing) {
       return(
         <div>
           <button onClick={this.handleEdit}
             value={this.state.editing ? "Hide Invitation Form" : "Click to send an Invitation" }
-          />
+          >Invite Member</button>
       
           <Mutation mutation={ INVITE_USER }>
             {(addInvite, data)=>(
@@ -78,7 +78,7 @@ class InviteUser extends Component{
         </div>
       )
     }
-  }
+  // }
 }
 
 export default InviteUser;
