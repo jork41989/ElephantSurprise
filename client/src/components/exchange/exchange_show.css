@@ -1,8 +1,26 @@
 .ExchangeShow{
   display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ExchangeShowBody{
+  width: 75%;
+   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  text-align: center;
+}
+
+.ExchangeShowSidebar{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  align-self: flex-start;
+  padding: 5px;
 }
 
 .participants-list{
@@ -24,3 +42,4 @@
     flex-direction: column;
     cursor: pointer;
 }
+

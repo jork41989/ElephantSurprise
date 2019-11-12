@@ -28,27 +28,33 @@ class ExchangeShow extends Component {
         console.log("exchange host id", data.exchange.host)
         console.log("exchange data", data.exchange)
         console.log("user id", this.props.user._id)
-        let hosted;
+        let santaRead;
           if (data.exchange.santa_assigned){
-            hosted = <div> Elephants have been assigned </div>
+            santaRead = <div> Elephants have been assigned </div>
           } else {
-            hosted = <div> Elephant isn't ready yet! </div>
+            santaRead = <div> <div>Elephant isn't ready yet!</div><div>Gifties have not been assigned </div></div>
           }
         if (this.props.user._id === data.exchange.host._id){
           console.log(data.exchange.participants) 
         return(
           <div className="ExchangeShow">
 
+          <div className="ExchangeShowBody">
+            <h1>
+                Welcome to the {data.exchange.name} Exchange!
+            </h1>
+              <ExchangeUsers exchange={Object.values(data.exchange.participants)} />
+          </div>
           
-          <h1>
-              Welcome to the {data.exchange.name} Exchange!
-          </h1>
+          <div className="ExchangeShowSidebar">
+              <h2> Host: {this.props.user.name} </h2>
+              {santaRead}
+          </div>
 
-          <h2> Host {this.props.user.name} </h2>
-            {hosted}
+          
             {/* <LetsSurprise/> */}
             
-            <ExchangeUsers exchange={Object.values(data.exchange.participants)}/>
+            
             {/* <Errors /> */}
 
           </div>
