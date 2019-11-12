@@ -98,13 +98,17 @@ const RootQueryType = new GraphQLObjectType({
     searchUser: {
       type: new GraphQLList(UserType),
       args: {
-        key_word: { type: new GraphQLNonNull(GraphQLString) }
+        key_word: { type: GraphQLString }
       },
       resolve(_, { key_word }) { 
-        return User.find({ $or: [
-          { name: new RegExp(key_word, "i") },
-          { email: new RegExp(key_word, "i") }
-        ]}).limit(5);
+        if (key_word) {
+          return User.find({ $or: [
+            { name: new RegExp(key_word, "i") },
+            { email: new RegExp(key_word, "i") }
+          ]}).limit(5);
+        } else {
+          return [];
+        }
       }
     }
   })

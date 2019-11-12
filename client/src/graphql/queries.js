@@ -56,7 +56,7 @@ export default {
     }
   `,
   SEARCH_USER: gql`
-    query searchUser($key_word: String!) {
+    query searchUser($key_word: String) {
       searchUser(key_word: $key_word) {
         _id
         name
