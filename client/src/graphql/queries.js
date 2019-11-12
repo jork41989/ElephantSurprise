@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
 
 export default {
-  IS_LOGGED_IN: gql `
+  IS_LOGGED_IN: gql`
     query IsUserLoggedIn {
       isLoggedIn @client
     }
@@ -12,7 +12,7 @@ export default {
       CurrentUserName @client 
     }
   `,
-  FETCH_USER: gql `
+  FETCH_USER: gql`
   query fecthUser($_id: ID!) {
     user(_id: $_id){
       _id
@@ -52,6 +52,23 @@ export default {
           _id
         }
       
+      }
+    }
+  `,
+  SEARCH_USER: gql`
+    query searchUser($key_word: String!) {
+      searchUser(key_word: $key_word) {
+        _id
+        name
+        email
+        participated_exchanges{
+          _id
+          name
+        }
+        hosted_exchanges{
+          _id
+          name
+        }
       }
     }
   `,  

@@ -326,6 +326,7 @@ const mutation = new GraphQLObjectType({
         return Item.findOneAndDelete({ _id: item_id });
       }
     },
+    // additional mutations
   }
 });
 
