@@ -12,7 +12,7 @@ const ExchangeShow = (props)=> {
         if (loading) return <p>Loading...</p>;
         if (error) return <p>Error</p>;
 
-        if (props.user === data.exchange.host_id){
+        if (props._id === data.exchange.host_id){
 
         return(
           <div className={ExchangeShow}>
