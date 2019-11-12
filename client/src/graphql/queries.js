@@ -11,7 +11,23 @@ export default {
       CurrentUserID @client 
       CurrentUserName @client 
     }
+  `,
+  FETCH_USER: gql `
+  query fecthUser($_id: ID!) {
+    user(_id: $_id){
+      name,
+      email
+      participated_exchanges{
+        name
+        _id
+      }
+      hosted_exchanges{
+        _id
+      }
+    }
+  }
   `
+
 
 }
 
