@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const WishListSchema = new Schema({
-  owner_id: {
+  owner: {
     type: Schema.Types.ObjectId,
     ref: "user",
     required: true
@@ -11,25 +11,25 @@ const WishListSchema = new Schema({
     type: String,
     required: true
   },
-  santa_id: {
+  santa: {
     type: Schema.Types.ObjectId,
     ref: "user"
   },
-  exchange_id: {
+  exchange: {
     type: Schema.Types.ObjectId,
     ref: "exchange",
     required: true
   },
-  item_ids: [{
+  items: [{
     type: Schema.Types.ObjectId,
     ref: "item"
   }]
 })
 
-WishListSchema.statics.findItems = (wishListId) => {
+WishListSchema.statics.findItems = (wish_ist_id) => {
   const WishList = mongoose.model("wish_list");
-  return WishList.findById(wishListId)
-    .then(wishList => wishList.item_ids)
+  return WishList.findById(wish_ist_id).populate("items")
+    .then(wish_list => wish_list.items)
 };
 
 module.exports = mongoose.model("wish_list", WishListSchema);

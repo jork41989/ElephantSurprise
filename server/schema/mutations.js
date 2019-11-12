@@ -5,6 +5,7 @@ const {
       GraphQLObjectType,
       GraphQLString,
       GraphQLInt,
+      GraphQLFloat,
       GraphQLID,
       GraphQLBoolean
     } = graphql;
@@ -18,6 +19,8 @@ const Exchange = require("../models/Exchange");
 const ExchangeType = require("./types/exchange_type");
 const WishList = require("../models/WishList");
 const WishListType = require("./types/wish_list_type");
+const Item = require("../models/Item");
+const ItemType = require("./types/item_type");
     
 const mutation = new GraphQLObjectType({
   name: "Mutation",
@@ -62,48 +65,48 @@ const mutation = new GraphQLObjectType({
       }
     },
     //user mutations
-    addWishList: {
-      type: UserType,
-      args: { exchangeId: { type: GraphQLID }, listId: { type: GraphQLID }, userId: { type: GraphQLID } },
-      resolve(parentValue, { exchangeId, listId, userId }) {
-        return User.addWishList(exchangeId, listId, userId);
-      }
-    },
-    removeWishList: {
-      type: UserType,
-      args: { exchangeId: { type: GraphQLID }, listId: { type: GraphQLID }, userId: { type: GraphQLID } },
-      resolve(parentValue, { exchangeId, listId, userId }) {
-        return User.removeWishList(exchangeId, listId, userId);
-      }
-    },
-    addHostExchange: {
-      type: UserType,
-      args: { exchangeId: { type: GraphQLID }, userId: { type: GraphQLID } },
-      resolve(parentValue, { exchangeId, userId }) {
-        return User.addHostExchange(exchangeId, userId);
-      }
-    },
-    removeHostExchange: {
-      type: UserType,
-      args: { exchangeId: { type: GraphQLID }, userId: { type: GraphQLID } },
-      resolve(parentValue, { exchangeId, userId }) {
-        return User.removeHostExchange(exchangeId, userId);
-      }
-    },
-    addParticipatedExchange: {
-      type: UserType,
-      args: { exchangeId: { type: GraphQLID }, userId: { type: GraphQLID } },
-      resolve(parentValue, { exchangeId, userId }) {
-        return User.addParticipatedExchange(exchangeId, userId);
-      }
-    },
-    removeParticipatedExchange: {
-      type: UserType,
-      args: { exchangeId: { type: GraphQLID }, userId: { type: GraphQLID } },
-      resolve(parentValue, { exchangeId, userId }) {
-        return User.removeParticipatedExchange(exchangeId, userId);
-      }
-    },
+    // addWishList: {
+    //   type: UserType,
+    //   args: { exchangeId: { type: GraphQLID }, listId: { type: GraphQLID }, userId: { type: GraphQLID } },
+    //   resolve(parentValue, { exchangeId, listId, userId }) {
+    //     return User.addWishList(exchangeId, listId, userId);
+    //   }
+    // },
+    // removeWishList: {
+    //   type: UserType,
+    //   args: { exchangeId: { type: GraphQLID }, listId: { type: GraphQLID }, userId: { type: GraphQLID } },
+    //   resolve(parentValue, { exchangeId, listId, userId }) {
+    //     return User.removeWishList(exchangeId, listId, userId);
+    //   }
+    // },
+    // addHostExchange: {
+    //   type: UserType,
+    //   args: { exchangeId: { type: GraphQLID }, userId: { type: GraphQLID } },
+    //   resolve(parentValue, { exchangeId, userId }) {
+    //     return User.addHostExchange(exchangeId, userId);
+    //   }
+    // },
+    // removeHostExchange: {
+    //   type: UserType,
+    //   args: { exchangeId: { type: GraphQLID }, userId: { type: GraphQLID } },
+    //   resolve(parentValue, { exchangeId, userId }) {
+    //     return User.removeHostExchange(exchangeId, userId);
+    //   }
+    // },
+    // addParticipatedExchange: {
+    //   type: UserType,
+    //   args: { exchangeId: { type: GraphQLID }, userId: { type: GraphQLID } },
+    //   resolve(parentValue, { exchangeId, userId }) {
+    //     return User.addParticipatedExchange(exchangeId, userId);
+    //   }
+    // },
+    // removeParticipatedExchange: {
+    //   type: UserType,
+    //   args: { exchangeId: { type: GraphQLID }, userId: { type: GraphQLID } },
+    //   resolve(parentValue, { exchangeId, userId }) {
+    //     return User.removeParticipatedExchange(exchangeId, userId);
+    //   }
+    // },
     //exchange mutations
     newExchange: {
       type: ExchangeType,
@@ -112,7 +115,7 @@ const mutation = new GraphQLObjectType({
         start_date: { type: GraphQLDate },
         ship_date: { type: GraphQLDate },
         budget: { type: GraphQLInt },
-        host_id: { type: GraphQLID }
+        host: { type: GraphQLID }
       },
       // async resolve(_, { name, start_date, ship_date, budget, host_id }, ctx) {
       //   const validUser = await AuthService.verifyUser({ token: ctx.token });
@@ -126,10 +129,10 @@ const mutation = new GraphQLObjectType({
       //     throw new Error('Sorry, you need to be logged in to do that.');
       //   }
       // }
-      resolve(_, { name, start_date, ship_date, budget, host_id }) {
-        return new Exchange({ name, start_date, ship_date, budget, host_id }).save()
+      resolve(_, { name, start_date, ship_date, budget, host }) {
+        return new Exchange({ name, start_date, ship_date, budget, host }).save()
           .then(exchange => {
-            User.addHostedExchange(exchange._id, host_id);
+            User.addHostedExchange(exchange._id, host);
             return exchange;
           });
       }
@@ -143,11 +146,11 @@ const mutation = new GraphQLObjectType({
         ship_date: { type: GraphQLDate },
         budget: { type: GraphQLInt },
         santa_assigned: { type: GraphQLBoolean },
-        host_id: { type: GraphQLID }
+        host: { type: GraphQLID }
       },
       resolve(_, args) {
         let params = {};
-        for (let prop in args) if (args[prop]) params[prop] = args[prop];
+        for (let prop in args) if (args[prop] !== null) params[prop] = args[prop];
         return Exchange.findOneAndUpdate({ _id: params.exchange_id }, params, { new: true });
       }
     },
@@ -156,42 +159,22 @@ const mutation = new GraphQLObjectType({
       args: {
         exchange_id: { type: GraphQLID }
       },
-      async resolve(_, { exchange_id }, ctx) {
-        const validUser = await AuthService.verifyUser({ token: ctx.token });
-
-        if (validUser.loggedIn) {
-          return Exchange.findOneAndDelete({ _id: exchange_id }).then(
-            exchange => {
-              User.removeHostedExchange(exchange._id, exchange.host_id);
-              exchange.wish_list_ids.foreach(id => {
-                WishList.findOneAndDelete({ _id: id })
-                  .then(wish_list => {
-                    User.removeWishList(wish_list.exchange_id, wish_list._id, wish_list.owner_id)
+      resolve(_, { exchange_id }) {
+        return Exchange.findOneAndDelete({ _id: exchange_id }).then(
+          async exchange => {
+            await exchange.wish_lists.forEach(
+              wish_list_id => {
+                WishList.findOneAndDelete({_id: wish_list_id}).then(
+                  async wish_list => {
+                    await Item.deleteMany({ _id: wish_list.items });
                   }
-                  );
-              });
-              return exchange;
-            }
-          );
-        } else {
-          throw new Error('Sorry, you need to be logged in to do that.');
-        }
-      },
-      // resolve(_, { exchange_id }) {
-      //   return Exchange.findOneAndDelete({ _id: exchange_id }).then(
-      //     exchange => {
-      //       User.removeHostedExchange(exchange._id, exchange.host_id);
-      //       exchange.wish_list_ids.foreach(id => {
-      //         WishList.findOneAndDelete({ _id: id })
-      //           .then(wish_list => {
-      //             User.removeWishList(wish_list.exchange_id, wish_list._id, wish_list.owner_id)
-      //           }
-      //         );
-      //       });
-      //       return exchange;
-      //     }
-      //   );
-      // }
+                );
+              }
+            );
+            return exchange;
+          }
+        );
+      }
     },
     addParticipant: {
       type: ExchangeType,
@@ -202,7 +185,7 @@ const mutation = new GraphQLObjectType({
       resolve(_, { exchange_id, user_id }) {
         return Exchange.findOneAndUpdate(
           { _id: exchange_id }, 
-          { $push: { participant_ids: user_id } }, 
+          { $push: { participants: user_id } }, 
           { new: true } 
         ).then(
           exchange => {
@@ -221,7 +204,7 @@ const mutation = new GraphQLObjectType({
       resolve(_, { exchange_id, user_id }) {
         return Exchange.findOneAndUpdate(
           { _id: exchange_id },
-          { $pull: { participant_ids: user_id } },
+          { $pull: { participants: user_id } },
           { new: true }
         ).then(
           exchange => {
@@ -240,7 +223,7 @@ const mutation = new GraphQLObjectType({
         exchange_id: { type: GraphQLID }
       },
       resolve(_, { owner_id, shipping_address, exchange_id }) {
-        return new WishList({ owner_id, shipping_address, exchange_id }).save()
+        return new WishList({ owner: owner_id, shipping_address, exchange: exchange_id }).save()
           .then(wishList => {
             User.addWishList(exchange_id, wishList._id, owner_id);
             return wishList;
@@ -252,11 +235,11 @@ const mutation = new GraphQLObjectType({
       args: {
         wish_list_id: { type: GraphQLID },
         shipping_address: { type: GraphQLString },
-        santa_id: { type: GraphQLID }
+        santa: { type: GraphQLID }
       },
       resolve(_, args) {
         let params = {};
-        for (let prop in args) if (args[prop]) params[prop] = args[prop];
+        for (let prop in args) if (args[prop] !== null) params[prop] = args[prop];
         return WishList.findOneAndUpdate({ _id: params.wish_list_id }, params, { new: true });
       }
     },
@@ -268,12 +251,56 @@ const mutation = new GraphQLObjectType({
       resolve(_, { wish_list_id }) {
         return WishList.findOneAndDelete({ _id: wish_list_id }).then(
           wish_list => {
-            User.removeWishList(wish_list.exchange_id, wish_list._id, wish_list.owner_id);
-            return wish_list;
+            return Item.deleteMany({ _id: wish_list.items }).then(
+              () => wish_list
+            );
           }
         );
       }
-    }
+    },
+    //item mutations
+    newItem: {
+      type: ItemType,
+      args: {
+        url: { type: GraphQLString },
+        price: { type: GraphQLFloat },
+        owner_id: { type: GraphQLID },
+        wish_list_id: { type: GraphQLID }
+      },
+      resolve(_, { url, price, owner_id, wish_list_id }) {
+        return new Item({ url, price, owner: owner_id, wish_list: wish_list_id }).save()
+          .then(item => {
+            return WishList.findOneAndUpdate(
+              { _id: wish_list_id },
+              { $push: { items: item._id } },
+              { new: true }
+            ).then(() => item);
+          });
+      }
+    },
+    updateItem: {
+      type: ItemType,
+      args: {
+        item_id: { type: GraphQLID },
+        url: { type: GraphQLString },
+        price: { type: GraphQLFloat },
+        purchased: { type: GraphQLBoolean }
+      },
+      resolve(_, args) {
+        let params = {};
+        for (let prop in args) if (args[prop] !== null) params[prop] = args[prop];
+        return Item.findOneAndUpdate({ _id: params.item_id }, params, { new: true });
+      }
+    },
+    deleteItem: {
+      type: ItemType,
+      args: {
+        item_id: { type: GraphQLID }
+      },
+      resolve(_, { item_id }) {
+        return Item.findOneAndDelete({ _id: item_id });
+      }
+    },
   }
 });
 
