@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Mutation } from "react-apollo";
 import Mutations from "../../graphql/mutations";
+import ReactTooltip from 'react-tooltip'
 const { INVITE_USER } = Mutations;
 
 
@@ -10,10 +11,11 @@ class InviteUser extends Component{
 
     this.state={
       email: "",
-      editing: false
+      editing: false,
+      errors: null
     }
-
     this.handleEdit = this.handleEdit.bind(this);
+    this.errorTips = this.errorTips.bind(this);
   }
 
   handleEdit(e) {
@@ -24,6 +26,20 @@ class InviteUser extends Component{
   fieldUpdate(field) {
     return e => this.setState({ [field]: e.target.value });
   }
+
+
+
+  errorTips() {
+    if (this.state.errors) {  
+    return (
+      <ReactTooltip id="email" place="top" type="error" effect="solid">
+        <span>{this.state.errors[0].message}</span>
+      </ReactTooltip>
+    )
+      
+  }
+}
+
 
   render() {
 
@@ -41,14 +57,18 @@ class InviteUser extends Component{
                 <form
                   onSubmit={e => {
                     e.preventDefault();
+                    this.setState({errors: null})
                     addInvite({
                       variables: { exchangeId: this.props._id, email: this.state.email }
                     }).then(() => this.setState({ editing: false }));
                   }}
                 >
+                  {this.errorTips()}
                   <input
                     value={this.state.email}
                     onChange={this.fieldUpdate("email")}
+                    id={'email'}
+                    data-tip data-for={'email'}
                   />
                   <button type="submit">Send Invite!</button>
                 </form>
