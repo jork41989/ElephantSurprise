@@ -10,7 +10,7 @@ const ExchangeUsers = (participants) => {
     <ul className="participants-list" >
       {participants.map( participant => { 
 
-        return (<Query query={FETCH_USER} variables={{ userId: participant.id }}>
+        return (<Query query={FETCH_USER} variables={{ _id: participant.id }}>
 
           {({loading, error, data})=> {
             if (loading) return <p>Loading...</p>;

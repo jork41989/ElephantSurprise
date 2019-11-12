@@ -17,7 +17,7 @@ const ExchangeType = new GraphQLObjectType({
     host: {
       type: require("./user_type"),
       resolve(parentValue) {
-        return User.findById(parentValue.host_id)
+        return User.findById(parentValue)
       }
     },
     participants: {

@@ -23,9 +23,9 @@ class ExchangeNacelle extends Component {
                   return "Loading...";
                 if (error)
                   return `Error! ${error.message}`;
-                console.log(data)
+                // console.log(data)
                 return (
-                  <div className={ExchangeNacelle}>
+                  <div className="ExchangeNacelle">
                     <ExchangeShow user={data.user} />
                   </div>
                 )
