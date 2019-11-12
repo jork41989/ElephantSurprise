@@ -26,23 +26,16 @@ class ExchangeNacelle extends Component {
                 console.log(data)
                 return (
                   <div className={ExchangeNacelle}>
-                    <ExchangeShow props={data.user} />
+                    <ExchangeShow user={data.user} />
                   </div>
-
                 )
               }
-
               }
             </Query>
           )
-
-
         }}
       </Query>)
   }
-
-
-
 }
 
 export default ExchangeNacelle;

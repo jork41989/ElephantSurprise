@@ -4,6 +4,7 @@ import { Query } from "react-apollo";
 import Queries from '../../graphql/queries';
 import DashboardExchanges from './dashboardExchanges'
 import './dashboard.css'
+import ExchangeNacelle from "../exchange/exchange-nacelle";
 const { CURRENT_USER, FETCH_USER } = Queries;
 
 class Dashboard extends Component {
@@ -33,6 +34,7 @@ class Dashboard extends Component {
                     <h3>Exchanges</h3>
                     <Link to="/newExchange"> Create a New Exchange</Link>
                     <DashboardExchanges exchanges={data.user.participated_exchanges} />
+                    <ExchangeNacelle/>
                   </div>
                 </div>
 

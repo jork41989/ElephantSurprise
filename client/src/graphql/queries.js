@@ -28,8 +28,8 @@ export default {
   }
   `,
   FETCH_EXCHANGE: gql`
-    query exchange($exchangeId: ID!) {
-      exchange(_id: $exchangeId )
+    query exchange($_id: ID!) {
+      exchange(_id: $_id )
 
 
     }
