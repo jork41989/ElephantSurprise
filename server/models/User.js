@@ -37,6 +37,12 @@ const UserSchema = new Schema({
       type: Schema.Types.ObjectId,
       ref:'wish_list'
     }
+  ],
+  pendingInvites: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Exchange'
+    }
   ]
 
 })
@@ -157,6 +163,42 @@ UserSchema.statics.fetchOwnedLists = (userId) => {
   })
 }
 
+UserSchema.statics.addInvite = (exchangeId, email) => {
+  const Exchange = mongoose.model('exchange');
+  const User = mongoose.model('user');
 
+  return Exchange.findById(exchangeId).then(exchange => {
+    return User.findOne({email: email}).then(user => {
+      user.pendingInvites.push(exchangeId);
+
+      return user.save()
+        .then(user => user)
+        .catch(err => res.json(err))
+    })
+      .catch(err => res.json(err))
+
+  })
+    .catch(err => res.json(err))
+
+}
+
+UserSchema.statics.deleteInvite = (exchangeId, userId) => {
+  const Exchange = mongoose.model('exchange');
+  const User = mongoose.model('user');
+
+  return Exchange.findById(exchangeId).then(exchange => {
+    return User.findById(userId).then(user => {
+      user.pendingInvites.pull(exchangeId);
+
+      return user.save()
+        .then(user => user)
+        .catch(err => res.json(err))
+    })
+      .catch(err => res.json(err))
+
+  })
+    .catch(err => res.json(err))
+
+}
 
 module.exports = mongoose.model("user", UserSchema);

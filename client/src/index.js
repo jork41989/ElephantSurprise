@@ -27,8 +27,9 @@ const cache = new InMemoryCache({
 
 
 // make sure we log any additional errors we receive
-const errorLink = onError(({ graphQLErrors }) => {
+const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) graphQLErrors.map(({ message }) => console.log(message));
+  if (networkError) console.log(networkError);
 });
 
 let uri;
