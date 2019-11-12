@@ -1,10 +1,27 @@
-.FormTextFeild{
-  height: 25px;
-  width: 150px
-}
+
 
 .FormDiv{
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.FormArea{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.FormTextFeild{
+  height: 25px;
+  width: 200px;
+  margin-bottom: 10px;
+  text-indent: 2px;
+}
+
+.FormDateFeild{
+  height: 25px;
+  width: 200px;
+  margin-bottom: 10px;
 }

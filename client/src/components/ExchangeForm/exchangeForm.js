@@ -11,10 +11,9 @@ class ExchangeForm extends Component {
 
     this.state = {
       name: "",
-      start_date: null,
-      ship_date: null,
-      budget: null,
-      santa_assigned: false
+      start_date: '',
+      ship_date: '',
+      budget: 0
     };
   }
   update(field) {
@@ -34,7 +33,7 @@ class ExchangeForm extends Component {
   }
 
   render() {
-    let datePickerId = document.getElementById("datePickerId")
+    let datePickerId = document.getElementById("StartDate")
     if (datePickerId){
       datePickerId.min = new Date().toISOString().split("T")[0];
     }
@@ -51,33 +50,40 @@ class ExchangeForm extends Component {
           this.setState({
             message: `New exchange ${name} created successfully`
           });
+          this.props.history.push('/dashboard');
         }}
       >
         {(newExchange, { data }) => (
           <div className='FormDiv'>
-            <form onSubmit={e => this.handleSubmit(e, newExchange)}>
+            <form onSubmit={e => this.handleSubmit(e, newExchange)} className='FormArea'>
+              <label htmlFor="name" >Exchange Name</label>
               <input
                 onChange={this.update("name")}
                 value={this.state.name}
                 placeholder="Name"
                 className='FormTextFeild'
+                id='name'
               />
               <input
                 onChange={this.update("start_date")}
                 value={this.state.start_date}
                 type="date"
-                id="datePickerId"
+                id="StartDate"
+                className='FormDateFeild'
               />
               <input
                 onChange={this.update("ship_date")}
                 value={this.state.ship_date}
                 type="date"
                 id="datePickerId"
+                className='FormDateFeild'
               />
               <input
                 onChange={this.update("budget")}
                 value={this.state.budget}
                 type="number"
+                min='0'
+                className='FormTextFeild'
                 />
 
               <button type="submit">Create Exchange</button>

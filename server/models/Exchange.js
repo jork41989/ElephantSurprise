@@ -16,7 +16,7 @@ const ExchangeSchema = new Schema({
   },
   budget: {
     type: Number,
-    equired: true
+    required: true
   },
   santa_assigned: {
     type: Boolean,

@@ -115,27 +115,27 @@ const mutation = new GraphQLObjectType({
         start_date: { type: GraphQLDate },
         ship_date: { type: GraphQLDate },
         budget: { type: GraphQLInt },
-        host: { type: GraphQLID }
       },
-      // async resolve(_, { name, start_date, ship_date, budget, host_id }, ctx) {
-      //   const validUser = await AuthService.verifyUser({ token: ctx.token });
+      async resolve(_, { name, start_date, ship_date, budget }, ctx) {
+        const validUser = await AuthService.verifyUser({ token: ctx.token });
 
-      //   if (validUser.loggedIn) {
-      //     return new Exchange({ name, start_date, ship_date, budget, host_id }).save()
-      //       .then(exchange => {
-      //         User.addHostExchange(exchange._id, host_id);
-      //       });
-      //   } else {
-      //     throw new Error('Sorry, you need to be logged in to do that.');
-      //   }
+        if (validUser.loggedIn) {
+          return new Exchange({ name, start_date, ship_date, budget, host: validUser._id }).save()
+            .then(exchange => {
+              return User.addHostedExchange(exchange._id, exchange.host)
+              .then(() => exchange)
+            });
+        } else {
+          throw new Error('Sorry, you need to be logged in to do that.');
+        }
+      },
+      // resolve(_, { name, start_date, ship_date, budget, host }) {
+      //   return new Exchange({ name, start_date, ship_date, budget, host }).save()
+      //     .then(exchange => {
+      //       User.addHostedExchange(exchange._id, host);
+      //       return exchange;
+      //     });
       // }
-      resolve(_, { name, start_date, ship_date, budget, host }) {
-        return new Exchange({ name, start_date, ship_date, budget, host }).save()
-          .then(exchange => {
-            User.addHostedExchange(exchange._id, host);
-            return exchange;
-          });
-      }
     },
     updateExchange: {
       type: ExchangeType,

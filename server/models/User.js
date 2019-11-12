@@ -93,12 +93,18 @@ UserSchema.statics.deleteWishList = (listId, userId) => {
 
 UserSchema.statics.addHostedExchange = (exchangeId, userId) => {
   const User = mongoose.model('user');
-
+  const Exchange = mongoose.model('exchange');
+  return Exchange.findById(exchangeId).then(exchange => {
   return User.findById(userId).then(user => {
     user.hosted_exchanges.push(exchangeId);
-    return user.save().then(user => user);
+    user.participated_exchanges.push(exchangeId)
+    exchange.participants.push(userId)
+    return Promise.all([exchange.save(), user.save()])
+      .then(([user, exchange]) => user);
   })
   .catch(err => res.json(err))
+  })
+    .catch(err => res.json(err))
 }
 
 UserSchema.statics.removeHostedExchange = (exchangeId, userId) => {
