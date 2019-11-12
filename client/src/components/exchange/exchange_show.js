@@ -1,11 +1,19 @@
-  import React from "react";
+  import React, {Component} from "react";
   import { Query } from "react-apollo";
   import Queries from "../../graphql/queries";
   import ExchangeUsers from "./exchange_users";
   import InviteUser from "./invite_user";
   const { FETCH_EXCHANGE } = Queries;
 
-const ExchangeShow = (props)=> {
+class ExchangeShow extends Component {
+
+  constructor(props){
+    super(props);
+
+    
+  }
+
+  render(){
 
     return (
       <Query query={FETCH_EXCHANGE} variables={{ exchangeId: props.data.exchangeId  }} >  {({ loading, error, data }) => {
@@ -43,6 +51,8 @@ const ExchangeShow = (props)=> {
       }
       }}
     </Query>)
+
+  }
 
 }
   
