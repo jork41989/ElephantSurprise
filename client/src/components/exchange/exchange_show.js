@@ -35,7 +35,7 @@ class ExchangeShow extends Component {
 
           
           <h1>
-            Welcome to Your Exchange!
+              Welcome to the {data.exchange.name} Exchange!
           </h1>
 
           <h2> Host {this.props.user.name} </h2>

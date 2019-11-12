@@ -137,6 +137,20 @@ const mutation = new GraphQLObjectType({
       //     });
       // }
     },
+    addInvite: {
+      type: UserType,
+      args: { exchangeId: { type: GraphQLID }, userId: { type: GraphQLID } },
+      resolve(parentValue, { exchangeId, userId }) {
+        return User.addInvite
+      }
+    },
+    deleteInvite: {
+      type: UserType,
+      args: { exchangeId: { type: GraphQLID }, userId: { type: GraphQLID } },
+      resolve(parentValue, { exchangeId, userId }) {
+        return User.deleteInvite
+      }
+    },
     updateExchange: {
       type: ExchangeType,
       args: {
