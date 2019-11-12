@@ -31,8 +31,9 @@ class Dashboard extends Component {
                   <h2 className="dashboardGreeting">Hello {data.user.name}</h2>
                   <div className="dashboardExchangeDiv">
                     <h3>Exchanges</h3>
+                    
+                    <DashboardExchanges exchanges={data.user.participated_exchanges} hosted={data.user.hosted_exchanges} />
                     <Link to="/newExchange"> Create a New Exchange</Link>
-                    <DashboardExchanges exchanges={data.user.participated_exchanges} />
                   </div>
                 </div>
 

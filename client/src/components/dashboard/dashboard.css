@@ -13,9 +13,12 @@
 
 
 .ExchangesLinks{
+  width: 400px;
+  padding: 10px;
   margin-top: 10px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
   justify-content: space-between;
+  background: lightgray;
 }

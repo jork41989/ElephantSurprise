@@ -11,7 +11,12 @@ class DashboardExchanges extends Component {
     
     if(this.props.exchanges){
       return(<div className="ExchangesLinks">
-      {this.props.exchanges.map(exchange =>( <Link to={`/exchanges/${exchange._id}`}>{exchange.name}</Link> ))}
+      {this.props.exchanges.map(exchange =>( 
+      
+        <Link to={`/exchanges/${exchange._id}`}>{exchange.name}</Link> 
+      
+      
+      ))}
       </div>)
     }
   }
