@@ -4,19 +4,24 @@ const Schema = mongoose.Schema;
 const ItemSchema = new Schema({
   url: {
     type: String,
-    equired: true
+    required: true
   },
   price: {
     type: Number,
-    equired: true
+    required: true
   },
   purchased: {
     type: Boolean,
     default: false
   },
-  owner_id: {
+  owner: {
     type: Schema.Types.ObjectId,
     ref: "user",
+    required: true
+  },
+  wish_list: {
+    type: Schema.Types.ObjectId,
+    ref: "wish_list",
     required: true
   }
 })

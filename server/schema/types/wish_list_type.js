@@ -13,22 +13,22 @@ const WishListType = new GraphQLObjectType({
     owner: {
       type: require("./user_type"),
       resolve(parentValue) {
-        return User.findById(parentValue.owner_id)
+        return User.findById(parentValue.owner)
       }
     },
     santa: {
       type: require("./user_type"),
       resolve(parentValue) {
-        return User.findById(parentValue.santa_id)
+        return User.findById(parentValue.santa)
       }
     },
     exchange: {
       type: require("./exchange_type"),
       resolve(parentValue) {
-        return Exchange.findById(parentValue.exchange_id)
+        return Exchange.findById(parentValue.exchange)
       }
     },
-    item_ids: {
+    items: {
       type: new GraphQLList(require("./item_type")),
       resolve(parentValue) {
         return WishList.findItems(parentValue._id);

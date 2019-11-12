@@ -23,19 +23,19 @@ const UserSchema = new Schema({
   hosted_exchanges: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'Exchange'
+      ref: 'exchange'
     }
   ],
   participated_exchanges: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'Exchange'
+      ref: 'exchange'
     }
   ],
   owned_lists: [
     {
       type: Schema.Types.ObjectId,
-      ref:'Lists'
+      ref:'wish_list'
     }
   ]
 
@@ -47,14 +47,14 @@ UserSchema.statics.addWishList = (exchangeId, listId, userId) => {
 
   return Exchange.findById(exchangeId).then(exchange => {
     return User.findById(userId).then(user =>{
-      exchange.wish_list_ids.push(listId);
+      exchange.wish_lists.push(listId);
       user.owned_lists.push(listId);
 
       return Promise.all([user.save(), exchange.save()])
        .then( ([ user, exchange ]) => user )
 
     })
-    .catch(err=> res.json(err))
+    .catch(err => res.json(err))
      
   })
   .catch(err => res.json(err))
@@ -78,6 +78,17 @@ UserSchema.statics.removeWishList = (exchangeId, listId, userId) => {
 
   })
   .catch(err => res.json(err))
+}
+
+UserSchema.statics.deleteWishList = (listId, userId) => {
+
+  const User = mongoose.model('user');
+
+  return User.findById(userId).then(user => {
+    user.owned_lists.pull(listId);
+    return user.save().then(user => user);
+  }).catch(err => res.json(err))
+  
 }
 
 UserSchema.statics.addHostedExchange = (exchangeId, userId) => {
@@ -121,42 +132,21 @@ UserSchema.statics.removeParticipatedExchange = (exchangeId, userId) => {
 
 UserSchema.statics.fetchHostedExchanges = (userId) => {
   const User = mongoose.model('user');
-
-  return User.findById(userId).then(user => {
-    // if (user.hosted_exchanges) {
-    //   console.log(user.hosted_exchanges);
-    //   return user.hosted_exchanges
-    // } else {
-    //   return ({ msg: "You have no hosted exchanges." })
-    // }
+  return User.findById(userId).populate("hosted_exchanges").then(user => {
     return user.hosted_exchanges
   })
 }
 
 UserSchema.statics.fetchParticipatedExchanges = (userId) => {
   const User = mongoose.model('user');
-
-  return User.findById(userId).then(user => {
-    // if (user.participated_exchanges) {
-    //   console.log(user.participated_exchanges);
-    //   return user.participated_exchanges
-    // } else {
-    //   return ({ msg: "You have no exchanges you've participated in." })
-    // }
+  return User.findById(userId).populate("participated_exchanges").then(user => {
     return user.participated_exchanges
   })
 }
 
 UserSchema.statics.fetchOwnedLists = (userId) => {
   const User = mongoose.model('user');
-
-  return User.findById(userId).then(user => {
-    // if (user.owned_lists) {
-    //   console.log(user.owned_lists);
-    //   return user.owned_lists
-    // } else {
-    //   return ({ msg: "You have no wishlists." })
-    // }
+  return User.findById(userId).populate("owned_lists").then(user => {
     return user.owned_lists
   })
 }

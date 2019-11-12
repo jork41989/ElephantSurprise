@@ -22,31 +22,31 @@ const ExchangeSchema = new Schema({
     type: Boolean,
     default: false
   },
-  host_id: {
+  host: {
     type: Schema.Types.ObjectId,
     ref: "user",
     required: true
   },
-  participant_ids: [{
+  participants: [{
     type: Schema.Types.ObjectId,
     ref: "user"
   }],
-  wish_list_ids: [{
+  wish_lists: [{
     type: Schema.Types.ObjectId,
     ref: "wish_list"
   }]
 })
 
-ExchangeSchema.statics.findParticipants = (exchangeId) => {
+ExchangeSchema.statics.findParticipants = (exchange_id) => {
   const Exchange = mongoose.model("exchange");
-  return Exchange.findById(exchangeId)
-    .then(exchange => exchange.participant_ids)
+  return Exchange.findById(exchange_id).populate("participants")
+    .then(exchange => exchange.participants)
 };
 
-ExchangeSchema.statics.findWishLists = (exchangeId) => {
+ExchangeSchema.statics.findWishLists = (exchange_id) => {
   const Exchange = mongoose.model("exchange");
-  return Exchange.findById(exchangeId)
-    .then(exchange => exchange.wish_list_ids)
+  return Exchange.findById(exchange_id).populate("wish_lists")
+    .then(exchange => exchange.wish_lists)
 };
 
 module.exports = mongoose.model("exchange", ExchangeSchema);

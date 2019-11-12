@@ -14,13 +14,13 @@ const ItemType = new GraphQLObjectType({
     owner: {
       type: require("./user_type"),
       resolve(parentValue) {
-        return User.findById(parentValue.owner_id)
+        return User.findById(parentValue.owner)
       }
     },
-    on_wish_list: {
+    wish_list: {
       type: require("./wish_list_type"),
       resolve(parentValue) {
-        return WishList.findById(parentValue.wish_list_id)
+        return WishList.findById(parentValue.wish_list)
       }
     }
   })

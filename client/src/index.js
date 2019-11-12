@@ -10,7 +10,8 @@ import { ApolloProvider } from "react-apollo";
 import { onError } from "apollo-link-error";
 import { ApolloLink } from "apollo-link";
 import { HashRouter } from "react-router-dom";
-import Mutations from './graphql/mutations'
+import Mutations from './graphql/mutations';
+import { setContext } from 'apollo-link-context';
 const { VERIFY_USER } = Mutations;
 
 const token = localStorage.getItem("auth-token");
@@ -38,16 +39,27 @@ if (process.env.NODE_ENV === "production") {
 }
 
 const httpLink = createHttpLink({
-  uri,
-  headers: {
-    // heroku can get a little buggy with headers and
-    // localStorage so we'll just ensure a value is always in the header
-    authorization: localStorage.getItem("auth-token") || ""
-  }
+  uri
+  // headers: {
+  //   // heroku can get a little buggy with headers and
+  //   // localStorage so we'll just ensure a value is always in the header
+  //   authorization: localStorage.getItem("auth-token") || ""
+  // }
+});
+
+const authLink = setContext((_, { headers }) => { //include setContext to create header with updated token
+  const token = localStorage.getItem('auth-token');
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? token : ''
+    }
+  };
 });
 
 const client = new ApolloClient({
-  link: ApolloLink.from([errorLink, httpLink]),
+  // link: ApolloLink.from([errorLink, httpLink]),
+  link: authLink.concat(httpLink, errorLink),
   cache,
   onError: ({ networkError, graphQLErrors }) => {
     console.log("graphQLErrors", graphQLErrors);

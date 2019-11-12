@@ -20,13 +20,13 @@ const ExchangeType = new GraphQLObjectType({
         return User.findById(parentValue.host_id)
       }
     },
-    participant_ids: {
+    participants: {
       type: new GraphQLList(require("./user_type")),
       resolve(parentValue) {
         return Exchange.findParticipants(parentValue._id);
       }
     },
-    wish_list_ids: {
+    wish_lists: {
       type: new GraphQLList(require("./wish_list_type")),
       resolve(parentValue) {
         return Exchange.findWishLists(parentValue._id);
