@@ -5,36 +5,33 @@
   import InviteUser from "./invite_user";
   const { FETCH_EXCHANGE } = Queries;
 
-
-
-
-  const ExchangeShow = (props)=> {
+const ExchangeShow = (props)=> {
 
     return (
-    <Query query={FETCH_EXCHANGE}> {({ loading, error, data }) => {
-      if (loading) return <p>Loading...</p>;
-      if (error) return <p>Error</p>;
+      <Query query={FETCH_EXCHANGE} variables={{ exchangeId: props.data.exchangeId  }} >  {({ loading, error, data }) => {
+        if (loading) return <p>Loading...</p>;
+        if (error) return <p>Error</p>;
 
-      if (props.user === data.exchange.host_id){
+        if (props.user === data.exchange.host_id){
 
-      return(
-        <div className={ExchangeShow}>
+        return(
+          <div className={ExchangeShow}>
 
-        
-        <h1>
-          Welcome to Your Exchange!
-        </h1>
+          
+          <h1>
+            Welcome to Your Exchange!
+          </h1>
 
-        <h2> Host {props.user.name} </h2>
+          <h2> Host {props.user.name} </h2>
 
-          {/* <LetsSurprise/> */}
-          <InviteUser/>
-          <ExchangeUsers participants={data.participants}/>
-          {/* <Errors /> */}
+            {/* <LetsSurprise/> */}
+            <InviteUser/>
+            <ExchangeUsers participants={data.participants}/>
+            {/* <Errors /> */}
 
-        </div>
+          </div>
 
-      )
+        )
      }else{
 
       return(
@@ -47,6 +44,6 @@
       }}
     </Query>)
 
-  }
+}
   
   export default ExchangeShow;
