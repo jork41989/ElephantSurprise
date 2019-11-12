@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link} from "react-router-dom";
 import { Query } from "react-apollo";
 import Queries from '../../graphql/queries';
+import DashboardExchanges from './dashboardExchanges'
 import './dashboard.css'
 const { CURRENT_USER, FETCH_USER } = Queries;
 
@@ -31,6 +32,7 @@ class Dashboard extends Component {
                   <div className="dashboardExchangeDiv">
                     <h3>Exchanges</h3>
                     <Link to="/newExchange"> Create a New Exchange</Link>
+                    <DashboardExchanges exchanges={data.user.participated_exchanges} />
                   </div>
                 </div>
 
