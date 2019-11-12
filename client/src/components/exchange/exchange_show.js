@@ -4,6 +4,7 @@
   import Queries from "../../graphql/queries";
   import ExchangeUsers from "./exchange_users";
   import InviteUser from "./invite_user";
+  import './exchange_show.css'
   const { FETCH_EXCHANGE } = Queries;
 
 class ExchangeShow extends Component {
@@ -27,7 +28,12 @@ class ExchangeShow extends Component {
         console.log("exchange host id", data.exchange.host)
         console.log("exchange data", data.exchange)
         console.log("user id", this.props.user._id)
-
+        let hosted;
+          if (data.exchange.santa_assigned){
+            hosted = <div> Elephants have been assigned </div>
+          } else {
+            hosted = <div> Elephant isn't ready yet! </div>
+          }
         if (this.props.user._id === data.exchange.host._id){
           console.log(data.exchange.participants) 
         return(
@@ -39,9 +45,9 @@ class ExchangeShow extends Component {
           </h1>
 
           <h2> Host {this.props.user.name} </h2>
-
+            {hosted}
             {/* <LetsSurprise/> */}
-            <InviteUser/>            
+            
             <ExchangeUsers exchange={Object.values(data.exchange.participants)}/>
             {/* <Errors /> */}
 

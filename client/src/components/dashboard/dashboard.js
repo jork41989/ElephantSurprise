@@ -13,6 +13,7 @@ class Dashboard extends Component {
   }
 
   render (){
+    
     return(
     <Query query={CURRENT_USER}>
       {({ loading, error, data }) => {
@@ -26,14 +27,16 @@ class Dashboard extends Component {
                 return "Loading...";
               if (error)
                 return `Error! ${error.message}`;
-              console.log(data)
+              
+              let hosted = data.user.hosted_exchanges.map(exchange => (exchange._id))
+               
               return (
                 <div>
                   <h2 className="dashboardGreeting">Hello {data.user.name}</h2>
                   <div className="dashboardExchangeDiv">
                     <h3>Exchanges</h3>
-                    
-                    <DashboardExchanges exchanges={data.user.participated_exchanges} hosted={data.user.hosted_exchanges} />
+                    <p> Your hosted exchanges are identified with a <i className="fas fa-gift"></i> </p>
+                    <DashboardExchanges exchanges={data.user.participated_exchanges} hosted={hosted} />
                     <Link to="/newExchange"> Create a New Exchange</Link>
                   </div>
                 </div>

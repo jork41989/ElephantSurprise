@@ -1,0 +1,26 @@
+.ExchangeShow{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.participants-list{
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: space-between;
+  width: 400px;
+}
+
+.ExchangeMembersHeader{
+  text-align: center;
+}
+
+.ExchangeMembersInviteButton{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+}

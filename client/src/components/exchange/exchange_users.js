@@ -7,9 +7,9 @@ const ExchangeUsers = (exchange) => {
 
   return(
     <div>
-      <h3> Members </h3>
-
-      <ul className="participants-list" >
+      <h3 className="ExchangeMembersHeader"> Members of the Exchange </h3>
+      <div className="ExchangeMembersInviteButton"><button>Invite Users!</button></div>
+      <div className="participants-list" >
         {exchange.exchange.map(participant => { 
 
           return (<Query query={FETCH_USER} variables={{ _id: participant._id }}>
@@ -19,12 +19,12 @@ const ExchangeUsers = (exchange) => {
 
               if (loading) return <p>Loading...</p>;
               if (error) return <p>Error</p>;
-              return <h3 key={data.user._id}>{data.user.name}</h3>;
+              return <p key={data.user._id}>{data.user.name}</p>;
             }}   
           </Query>)
 
         })}
-      </ul>
+      </div>
 
     </div>
   )
