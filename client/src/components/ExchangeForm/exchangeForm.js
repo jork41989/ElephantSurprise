@@ -56,7 +56,8 @@ class ExchangeForm extends Component {
         {(newExchange, { data }) => (
           <div className='FormDiv'>
             <form onSubmit={e => this.handleSubmit(e, newExchange)} className='FormArea'>
-              <label htmlFor="name" >Exchange Name</label>
+              <h2>Create a New Exchange</h2>
+              <label htmlFor="name" className='FormLabel'>Exchange Name</label>
               <input
                 onChange={this.update("name")}
                 value={this.state.name}
@@ -64,6 +65,7 @@ class ExchangeForm extends Component {
                 className='FormTextFeild'
                 id='name'
               />
+              <label htmlFor="start_name" className='FormLabel'>Start Date</label>
               <input
                 onChange={this.update("start_date")}
                 value={this.state.start_date}
@@ -71,6 +73,7 @@ class ExchangeForm extends Component {
                 id="StartDate"
                 className='FormDateFeild'
               />
+              <label htmlFor="ship_date" className='FormLabel'>Shipping Date</label>
               <input
                 onChange={this.update("ship_date")}
                 value={this.state.ship_date}
@@ -78,6 +81,7 @@ class ExchangeForm extends Component {
                 id="datePickerId"
                 className='FormDateFeild'
               />
+              <label htmlFor="budget" className='FormLabel'>Budget</label>
               <input
                 onChange={this.update("budget")}
                 value={this.state.budget}
@@ -86,9 +90,8 @@ class ExchangeForm extends Component {
                 className='FormTextFeild'
                 />
 
-              <button type="submit">Create Exchange</button>
+              <button type="submit" className='FormSubmit'>Create Exchange</button>
             </form>
-            <p>{this.state.message}</p>
           </div>
         )}
       </Mutation>

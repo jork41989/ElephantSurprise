@@ -25,3 +25,15 @@
   width: 200px;
   margin-bottom: 10px;
 }
+
+.FormLabel{
+  font-size: 16px;
+  padding: 5px
+}
+
+.FormSubmit{
+  margin-top: 10px;
+    height: 27px;
+    width: 161px;
+    font-size: 18px;
+}
