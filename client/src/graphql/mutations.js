@@ -57,11 +57,53 @@ mutation addInvite($exchange_id: ID!, $user_ids: [ID!]) {
   }
 }
 `,
-DELETE_INVITE: gql`
-mutation deleteInvite($exchangeId: ID!, $userId: ID!) {
-  deleteInvite( exchangeId: $exchangeId, userId: $userId ){
+DELETE_INVITE: gql `
+mutation deleteInvite($exchange_id: ID!, $user_id: ID!) {
+  deleteInvite( exchange_id: $exchange_id, user_id: $user_id){
     _id
     name
+    pending_invites{
+      _id
+      name
+    }
+  }
+}
+`,
+ACCEPT_INVITE: gql `
+mutation addParticipant($exchange_id: ID!, $user_id: ID!){
+  addParticipant(exchange_id: $exchange_id, user_id: $user_id){
+    _id
+    name
+    participants{
+      _id
+      name
+      pending_invites{
+        _id
+      }
+    }
+  }
+}
+`,
+ACCEPT_INVITE_A: gql `
+mutation acceptAndUpdate($exchange_id: ID!, $user_id: ID!){
+  mutation1: addParticipant(exchange_id: $exchange_id, user_id: $user_id){
+    _id
+    name
+    participants{
+      _id
+      name
+      pending_invites{
+        _id
+      }
+    }
+  }
+  mutation2: deleteInvite( exchange_id: $exchange_id, user_id: $user_id){
+    _id
+    name
+    pending_invites{
+      _id
+      name
+    }
   }
 }
 `

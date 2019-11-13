@@ -8,7 +8,9 @@ const WishListSchema = new Schema({
     required: true
   },
   shipping_address: {
-    type: String
+    type: String,
+    required: false
+    
   },
   santa: {
     type: Schema.Types.ObjectId,

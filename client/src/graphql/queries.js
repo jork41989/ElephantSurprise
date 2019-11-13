@@ -25,8 +25,22 @@ export default {
       hosted_exchanges{
         _id
       }
+      pending_invites{
+        _id
+        name
+      }
       owned_lists{
         _id
+        shipping_address
+        santa{
+          _id
+          name
+        }
+        items{
+          url
+          price
+          purchased
+        }
       }
     }
   }
