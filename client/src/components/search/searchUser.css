@@ -1,0 +1,80 @@
+.search-user-main {
+  background: white;
+  min-height: 192px;
+  width: 300px;
+  padding: 6% 20%;
+  border-radius: 5px;
+  margin-top: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.fa-check-circle {
+  display: none;
+  color: #82c91e;
+  font-size: 27px;
+  margin-top: 9px;
+  margin-right: 7px;
+  cursor: pointer;
+}
+
+.search-user-main input {
+  height: 33px;
+  width: 290px;
+  font-size: 16px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  text-indent: 1px;
+}
+
+.search-user-main button {
+  width: 188px;
+  font-size: 20px;
+  background-color: aliceblue;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.search-user-main img {
+  align-self: center
+}
+
+.search-user-main li {
+  list-style: none;
+}
+
+.search-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.search-list > div:first-child {
+  align-self: flex-end;
+  padding-right: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.search-list ul {
+  padding: 0;
+}
+
+.search-list li {
+  width: 278px;
+  margin: 6px 0;
+  display: flex;
+  border: 1px solid lightgrey;
+  border-radius: 6px;
+  justify-content: space-between;
+}
+
+#user-item {
+  padding: 5px;
+  cursor: pointer;
+}
+
+#user-item div:last-child {
+  color: grey;
+}

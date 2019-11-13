@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
 
 export default {
-LOGIN_USER: gql `
+LOGIN_USER: gql`
   mutation LoginUser($email: String!, $password: String!) {
     login(email: $email, password: $password) {
       token
@@ -11,7 +11,7 @@ LOGIN_USER: gql `
     }
   }
   `,
-SIGNUP_USER: gql `
+SIGNUP_USER: gql`
   mutation registerUser($name: String!, $email: String!, $password: String!){
     register(name: $name, email: $email, password: $password){
       token,
@@ -21,7 +21,7 @@ SIGNUP_USER: gql `
     }
   }
 `,
-VERIFY_USER: gql `
+VERIFY_USER: gql`
 mutation VerifyUser($token: String!) {
   verifyUser(token: $token) {
     loggedIn
@@ -30,7 +30,7 @@ mutation VerifyUser($token: String!) {
   }
 }
 `,
-NEW_EXCHANGE: gql `
+NEW_EXCHANGE: gql`
 mutation createExchange($name: String!, $start_date: Date!, $ship_date: Date!, $budget: Int!){
   newExchange(name: $name, start_date: $start_date, ship_date: $ship_date, budget: $budget){
     name
@@ -43,18 +43,24 @@ mutation createExchange($name: String!, $start_date: Date!, $ship_date: Date!, $
     deleteExchange(exchange_id: $exchange_id){
       _id
    }
-}
-  `,
-INVITE_USER: gql `
-mutation addInvite($exchangeId: ID!, $email: String!) {
-  addInvite( exchangeId: $exchangeId, email: $email ){
+  }
+`,
+INVITE_USER: gql`
+mutation addInvite($exchange_id: ID!, $user_ids: [ID!]) {
+  addInvite( exchange_id: $exchange_id, user_ids: $user_ids ){
+    _id
     name
+    pending_invites{
+      _id
+      name
+    }
   }
 }
 `,
-DELETE_INVITE: gql `
+DELETE_INVITE: gql`
 mutation deleteInvite($exchangeId: ID!, $userId: ID!) {
   deleteInvite( exchangeId: $exchangeId, userId: $userId ){
+    _id
     name
   }
 }

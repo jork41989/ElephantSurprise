@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Query } from "react-apollo";
 import Queries from '../../graphql/queries';
 import DashboardExchanges from './dashboardExchanges'
