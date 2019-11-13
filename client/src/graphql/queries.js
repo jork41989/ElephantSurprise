@@ -28,6 +28,10 @@ export default {
       owned_lists{
         _id
       }
+      pending_invites{
+        _id
+        name
+      }
     }
   }
   `,
