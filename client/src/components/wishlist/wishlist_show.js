@@ -7,6 +7,7 @@ const {CURRENT_USER, FETCH_USER} = Queries;
 class WishlistShow extends Component{
   constructor(props){
     super(props)
+    // sacrifice
   }
 
   render(){
