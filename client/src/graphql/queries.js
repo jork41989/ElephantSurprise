@@ -69,6 +69,10 @@ export default {
           _id
           name
         }
+        pending_invites{
+          _id
+          name
+        }
       }
     }
   `,  

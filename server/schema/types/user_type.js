@@ -29,6 +29,12 @@ const UserType = new GraphQLObjectType({
         return User.fetchOwnedLists(parentValue._id)
       }
     },
+    pending_invites: {
+      type: new GraphQLList(require('./exchange_type')),
+      resolve(parentValue) {
+        return User.fetchInvites(parentValue._id)
+      }
+    }
   })
 });
 

@@ -7,7 +7,8 @@ const {
       GraphQLInt,
       GraphQLFloat,
       GraphQLID,
-      GraphQLBoolean
+      GraphQLBoolean,
+      GraphQLList
     } = graphql;
 const GraphQLDate = require('graphql-date');
       
@@ -142,17 +143,28 @@ const mutation = new GraphQLObjectType({
       // }
     },
     addInvite: {
-      type: UserType,
-      args: { exchangeId: { type: GraphQLID }, userId: { type: GraphQLID } },
-      resolve(parentValue, { exchangeId, userId }) {
-        return User.addInvite
+      type: new GraphQLList(UserType),
+      args: {
+        exchange_id: { type: GraphQLID }, 
+        user_ids: { type: new GraphQLList(GraphQLID) } 
+      },
+      resolve(_, { exchange_id, user_ids }) {
+        return User.updateMany(
+          { _id: user_ids },
+          { $push: { pending_invites: exchange_id } }
+        ).then(() => {
+          return User.find({_id: user_ids})
+        });
       }
     },
     deleteInvite: {
       type: UserType,
-      args: { exchangeId: { type: GraphQLID }, userId: { type: GraphQLID } },
+      args: {
+        exchangeId: { type: GraphQLID },
+        userId: { type: GraphQLID }
+      },
       resolve(parentValue, { exchangeId, userId }) {
-        return User.deleteInvite
+        return User.deleteInvite(exchangeId, parentValue._id)
       }
     },
     updateExchange: {
