@@ -50,19 +50,21 @@ class ExchangeShow extends Component {
           }
         if (this.props.user._id === data.exchange.host._id){
 
-          // console.log(data.exchange.participants) 
+          console.log(data.exchange.participants) 
         return(
           <div className="ExchangeShow">
 
             <div className="ExchangeShowBody">
               <h1>Welcome to the {data.exchange.name} Exchange!</h1>
-              <ExchangeUsers exchange={Object.values(data.exchange.participants)} />
+              <ExchangeUsers participants={data.exchange.participants} />
             </div>
-            
+
             <div className="ExchangeShowSidebar">
-                <h2> Host: {this.props.user.name} </h2>
-                {santaRead}
-                <div className="ExchangeMembersInviteButton"><button>Invite Users!</button></div>
+              <h2> Host: {this.props.user.name} </h2>
+              {santaRead}
+              <div className="ExchangeMembersInviteButton" onClick={() => this.setState({ modal: true, type: "search_user" })}>
+                <button>Invite Users!</button>
+              </div>
             </div>
           
           <div className="ExchangeShowSidebar">
@@ -93,7 +95,7 @@ class ExchangeShow extends Component {
             {/* <LetsSurprise/> */}\
               
             {/* <Errors /> */}
-          
+
           </div>
         )
         } else {

@@ -4,7 +4,7 @@ import { Query } from "react-apollo";
 const { FETCH_USER } = Queries;
 
 const ExchangeUsers = (props) => {
-
+  console.log(props.participants);
   return(
     <div>
       <h3 className="ExchangeMembersHeader"> Members of the Exchange </h3>
