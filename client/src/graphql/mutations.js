@@ -38,6 +38,13 @@ mutation createExchange($name: String!, $start_date: Date!, $ship_date: Date!, $
   }
 }
   `,
+  REMOVE_EXCHANGE: gql ` 
+  mutation deleteExchange($exchangeId: ID!){
+    deleteExchange(exchangeId: $exchangeId){
+      _id
+   }
+}
+  `,
 INVITE_USER: gql `
 mutation addInvite($exchangeId: ID!, $email: String!) {
   addInvite( exchangeId: $exchangeId, email: $email ){

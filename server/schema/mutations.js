@@ -189,6 +189,12 @@ const mutation = new GraphQLObjectType({
                 );
               }
             );
+            await exchange.participants.forEach(
+              userId =>{
+                User.removeParticipatedExchange(exchange_id, userId)
+              }
+            )
+            await User.removeHostedExchange(exchange_id, exchange.host  )
             return exchange;
           }
         );
