@@ -123,7 +123,11 @@ const mutation = new GraphQLObjectType({
           return new Exchange({ name, start_date, ship_date, budget, host: validUser._id }).save()
             .then(exchange => {
               return User.addHostedExchange(exchange._id, exchange.host)
-              .then(() => exchange)
+                .then(() => new WishList({ owner: exchange.host, exchange: exchange._id }).save()
+                  .then(wishList => {
+                    return User.addWishList(exchange._id , wishList._id, exchange.host).then(() => {return exchange});
+                   
+                  }))
             });
         } else {
           throw new Error('Sorry, you need to be logged in to do that.');
@@ -233,11 +237,10 @@ const mutation = new GraphQLObjectType({
       type: WishListType,
       args: {
         owner_id: { type: GraphQLID },
-        shipping_address: { type: GraphQLString },
         exchange_id: { type: GraphQLID }
       },
-      resolve(_, { owner_id, shipping_address, exchange_id }) {
-        return new WishList({ owner: owner_id, shipping_address, exchange: exchange_id }).save()
+      resolve(_, { owner_id, exchange_id }) {
+        return new WishList({ owner: owner_id, exchange: exchange_id }).save()
           .then(wishList => {
             User.addWishList(exchange_id, wishList._id, owner_id);
             return wishList;

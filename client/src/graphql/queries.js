@@ -25,6 +25,9 @@ export default {
       hosted_exchanges{
         _id
       }
+      owned_lists{
+        _id
+      }
     }
   }
   `,
@@ -45,6 +48,7 @@ export default {
           _id
           name
         }
+      
       }
     }
   `,  

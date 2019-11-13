@@ -3,16 +3,12 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin-left: 10%;
-  margin-right: 10%;
-  background: whitesmoke;
+
+
   border-bottom: rgba(0, 0, 0, 0.493) 1px solid;
 }
 .mainBody{
   padding: 20px;
-  margin-left: 10%;
-  margin-right: 10%;
-  background: whitesmoke;
   height: 100%;
 }
 
@@ -43,9 +39,12 @@
 
 #root{
   height: 100vh;
+  margin-left: 10%;
+  margin-right: 10%;
+  background: whitesmoke;
 }
 
-html, body, .root{
-  min-height: 100vh;
+html{
+
   background: lightgray;
 }

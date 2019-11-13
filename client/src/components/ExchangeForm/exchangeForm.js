@@ -3,6 +3,7 @@ import { Mutation } from "react-apollo";
 import Mutations from "../../graphql/mutations";
 import Queries from "../../graphql/queries";
 import './exchangeForm.css'
+const { CURRENT_USER, FETCH_USER } = Queries;
 const { NEW_EXCHANGE } = Mutations
 
 class ExchangeForm extends Component {
@@ -16,6 +17,12 @@ class ExchangeForm extends Component {
       budget: 0
     };
   }
+
+
+
+
+
+
   update(field) {
     return e => this.setState({ [field]: e.target.value });
   }
