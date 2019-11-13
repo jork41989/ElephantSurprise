@@ -11,42 +11,6 @@ class DashboardInvites extends Component{
     this.state ={
       invites: this.props.user.pendingInvites || null
     }
-    this.acceptInvite = this.acceptInvite.bind(this);
-    this.rejectInvite = this.rejectInvite.bind(this);
-  }
-
-  acceptInvite(e, exchangeId){
-    e.preventDefault();
-    return (e) => (
-
-      <Mutation mutation={ADD_PARTICIPANT}>
-        {(addParticipant, data) => (
-          
-          addParticipant({
-            variables: {exchangeId: exchangeId, userId: this.props.user._id }
-          })
-
-        )}
-      </Mutation>
-    )
-
-  }
-
-  rejectInvite(e, exchangeId){
-    // e.preventDefault();
-    return (e) => (
-
-      <Mutation mutation={DELETE_INVITE}>
-        {(deleteInvite, data) => (
-
-          deleteInvite({
-            variables: { exchangeId: exchangeId }
-          })
-
-        )}
-      </Mutation>
-    )
-
   }
 
 
@@ -66,7 +30,36 @@ class DashboardInvites extends Component{
                 {invite.name}
               <p>Accept this Invite?</p>
 
-            
+             <Mutation mutation={ADD_PARTICIPANT}>
+                {(addParticipant, data) => (
+                  <button onClick={e=>{
+                    e.preventDefault();
+                      console.log("invite", invite._id);
+                    addParticipant({
+                      variables: { exchange_id: invite._id, user_id: this.props.user._id }
+                    });
+                  }}>
+                  Yes
+                  </button>
+                )}
+              </Mutation>
+
+              <Mutation mutation={DELETE_INVITE}>
+                  {(deleteInvite, data) => (
+                   
+                  <button onClick={e => {
+                    e.preventDefault();
+                      console.log("invite", invite._id);
+                      deleteInvite({
+                      variables: { exchangeId: invite._id }
+                    })
+                  }}>
+                    No
+                </button>
+                )}
+              </Mutation>
+
+
               </li>)
             count ++;
           })}
