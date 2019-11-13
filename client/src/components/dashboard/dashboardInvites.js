@@ -9,7 +9,7 @@ class DashboardInvites extends Component{
   constructor(props){
     super(props);
     this.state ={
-      invites: this.props.user.pendingInvites
+      invites: this.props.user.pending_invites
     }
   }
 
@@ -17,7 +17,7 @@ class DashboardInvites extends Component{
   render(){
     let count = 0
 
-    console.log(this.props.user.pendingInvites)
+    console.log(this.props.user.pending_invites)
 
     if (this.state.invites.length > 0){
       console.log(this.state.invites)
@@ -49,12 +49,18 @@ class DashboardInvites extends Component{
                    
                   <button onClick={e => {
                     e.preventDefault();
+
                       console.log("invite", invite._id);
+
                       deleteInvite({
                       variables: { exchangeId: invite._id, userId: this.props.user._id }
-                    })
-                  }}>
-                    No
+                      
+                      }).then(data => {
+                        console.log(data);
+                        this.setState({invites: data.data.deleteInvite.pending_invites })
+                      })
+            }}>
+              No
                 </button>
                 )}
               </Mutation>

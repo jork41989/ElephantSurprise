@@ -159,12 +159,14 @@ const mutation = new GraphQLObjectType({
     },
     deleteInvite: {
       type: UserType,
-      args: {
-        exchangeId: { type: GraphQLID },
-        userId: { type: GraphQLID }
-      },
-      resolve(parentValue, { exchangeId, userId }) {
-        return User.deleteInvite(exchangeId, parentValue._id)
+      args: { exchangeId: { type: GraphQLID }, userId: {type: GraphQLID} },
+      resolve(_, { exchangeId, userId}) {
+        return User.findOneAndUpdate(
+          {_id: userId},
+          {$pull: {pending_invites: exchangeId } },
+          { new: true } )
+          .then(user => user)
+          .catch(err => err)
       }
     },
     updateExchange: {

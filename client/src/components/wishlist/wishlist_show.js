@@ -25,9 +25,12 @@ class WishlistShow extends Component{
                 if (error)
                   return `Error! ${error.message}`;
                 // console.log(data)
+
+                this.props.exchange
+
                 return (
                   <div className="ExchangeNacelle">
-                    <ItemsIndex user={data.user} />
+                    <ItemsIndex items={data.user.owned_lists} />
                   </div>
                 )
               }
@@ -40,3 +43,5 @@ class WishlistShow extends Component{
   }
 
 }
+
+export default withRouter(WishlistShow);

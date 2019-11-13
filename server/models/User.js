@@ -164,8 +164,8 @@ UserSchema.statics.fetchOwnedLists = (userId) => {
 }
 UserSchema.statics.fetchPendingInvites = (userId) => {
   const User = mongoose.model('user');
-  return User.findById(userId).populate("pendingInvites").then(user => {
-    return user.pendingInvites
+  return User.findById(userId).populate("pending_invites").then(user => {
+    return user.pending_invites
   })
 }
 

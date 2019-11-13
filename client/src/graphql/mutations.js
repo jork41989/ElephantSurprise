@@ -62,8 +62,9 @@ mutation deleteInvite($exchangeId: ID!, $userId: ID!) {
   deleteInvite( exchangeId: $exchangeId, userId: $userId){
     _id
     name
-    pendingInvites{
+    pending_invites{
       _id
+      name
     }
   }
 }
@@ -76,7 +77,7 @@ mutation addParticipant($exchange_id: ID!, $user_id: ID!){
     participants{
       _id
       name
-      pendingInvites{
+      pending_invites{
         _id
       }
     }
