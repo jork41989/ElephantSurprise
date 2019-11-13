@@ -186,8 +186,8 @@ const mutation = new GraphQLObjectType({
                     async wish_list => {
                     await exchange.participants.forEach(
                       async userId => {
-                        User.removeParticipatedExchange(exchange_id, userId)
-                        User.removeWishList(exchange_id, wish_list_id ,userId)
+                        await User.removeParticipatedExchange(exchange_id, userId)
+                        await User.deleteWishList(wish_list_id ,userId)
                       }
                     )
                     await Item.deleteMany({ _id: wish_list.items });

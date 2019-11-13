@@ -7,7 +7,8 @@
   import InviteUser from "./invite_user";
   import './exchange_show.css'
   const { REMOVE_EXCHANGE } = Mutations
-  const { FETCH_EXCHANGE } = Queries;
+const { FETCH_EXCHANGE, CURRENT_USER, FETCH_USER } = Queries;
+
 
 class ExchangeShow extends Component {
 
@@ -15,6 +16,34 @@ class ExchangeShow extends Component {
     super(props);
 
 
+  }
+
+  updateCache(cache, { data: { oldExchange } }) {
+    let curUser
+    let userData
+    try {
+      curUser = cache.readQuery({ query: CURRENT_USER });
+    } catch (err) {
+      return
+    }
+
+    if (curUser) {
+      try {
+        userData = cache.readQuery({ query: FETCH_USER, variables: { _id: curUser.CurrentUserID } })
+      } catch (err) {
+        return
+      }
+    }
+    if (userData) {
+      userData = userData.user
+      userData.participated_exchanges = userData.participated_exchanges.pull([{ _id: oldExchange._id, name: oldExchange.name }])
+      userData.hosted_exchanges = userData.hosted_exchanges.pull([{ _id: oldExchange._id }])
+      cache.writeQuery({
+        query: FETCH_USER,
+        variables: { _id: curUser.CurrentUserID },
+        data: { user: userData }
+      })
+    }
   }
 
   render(){
@@ -52,7 +81,13 @@ class ExchangeShow extends Component {
               <h2> Host: {this.props.user.name} </h2>
               {santaRead}
               <div className="ExchangeMembersInviteButton"><button>Invite Users!</button></div>
-              <Mutation mutation={REMOVE_EXCHANGE}>
+              <Mutation mutation={REMOVE_EXCHANGE}
+                update={(cache, data) => this.updateCache(cache, data)}
+
+                onCompleted={data => {
+                  this.props.history.push('/dashboard');
+                }}
+              >
                 {(removeExchange, data2) => (
                   <button
                     onClick={ e => {
