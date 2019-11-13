@@ -13,6 +13,7 @@
   margin-left: 10%;
   margin-right: 10%;
   background: whitesmoke;
+  height: 100%;
 }
 
 .logoNav{
@@ -39,7 +40,12 @@
   color: black;
 }
 
+
+#root{
+  height: 100vh;
+}
+
 html, body, .root{
-  min-height: 100%;
+  min-height: 100vh;
   background: lightgray;
 }

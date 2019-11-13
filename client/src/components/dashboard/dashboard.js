@@ -10,8 +10,26 @@ const { CURRENT_USER, FETCH_USER } = Queries;
 class Dashboard extends Component {
   constructor(props) {
     super(props);
+    this.state ={
+      sidebar: false
+    }
+    this.renderHelp = this.renderHelp.bind(this)
   }
-
+  
+  renderHelp(){
+    let bodyDiv = document.getElementById('dashBody')
+    let sideDiv = document.getElementById('dashSidebar')
+    
+    if (this.state.sidebar){
+      bodyDiv.style.width = "100%"
+      sideDiv.classList.remove('-showSide')
+      this.setState({sidebar: false})
+    } else {
+      bodyDiv.style.width = "75%"
+      sideDiv.classList.add('-showSide')
+      this.setState({ sidebar: true })
+    }
+  }
   render (){
     
     return(
@@ -29,15 +47,25 @@ class Dashboard extends Component {
                 return `Error! ${error.message}`;
               
               let hosted = data.user.hosted_exchanges.map(exchange => (exchange._id))
-               
+              
+              
               return (
-                <div>
-                  <h2 className="dashboardGreeting">Hello {data.user.name}</h2>
-                  <div className="dashboardExchangeDiv">
-                    <h3>Exchanges</h3>
-                    <p> Your hosted exchanges are identified with a <i className="fas fa-gift"></i> </p>
-                    <DashboardExchanges exchanges={data.user.participated_exchanges} hosted={hosted} />
-                    <Link to="/newExchange"> Create a New Exchange</Link>
+                <div className="DashboardMain">
+                  
+                  <div className="DashboardBody" id="dashBody">
+                    <h2 className="dashboardGreeting">Hello {data.user.name}</h2>
+                    <div className="dashboardExchangeDiv">
+                      <h3>Exchanges</h3>
+                      <p> Your hosted exchanges are identified with a <i className="fas fa-gift"></i> </p>
+                      <DashboardExchanges exchanges={data.user.participated_exchanges} hosted={hosted} />
+                      <Link to="/newExchange"> Create a New Exchange</Link>
+                      
+                    </div>
+                  </div>
+            
+                  <div onClick={this.renderHelp} className='sidebarButton'><i class="fas fa-envelope"></i></div>
+                  <div className="DashboardSidebar" id="dashSidebar">
+                    <h3>Pending Invites</h3>
                   </div>
                 </div>
 

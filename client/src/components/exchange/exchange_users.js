@@ -8,7 +8,7 @@ const ExchangeUsers = (exchange) => {
   return(
     <div>
       <h3 className="ExchangeMembersHeader"> Members of the Exchange </h3>
-      <div className="ExchangeMembersInviteButton"><button>Invite Users!</button></div>
+      
       <div className="participants-list" >
         {exchange.exchange.map(participant => { 
 

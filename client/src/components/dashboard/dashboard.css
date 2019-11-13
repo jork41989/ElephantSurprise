@@ -36,3 +36,66 @@
   font-size: 20px;
   cursor: pointer;
 }
+
+.DashboardMain{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.DashboardBody{
+  width: 80%;
+}
+
+.DashboardSidebar{
+  width: 0%;
+  opacity: 0;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  align-self: flex-start;
+  background: lightskyblue;
+  height: 100%;
+  animation: fade-out 1s;
+}
+
+.-showSide{
+  width: 20%;
+  opacity: 1;
+  display: flex;
+  transition-property: all;
+  transition-duration: 1s;
+  animation: fade-in 1s;
+}
+
+.sidebarButton{
+  font-size: 25px;
+  color: lightskyblue;
+  align-self: flex-start;
+  margin-right: 19px;
+}
+
+@keyframes fade-in {
+  from {
+    width: 0%;
+    opacity: 0;
+  }
+  to {
+    width: 20%;
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    width: 20%;
+    opacity: 1;
+    display: flex;
+  }
+  to {
+    width: 0%;
+    opacity: 0;
+  }
+}

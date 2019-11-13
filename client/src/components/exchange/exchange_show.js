@@ -49,6 +49,7 @@ class ExchangeShow extends Component {
           <div className="ExchangeShowSidebar">
               <h2> Host: {this.props.user.name} </h2>
               {santaRead}
+              <div className="ExchangeMembersInviteButton"><button>Invite Users!</button></div>
           </div>
 
           
