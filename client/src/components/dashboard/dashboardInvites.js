@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Mutations from "../../graphql/mutations";
 import Queries from "../../graphql/queries";
 import {Mutation} from "react-apollo";
-const {ADD_PARTICIPANT} = Mutations;
+const {ACCEPT_INVITE} = Mutations;
 const {DELETE_INVITE} = Mutations;
 const {FETCH_USER} = Queries;
 
@@ -33,7 +33,7 @@ class DashboardInvites extends Component{
               <p>Accept this Invite?</p>
 
              <Mutation 
-              mutation={ADD_PARTICIPANT}
+              mutation={ACCEPT_INVITE}
                   refetchQueries={() => {
                     return [
                       {
@@ -65,7 +65,7 @@ class DashboardInvites extends Component{
                       console.log("invite", invite._id);
 
                       deleteInvite({
-                      variables: { exchangeId: invite._id, userId: this.props.user._id }
+                      variables: { exchange_id: invite._id, user_id: this.props.user._id }
                       
                       }).then(data => {
                         console.log(data);
