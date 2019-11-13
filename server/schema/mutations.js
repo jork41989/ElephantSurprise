@@ -181,19 +181,21 @@ const mutation = new GraphQLObjectType({
         return Exchange.findOneAndDelete({ _id: exchange_id }).then(
           async exchange => {
             await exchange.wish_lists.forEach(
-              wish_list_id => {
-                WishList.findOneAndDelete({_id: wish_list_id}).then(
-                  async wish_list => {
+              async wish_list_id => {
+                await WishList.findOneAndDelete({_id: wish_list_id}).then(
+                    async wish_list => {
+                    await exchange.participants.forEach(
+                      async userId => {
+                        User.removeParticipatedExchange(exchange_id, userId)
+                        User.removeWishList(exchange_id, wish_list_id ,userId)
+                      }
+                    )
                     await Item.deleteMany({ _id: wish_list.items });
                   }
                 );
               }
             );
-            await exchange.participants.forEach(
-              userId =>{
-                User.removeParticipatedExchange(exchange_id, userId)
-              }
-            )
+            
             await User.removeHostedExchange(exchange_id, exchange.host  )
             return exchange;
           }

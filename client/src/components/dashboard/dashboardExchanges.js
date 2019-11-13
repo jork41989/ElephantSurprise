@@ -20,7 +20,10 @@ class DashboardExchanges extends Component {
         </div>
       )
         } else {
-         return ( <Link to={`/exchanges/${exchange._id}`}>{exchange.name}</Link> )
+         return (
+           <div className="ExchangeListItemDiv"> 
+             <Link to={`/exchanges/${exchange._id}`} className="ExchangeLink">{exchange.name}</Link> 
+          </div>)
         }
     })}
       </div>)

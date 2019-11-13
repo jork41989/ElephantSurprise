@@ -48,6 +48,9 @@ export default {
           _id
           name
         }
+        wish_lists{
+          _id
+        }
       
       }
     }

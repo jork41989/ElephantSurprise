@@ -1,10 +1,12 @@
   import React, {Component} from "react";
   import {withRouter} from "react-router-dom";
-  import { Query } from "react-apollo";
+  import { Query, Mutation} from "react-apollo";
   import Queries from "../../graphql/queries";
   import ExchangeUsers from "./exchange_users";
+  import Mutations from "../../graphql/mutations";
   import InviteUser from "./invite_user";
   import './exchange_show.css'
+  const { REMOVE_EXCHANGE } = Mutations
   const { FETCH_EXCHANGE } = Queries;
 
 class ExchangeShow extends Component {
@@ -50,6 +52,22 @@ class ExchangeShow extends Component {
               <h2> Host: {this.props.user.name} </h2>
               {santaRead}
               <div className="ExchangeMembersInviteButton"><button>Invite Users!</button></div>
+              <Mutation mutation={REMOVE_EXCHANGE}>
+                {(removeExchange, data2) => (
+                  <button
+                    onClick={ e => {
+                      e.preventDefault();
+                      removeExchange({
+                        variables: { exchange_id: data.exchange._id  }
+                      }).then(console.log("worked!"))
+                    }}>
+                    Kill Me
+                  </button>
+                )
+
+                }
+              
+              </Mutation>
           </div>
 
           

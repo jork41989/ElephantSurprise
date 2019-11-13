@@ -39,8 +39,8 @@ mutation createExchange($name: String!, $start_date: Date!, $ship_date: Date!, $
 }
   `,
   REMOVE_EXCHANGE: gql ` 
-  mutation deleteExchange($exchangeId: ID!){
-    deleteExchange(exchangeId: $exchangeId){
+  mutation deleteExchange($exchange_id: ID!){
+    deleteExchange(exchange_id: $exchange_id){
       _id
    }
 }
