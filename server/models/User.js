@@ -38,10 +38,10 @@ const UserSchema = new Schema({
       ref:'wish_list'
     }
   ],
-  pendingInvites: [
+  pending_invites: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'Exchange'
+      ref: 'exchange'
     }
   ]
 
@@ -163,42 +163,33 @@ UserSchema.statics.fetchOwnedLists = (userId) => {
   })
 }
 
-UserSchema.statics.addInvite = (exchangeId, email) => {
-  const Exchange = mongoose.model('exchange');
+// UserSchema.statics.addInvite = (exchangeId, user_id) => {
+//   const User = mongoose.model('user');
+  
+//   return User.findOne({ _id: user_id }).then(user => {
+//     user.pending_invites.push(exchangeId);
+//     return user.save().populate("pending_invites")
+//       .then(user => user.pending_invites)
+//       .catch(err => res.json(err))
+//   }).catch(err => res.json(err));
+// }
+
+// UserSchema.statics.deleteInvite = (exchangeId, userId) => {
+//   const User = mongoose.model('user');
+  
+//   return User.findById(userId).then(user => {
+//     user.pending_invites.pull(exchangeId);
+//     return user.save().populate("pending_invites")
+//       .then(user => user.pending_invites)
+//       .catch(err => res.json(err))
+//   }).catch(err => res.json(err));
+// }
+
+UserSchema.statics.fetchInvites = (user_id) => {
   const User = mongoose.model('user');
-
-  return Exchange.findById(exchangeId).then(exchange => {
-    return User.findOne({email: email}).then(user => {
-      user.pendingInvites.push(exchangeId);
-
-      return user.save()
-        .then(user => user)
-        .catch(err => res.json(err))
-    })
-      .catch(err => res.json(err))
-
+  return User.findById(user_id).populate("pending_invites").then(user => {
+    return user.pending_invites
   })
-    .catch(err => res.json(err))
-
-}
-
-UserSchema.statics.deleteInvite = (exchangeId, userId) => {
-  const Exchange = mongoose.model('exchange');
-  const User = mongoose.model('user');
-
-  return Exchange.findById(exchangeId).then(exchange => {
-    return User.findById(userId).then(user => {
-      user.pendingInvites.pull(exchangeId);
-
-      return user.save()
-        .then(user => user)
-        .catch(err => res.json(err))
-    })
-      .catch(err => res.json(err))
-
-  })
-    .catch(err => res.json(err))
-
 }
 
 module.exports = mongoose.model("user", UserSchema);

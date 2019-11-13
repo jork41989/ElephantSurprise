@@ -6,7 +6,8 @@ const {
   GraphQLObjectType,
   GraphQLList,
   GraphQLID,
-  GraphQLNonNull
+  GraphQLNonNull,
+  GraphQLString
 } = graphql;
 
 const User = mongoose.model("user");
@@ -92,6 +93,22 @@ const RootQueryType = new GraphQLObjectType({
       },
       resolve(_, args) {
         return Item.findById(args._id);
+      }
+    },
+    searchUser: {
+      type: new GraphQLList(UserType),
+      args: {
+        key_word: { type: GraphQLString }
+      },
+      resolve(_, { key_word }) { 
+        if (key_word) {
+          return User.find({ $or: [
+            { name: new RegExp(key_word, "i") },
+            { email: new RegExp(key_word, "i") }
+          ]}).limit(5);
+        } else {
+          return [];
+        }
       }
     }
   })

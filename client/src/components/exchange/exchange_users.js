@@ -3,23 +3,22 @@ import Queries from "../../graphql/queries";
 import { Query } from "react-apollo";
 const { FETCH_USER } = Queries;
 
-const ExchangeUsers = (exchange) => {
-
+const ExchangeUsers = (props) => {
+  console.log(props.participants);
   return(
     <div>
       <h3 className="ExchangeMembersHeader"> Members of the Exchange </h3>
-      
       <div className="participants-list" >
-        {exchange.exchange.map(participant => { 
+        {props.participants.map((participant, i) => { 
 
-          return (<Query query={FETCH_USER} variables={{ _id: participant._id }}>
+          return (<Query key={i} query={FETCH_USER} variables={{ _id: participant._id }}>
 
             {({loading, error, data})=> {
-              console.log("member data", data)
+              // console.log("member data", data)
 
               if (loading) return <p>Loading...</p>;
               if (error) return <p>Error</p>;
-              return <p key={data.user._id}>{data.user.name}</p>;
+              return <p>{data.user.name}</p>;
             }}   
           </Query>)
 
