@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Mutations from "../../graphql/mutations";
 import Queries from "../../graphql/queries";
 import {Mutation} from "react-apollo";
-const {ACCEPT_INVITE} = Mutations;
+const {ACCEPT_INVITE_A} = Mutations;
 const {DELETE_INVITE} = Mutations;
 const {FETCH_USER} = Queries;
 
@@ -33,7 +33,7 @@ class DashboardInvites extends Component{
               <p>Accept this Invite?</p>
 
              <Mutation 
-              mutation={ACCEPT_INVITE}
+              mutation={ACCEPT_INVITE_A}
                   refetchQueries={() => {
                     return [
                       {
@@ -44,12 +44,16 @@ class DashboardInvites extends Component{
                   }}
 
              >
-                {(addParticipant, data) => (
+                  {(acceptAndUpdate, data) => (
                   <button onClick={e=>{
                     e.preventDefault();
-                    addParticipant({
+                      acceptAndUpdate({
                       variables: { exchange_id: invite._id, user_id: this.props.user._id }
-                    });
+                      })
+                      .then(data => {
+                        console.log(data);
+                        this.setState({ invites: data.data.mutation2.pending_invites })
+                      })
                   }}>
                   Yes
                   </button>
