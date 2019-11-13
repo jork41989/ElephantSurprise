@@ -58,8 +58,8 @@ mutation addInvite($exchange_id: ID!, $user_ids: [ID!]) {
 }
 `,
 DELETE_INVITE: gql `
-mutation deleteInvite($exchangeId: ID!) {
-  deleteInvite( exchangeId: $exchangeId){
+mutation deleteInvite($exchangeId: ID!, $userId: ID!) {
+  deleteInvite( exchangeId: $exchangeId, userId: $userId){
     _id
     name
     pendingInvites{

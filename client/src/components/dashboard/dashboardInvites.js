@@ -9,7 +9,7 @@ class DashboardInvites extends Component{
   constructor(props){
     super(props);
     this.state ={
-      invites: this.props.user.pendingInvites || null
+      invites: this.props.user.pendingInvites
     }
   }
 
@@ -19,7 +19,7 @@ class DashboardInvites extends Component{
 
     console.log(this.props.user.pendingInvites)
 
-    if (this.state.invites){
+    if (this.state.invites.length > 0){
       console.log(this.state.invites)
       return(
 
@@ -51,7 +51,7 @@ class DashboardInvites extends Component{
                     e.preventDefault();
                       console.log("invite", invite._id);
                       deleteInvite({
-                      variables: { exchangeId: invite._id }
+                      variables: { exchangeId: invite._id, userId: this.props.user._id }
                     })
                   }}>
                     No

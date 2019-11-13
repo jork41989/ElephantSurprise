@@ -32,6 +32,16 @@ export default {
         _id
         name
       }
+      owned_lists{
+        _id
+        shipping_address
+        santa
+        items{
+          url
+          price
+          purchased
+        }
+      }
     }
   }
   `,
