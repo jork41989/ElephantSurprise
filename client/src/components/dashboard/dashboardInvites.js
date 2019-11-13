@@ -66,22 +66,7 @@ class DashboardInvites extends Component{
                 {invite.name}
               <p>Accept this Invite?</p>
 
-              {/* <Mutation mutation={ADD_PARTICIPANT}>
-
-                {(addParticipant, data) => {
-                  <button 
-                    onClick={e => { 
-                    e.preventDefault();
-                    addParticipant({
-                      variables: {exchangeId: invite._id, userId: this.props.user._id }
-                    });
-                  }}>Yes</button>
-                }}
-
-              </Mutation> */}
-                      
-                          
-              {/* <button onClick={this.rejectInvite(invite._id)}>No</button> */}
+            
               </li>)
             count ++;
           })}
