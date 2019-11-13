@@ -15,29 +15,8 @@ class DashboardInvites extends Component{
     }
   }
 
-
-  updateCache(cache, { data: { pending_invites } }) {
-    let user;
-    try {
-      user = cache.readQuery({ 
-        query: FETCH_USER,
-        variables: { _id: this.props.user._id}
-       });
-    } catch (err) {
-      return;
-    }
-
-    if (user) {
-        cache.writeQuery({
-        query: FETCH_USER,
-        variables: { _id: this.props.user._id },
-        data: { pending_invites: pending_invites }
-      });
-    }
-  }
-
   render(){
-    let count = 0
+    // let count = 0
 
     console.log(this.props.user.pending_invites)
 
@@ -47,14 +26,23 @@ class DashboardInvites extends Component{
 
         <ul>
           {this.state.invites.map(invite => {
+            // count++;
             return(
-            <li key={invite._id + count}>
+            <li key={invite._id}>
                 {invite.name}
               <p>Accept this Invite?</p>
 
              <Mutation 
               mutation={ADD_PARTICIPANT}
-              update={(cache, data) => this.updateCache(cache, data)}
+                  refetchQueries={() => {
+                    return [
+                      {
+                        query: FETCH_USER,
+                        variables: { _id: this.props.user._id }
+                      }
+                    ];
+                  }}
+
              >
                 {(addParticipant, data) => (
                   <button onClick={e=>{
@@ -91,7 +79,7 @@ class DashboardInvites extends Component{
 
 
               </li>)
-            count ++;
+            
           })}
         </ul>
 
