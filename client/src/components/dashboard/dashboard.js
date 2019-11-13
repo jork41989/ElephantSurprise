@@ -35,7 +35,11 @@ class Dashboard extends Component {
     return(
     <Query query={CURRENT_USER}>
       {({ loading, error, data }) => {
-          
+          if (loading)
+            return "Loading...";
+          if (error)
+            return `Error! first ${error.message}`;
+            console.log(data.CurrentUserID)
           return(
           <Query query={FETCH_USER}
             variables={{_id: data.CurrentUserID}}
@@ -44,7 +48,7 @@ class Dashboard extends Component {
               if (loading)
                 return "Loading...";
               if (error)
-                return `Error! ${error.message}`;
+                return `Error! second ${error.message}`;
               
               let hosted = data.user.hosted_exchanges.map(exchange => (exchange._id))
               

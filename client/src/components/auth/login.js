@@ -25,7 +25,11 @@ class Login extends Component {
       
       // here we can write directly to our cache with our returned mutation data
       client.writeData({
-        data: { isLoggedIn: data.login.loggedIn }
+        data: {
+          isLoggedIn: data.login.loggedIn, 
+          CurrentUserName: data.login.name,
+          CurrentUserID: data.login._id
+        }
       });
     }
 

@@ -19,6 +19,33 @@ class ExchangeForm extends Component {
   }
 
 
+  updateCache(cache, { data: { newExchange } }) {
+    let curUser
+    let userData
+    try {
+      curUser = cache.readQuery({ query: CURRENT_USER});
+    } catch (err){
+      return
+    }
+
+    if(curUser){
+      try{
+        userData = cache.readQuery({ query: FETCH_USER, variables: {_id: curUser.CurrentUserID}})
+      } catch (err) {
+        return
+      }
+    }
+    if(userData){
+      userData = userData.user
+      userData.participated_exchanges = userData.participated_exchanges.concat([{ _id: newExchange._id, name: newExchange.name }])
+      userData.hosted_exchanges = userData.hosted_exchanges.concat([{ _id: newExchange._id }])
+      cache.writeQuery({
+        query: FETCH_USER,
+        variables: { _id: curUser.CurrentUserID } ,
+        data: {user: userData}
+      })
+    }
+  }
 
 
 

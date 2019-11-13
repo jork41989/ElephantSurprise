@@ -27,7 +27,10 @@ class Signup extends Component {
       
       // here we can write directly to our cache with our returned mutation data
       client.writeData({
-        data: { isLoggedIn: data.register.loggedIn }
+        data: {
+          isLoggedIn: data.register.loggedIn, 
+          CurrentUserName: data.register.name,
+          CurrentUserID: data.register._id,  }
       });
     }
   errorTips() {
