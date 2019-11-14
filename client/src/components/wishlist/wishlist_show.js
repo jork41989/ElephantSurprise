@@ -53,8 +53,8 @@ class WishlistShow extends Component{
                           wish_list_id={data.wish_list._id} 
                           shipping_address={data.wish_list.shipping_address}
                         />
-                        <ItemsIndex items={data.wish_list.items} />
-                        <ItemInject user={user} wishlist={data.wish_list._id}/> 
+                        <ItemsIndex items={data.wish_list.items} wishlist={this.props.match.params.id} />
+                        <ItemInject user={user} wishlist={this.props.match.params.id}/> 
                       </div>
 
                     )

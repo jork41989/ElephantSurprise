@@ -61,7 +61,7 @@ class ItemElement extends Component{
           return [
             {
               query: FETCH_WISHLIST,
-              variables: { _id: "5dcc9aadb61a8950f661eae3" }
+              variables: { _id: this.props.wishlist }
             }
           ];
         }}
@@ -125,7 +125,7 @@ class ItemElement extends Component{
         <div>
           <button
             onClick={this.handleEdit}
-            style={{ fontSize: "10px", cursor: "pointer", display: "inline" }}
+            // style={{ fontSize: "10px", cursor: "pointer", display: "inline" }}
           >
             ✎
           </button>

@@ -22,16 +22,16 @@ class ItemsIndex extends Component{
       <ul>
 
         {this.props.items.map(item => (
-          <li>
+          <li key={item._id}>
 
-            <ItemElement item={item}/>
+            <ItemElement item={item} wishlist={this.props.wishlist}/>
 
             <Mutation mutation={REMOVE_ITEM}
               refetchQueries={() => {
                 return [
                   {
                     query: FETCH_WISHLIST,
-                    variables: { _id: "5dcc9aadb61a8950f661eae3" }
+                    variables: { _id: this.props.wishlist }
                   }
                 ];
               }}
