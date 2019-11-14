@@ -1,6 +1,7 @@
   import React, {Component} from "react";
   import {withRouter} from "react-router-dom";
   import { Query, Mutation} from "react-apollo";
+  import {merge} from "lodash"
   import Queries from "../../graphql/queries";
   import ExchangeUsers from "./exchange_users";
   import Mutations from "../../graphql/mutations";
@@ -28,9 +29,10 @@ class ExchangeShow extends Component {
     this.setState({ modal: false, type: false })
   }
 
-  updateCache(cache, { data: { oldExchange } }) {
+  updateCache(cache, { data: { deleteExchange: oldExchange } }) {
     let curUser
     let userData
+    
     try {
       curUser = cache.readQuery({ query: CURRENT_USER });
     } catch (err) {
@@ -46,8 +48,9 @@ class ExchangeShow extends Component {
     }
     if (userData) {
       userData = userData.user
-      userData.participated_exchanges = userData.participated_exchanges.pull([{ _id: oldExchange._id, name: oldExchange.name }])
-      userData.hosted_exchanges = userData.hosted_exchanges.pull([{ _id: oldExchange._id }])
+      userData.participated_exchanges = userData.participated_exchanges.filter((exchange) => exchange._id != oldExchange._id)
+      userData.hosted_exchanges = userData.hosted_exchanges.filter((exchange) => exchange._id != oldExchange._id )
+      userData = merge({}, userData)
       cache.writeQuery({
         query: FETCH_USER,
         variables: { _id: curUser.CurrentUserID },
@@ -84,7 +87,10 @@ class ExchangeShow extends Component {
           <div className="ExchangeShow">
 
             <div className="ExchangeShowBody">
-              <h1>Welcome to the {data.exchange.name} Exchange!</h1>
+              <div className="ExchangeShowHeader">
+                <p>Themed elephant goes here!</p>
+                <h1>Welcome to the {data.exchange.name} Exchange!</h1>
+              </div>
               <ExchangeUsers participants={data.exchange.participants} />
             </div>
 
@@ -94,7 +100,7 @@ class ExchangeShow extends Component {
               <h2> Host: {this.props.user.name} </h2>
               {santaRead}
             <div className="ExchangeMembersInviteButton">
-              <button onClick={() => this.setState({ modal: true, type: "search_user" })}>Invite Users!</button>
+                <button onClick={() => this.setState({ modal: true, type: "search_user" })} className='exchangeButton'>Invite Users!</button>
             </div>
             <Modal closeModal={this.closeModal} type={this.state.type} exchange_id={data.exchange._id} />
               <Mutation mutation={REMOVE_EXCHANGE}
@@ -130,8 +136,13 @@ class ExchangeShow extends Component {
 
           return(
             <div className="ExchangeShow">
-              <h1> Welcome to {data.exchange.name} Exchange!, {this.props.user.name}</h1>
+              <div className="ExchangeShowBodyNotHost">
+              <div className="ExchangeShowHeader">
+                <p>Themed elephant goes here!</p>
+                <h1>Welcome to the {data.exchange.name} Exchange!</h1>
+              </div>
               <ExchangeUsers participants={Object.values(data.exchange.participants)} />
+            </div>
             </div>
           )
 
