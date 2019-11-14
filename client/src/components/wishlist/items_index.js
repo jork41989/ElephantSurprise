@@ -17,7 +17,7 @@ class ItemsIndex extends Component{
         {this.props.items.map(item =>(
           <li>
             {item.url}
-            {item.price}
+            <p>${item.price}</p>
           </li>
         ))}
       </ul>
