@@ -36,6 +36,18 @@ class ItemInject extends Component{
     }
   }
 
+  errorTips() {
+    if (this.state.errors) {
+      return (
+        <ReactTooltip id="email" place="top" type="error" effect="solid">
+          <span>{this.state.errors[0].message}</span>
+        </ReactTooltip>
+      )
+
+    }
+  }
+
+
   render(){
 
     return(
