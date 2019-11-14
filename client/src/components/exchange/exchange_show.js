@@ -5,6 +5,7 @@
   import ExchangeUsers from "./exchange_users";
   import Mutations from "../../graphql/mutations";
   import InviteUser from "./invite_user";
+  import WishlistShow from "../wishlist/wishlist_show";
   import './exchange_show.css'
   import Modal from '../modal/modal';
   const { REMOVE_EXCHANGE } = Mutations
@@ -86,6 +87,7 @@ class ExchangeShow extends Component {
             <div className="ExchangeShowBody">
               <h1>Welcome to the {data.exchange.name} Exchange!</h1>
               <ExchangeUsers participants={data.exchange.participants} />
+              <WishlistShow />
             </div>
 
  
@@ -132,6 +134,7 @@ class ExchangeShow extends Component {
             <div className="ExchangeShow">
               <h1> Welcome to {data.exchange.name} Exchange!, {this.props.user.name}</h1>
               <ExchangeUsers participants={Object.values(data.exchange.participants)} />
+              <WishlistShow />
             </div>
           )
 

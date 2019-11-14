@@ -106,6 +106,25 @@ mutation acceptAndUpdate($exchange_id: ID!, $user_id: ID!){
     }
   }
 }
+`,
+ADD_ITEM: gql `
+mutation newItem(
+  $url: String!,
+  $price: Float!,
+  $owner_id: ID!,
+  $wish_list_id: ID!){
+    newItem(
+      url: $url,
+      price: $price,
+      owner_id: $owner_id,
+      wish_list_id: $wish_list_id
+    ){
+      _id
+      url
+      price
+    }
+
+  }
 `
 
 }
