@@ -34,7 +34,7 @@ class WishlistShow extends Component{
                 return(
 
                   <Query query={FETCH_WISHLIST}
-                    variables={{ _id: "5dcc9aadb61a8950f661eae3"}} // this.props.match.params.id
+                    variables={{ _id: this.props.match.params.id}} // this.props.match.params.id
                     >
                   {({loading, error, data}) => {
                     if (loading)
