@@ -36,7 +36,7 @@
   background-color: aliceblue;
   border-radius: 5px;
   cursor: pointer;
-  right: -107px;
+  right: 9px;
 }
 
 .search-user-main img {
@@ -48,11 +48,14 @@
 }
 
 .search-list {
-  position: relative;
+  position: absolute;
   display: flex;
-
   flex-direction: column;
   align-items: center;
+  background-color: white;
+  right: 72px;
+  top: 129px;
+  border-radius: 5px;
 }
 
 .search-list > div:first-child {
