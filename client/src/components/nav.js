@@ -4,6 +4,7 @@ import { Query } from "react-apollo";
 import Queries from "../graphql/queries";
 import { ApolloConsumer } from 'react-apollo';
 import Modal from './modal/modal'
+
 const { IS_LOGGED_IN } = Queries;
 
 class Nav extends Component {

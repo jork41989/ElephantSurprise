@@ -25,8 +25,22 @@ export default {
       hosted_exchanges{
         _id
       }
+      pending_invites{
+        _id
+        name
+      }
       owned_lists{
         _id
+        shipping_address
+        santa{
+          _id
+          name
+        }
+        items{
+          url
+          price
+          purchased
+        }
       }
     }
   }
@@ -101,6 +115,50 @@ export default {
         }
       }
     }
-  `  
+  `,
+  FETCH_WISHLIST: gql `
+    query fetchWishlist($_id: ID!){
+      wish_list(_id: $_id){
+          _id
+        owner{
+          _id
+          name
+        }
+        shipping_address
+        santa{
+          _id
+          name
+        }
+        exchange{
+          _id
+          name
+        }
+        items{
+          _id
+          url
+          price
+          purchased
+        }
+      }
+    }
+  `,
+  FETCH_ITEM: gql `
+    query item($_id: ID!){
+      item(_id: $_id){
+        _id
+        url
+        price
+        purchased
+        owner
+        wish_list{
+          _id
+          owner
+          shipping_address
+          santa
+          exchange
+        }
+      }
+    }
+  `
 }
 

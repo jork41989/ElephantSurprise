@@ -5,6 +5,7 @@
   import ExchangeUsers from "./exchange_users";
   import Mutations from "../../graphql/mutations";
   import InviteUser from "./invite_user";
+  import WishlistShow from "../wishlist/wishlist_show";
   import './exchange_show.css'
   import Modal from '../modal/modal';
   const { REMOVE_EXCHANGE } = Mutations
@@ -106,15 +107,13 @@ class ExchangeShow extends Component {
               >
 
                 {(removeExchange, data2) => (
-                  <button
-                    onClick={ e => {
-                      e.preventDefault();
-                      removeExchange({
-                        variables: { exchange_id: data.exchange._id  }
-                      }).then(console.log("worked!"))
-                    }}>
-                    Kill Me
-                  </button>
+                  <i class="fas fa-trash-alt remove-exchange" onClick={e => {
+                    e.preventDefault();
+                    removeExchange({
+                      variables: { exchange_id: data.exchange._id }
+                    })
+                  }}></i>
+                  
                 )
 
                 }

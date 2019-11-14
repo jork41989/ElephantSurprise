@@ -4,6 +4,7 @@ import Queries from '../../graphql/queries';
 import { Mutation } from "react-apollo";
 import Mutations from "../../graphql/mutations";
 import { pull, uniqBy } from "lodash";
+import elephant from '../../images/logo-v1.png'
 import './searchUser.css';
 const { SEARCH_USER } = Queries;
 const { INVITE_USER } = Mutations;
@@ -93,7 +94,7 @@ class SearchUser extends React.Component {
     return (
       
       <div className="search-user-main">
-        <img src="https://img.icons8.com/carbon-copy/100/000000/elephant.png" className="elenav" />
+        <img src={elephant} className="elenav" />
         <input
           type="search"
           placeholder="Search User by Name or Email"

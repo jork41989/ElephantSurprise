@@ -4,7 +4,7 @@ import { Query } from "react-apollo";
 import Queries from '../../graphql/queries';
 import DashboardExchanges from './dashboardExchanges'
 import './dashboard.css'
-import ExchangeNacelle from "../exchange/exchange-nacelle";
+import DashboardInvites from "./dashboardInvites";
 const { CURRENT_USER, FETCH_USER } = Queries;
 
 class Dashboard extends Component {
@@ -70,6 +70,8 @@ class Dashboard extends Component {
                   <div onClick={this.renderHelp} className='sidebarButton'><i className="fas fa-envelope"></i></div>
                   <div className="DashboardSidebar" id="dashSidebar">
                     <h3>Pending Invites</h3>
+                    <DashboardInvites user={data.user} />
+                
                   </div>
                 </div>
 
