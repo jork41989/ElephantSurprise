@@ -3,6 +3,7 @@ import Queries from "../../graphql/queries";
 import { Query } from "react-apollo";
 import { Mutation } from "react-apollo";
 import Mutations from "../../graphql/mutations";
+import ItemElement from "./item_element";
 
 const { FETCH_WISHLIST } = Queries;
 const { UPDATE_ITEM, REMOVE_ITEM } = Mutations;
@@ -23,7 +24,7 @@ class ItemsIndex extends Component{
         {this.props.items.map(item => (
           <li>
 
-            <ItemElement props={item}/>
+            <ItemElement item={item}/>
 
             <Mutation mutation={REMOVE_ITEM}
               refetchQueries={() => {
@@ -36,10 +37,16 @@ class ItemsIndex extends Component{
               }}
 
             >
-
-
-
-
+              {(deleteItem, data) => (
+                <button onClick={e => {
+                  e.preventDefault();
+                  deleteItem({
+                    variables: { item_id: item._id}
+                  })
+                }}>
+                  Delete Item
+                </button>
+              )}
             </Mutation>
 
 
