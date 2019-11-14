@@ -90,5 +90,53 @@ export default {
       }
     }
   `,  
+  FETCH_WISHLIST: gql `
+    query fetchWishlist($_id: ID!){
+      wish_list(_id: $_id){
+        _id
+        owner{
+          _id
+          name
+        }
+        shipping_address
+        santa{
+          _id
+          name
+        }
+        exchange{
+          _id
+          name
+        }
+        items{
+          _id
+          url
+          price
+          purchased
+          owner{
+            _id
+            name
+          }
+        }
+      }
+    }
+  `,
+  FETCH_ITEM: gql `
+    query item($_id: ID!){
+      item(_id: $_id){
+        _id
+        url
+        price
+        purchased
+        owner
+        wish_list{
+          _id
+          owner
+          shipping_address
+          santa
+          exchange
+        }
+      }
+    }
+  `
 }
 

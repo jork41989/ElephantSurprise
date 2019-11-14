@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Mutations from "../../graphql/mutations";
 import { Mutation } from "react-apollo";
 import ReactTooltip from "react-tooltip";
+import "./item_inject.css";
 
 const {ADD_ITEM} = Mutations;
 
@@ -21,10 +22,6 @@ class ItemInject extends Component{
     return e => this.setState({ [field]: e.target.value });
   }
 
-  handleSubmit(){
-
-  }
-
   errorTips() {
     if (this.state.errors) {
       return (
@@ -36,7 +33,6 @@ class ItemInject extends Component{
     }
   }
 
-
   render(){
 
     return(
@@ -45,15 +41,17 @@ class ItemInject extends Component{
         <Mutation mutation={ADD_ITEM}>
           {(newItem, data)=>(
 
-          <form onSubmit={e =>{
+          <form
+           className="item-inject"
+           onSubmit={e =>{
             e.preventDefault();
             this.setState({errors: null});
             newItem({
               variables: {
                 url: this.state.url,
-                price: this.state.price,
+                price: parseFloat(this.state.price),
                 owner_id: this.props.user._id,
-                wish_list_id: this.props.wishlist._id
+                wish_list_id: this.props.wishlist
               }
             })
             
@@ -62,11 +60,15 @@ class ItemInject extends Component{
 
             <input value={this.state.url}
               onChange={this.update("url")}
+              placeholder="Link here to the item"
               ></input>
 
             <input value={this.state.price}
               onChange={this.update("price")}
+              placeholder="Price of your item here(stay in budget!)"
               ></input>
+
+            <button type="submit" value="Add Item">Add Item</button>
 
           </form>
           )}
@@ -78,7 +80,6 @@ class ItemInject extends Component{
     )
 
   }
-
 
 }
 
