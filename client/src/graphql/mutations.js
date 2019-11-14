@@ -122,9 +122,39 @@ mutation newItem(
       _id
       url
       price
+      purchased
     }
 
   }
+`,
+UPDATE_ITEM: gql `
+mutation updateItem(
+  $item_id: ID!,
+  $url: String!,
+  $price: Float!,
+  $purchased: Boolean!){
+    updateItem(
+      item_id: $item_id,
+      url: $url,
+      price: $price,
+      purchased: $purchased){
+        _id
+        url
+        price
+        purchased
+    }
+  }
+`,
+
+REMOVE_ITEM: gql `
+mutation deleteItem( $item_id: ID!){
+  deleteItem(item_id: $item_id){
+    _id
+    url
+    price
+    purchased
+  }
+}
 `
 
 }

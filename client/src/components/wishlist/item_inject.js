@@ -43,6 +43,8 @@ class ItemInject extends Component{
       <div>
         <h2>Update Your List with an Item</h2>
         <Mutation mutation={ADD_ITEM}>
+          {(newItem, data)=>(
+
           <form onSubmit={e =>{
             e.preventDefault();
             this.setState({errors: null});
@@ -54,19 +56,20 @@ class ItemInject extends Component{
                 wish_list_id: this.props.wishlist._id
               }
             })
-
+            
           }}>
             {this.errorTips()}
 
             <input value={this.state.url}
               onChange={this.update("url")}
-            ></input>
+              ></input>
 
             <input value={this.state.price}
               onChange={this.update("price")}
-            ></input>
+              ></input>
 
           </form>
+          )}
         </Mutation>
 
       </div>
