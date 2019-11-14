@@ -229,11 +229,13 @@ const mutation = new GraphQLObjectType({
           { new: true } 
         ).then(
           exchange => {
-              User.addParticipatedExchange(exchange_id, user_id);
-              return exchange;
-          }
-        );
-      }
+          new WishList({ owner: user_id, exchange: exchange_id }).save()
+          .then(wishList => {
+            User.addWishList(exchange_id, wishList._id, user_id)})
+            User.addParticipatedExchange(exchange_id, user_id);
+            return exchange;
+        })        
+    }
     },
     removeParticipant: {
       type: ExchangeType,
