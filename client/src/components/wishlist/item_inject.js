@@ -3,8 +3,11 @@ import Mutations from "../../graphql/mutations";
 import { Mutation } from "react-apollo";
 import ReactTooltip from "react-tooltip";
 import "./item_inject.css";
+import Queries from "../../graphql/queries";
+import Query from "react-apollo";
 
 const {ADD_ITEM} = Mutations;
+const {FETCH_WISHLIST} = Queries;
 
 class ItemInject extends Component{
   constructor(props){
@@ -38,7 +41,18 @@ class ItemInject extends Component{
     return(
       <div>
         <h2>Update Your List with an Item</h2>
-        <Mutation mutation={ADD_ITEM}>
+        <Mutation mutation={ADD_ITEM}
+          refetchQueries={() => {
+            return [
+              {
+                query: FETCH_WISHLIST,
+                variables: { _id: "5dcc9aadb61a8950f661eae3" }
+              }
+            ];
+          }}
+        >
+
+
           {(newItem, data)=>(
 
           <form
