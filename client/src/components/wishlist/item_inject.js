@@ -63,10 +63,8 @@ class ItemInject extends Component{
           }}  
         >
 
-          
-
           {(newItem, data)=>(
-
+            
           <form
            className="item-inject"
            onSubmit={e =>{
@@ -102,10 +100,7 @@ class ItemInject extends Component{
         </Mutation>
 
       </div>
-
-      
     )
-
   }
 
 }
