@@ -1,5 +1,10 @@
 import React, { Component } from "react";
 import MemberOption from "./member_option/member_option";
+import React from "react";
+import Queries from "../../graphql/queries";
+import { Query } from "react-apollo";
+import "./exchange_users.css";
+const { FETCH_USER } = Queries;
 
 
 class ExchangeUsers extends Component {
