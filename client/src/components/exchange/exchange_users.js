@@ -1,33 +1,25 @@
-import React from "react";
-import Queries from "../../graphql/queries";
-import { Query } from "react-apollo";
-const { FETCH_USER } = Queries;
+import React, { Component } from "react";
+import "./exchange_users.css";
+import MemberOption from "./member_option/member_option";
 
-const ExchangeUsers = (props) => {
-  console.log(props.participants);
-  return(
-    <div>
-      <h3 className="ExchangeMembersHeader"> Members of the Exchange </h3>
-      <div className="participants-list" >
-        {props.participants.map((participant, i) => { 
 
-          return (<Query key={i} query={FETCH_USER} variables={{ _id: participant._id }}>
+class ExchangeUsers extends Component {
+  constructor(props) {
+    super(props);
+  }
 
-            {({loading, error, data})=> {
-              // console.log("member data", data)
-
-              if (loading) return <p>Loading...</p>;
-              if (error) return <p>Error</p>;
-              return <p>{data.user.name}</p>;
-            }}   
-          </Query>)
-
-        })}
+  render() {
+    return(
+      <div>
+        <h3 className="ExchangeMembersHeader"> Members of the Exchange </h3>
+        <div className="participants-list" >
+          {this.props.participants.map(participant => {
+            return <MemberOption participant={participant} host_id={this.props.host_id} exchange_id={this.props.exchange_id} key={participant._id}/>
+          })}
+        </div>
       </div>
-
-    </div>
-  )
-
+    )
+  }
 }
 
 export default ExchangeUsers;

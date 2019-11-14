@@ -79,13 +79,13 @@ class ExchangeShow extends Component {
           }
         if (this.props.user._id === data.exchange.host._id){
 
-          console.log(data.exchange.participants) 
+          // console.log(data.exchange.participants) 
         return(
           <div className="ExchangeShow">
 
             <div className="ExchangeShowBody">
               <h1>Welcome to the {data.exchange.name} Exchange!</h1>
-              <ExchangeUsers participants={data.exchange.participants} />
+              <ExchangeUsers participants={data.exchange.participants} host_id={data.exchange.host._id} exchange_id={data.exchange._id}/>
             </div>
 
  
@@ -133,7 +133,7 @@ class ExchangeShow extends Component {
           return(
             <div className="ExchangeShow">
               <h1> Welcome to {data.exchange.name} Exchange!, {this.props.user.name}</h1>
-              <ExchangeUsers participants={Object.values(data.exchange.participants)} />
+              <ExchangeUsers participants={data.exchange.participants} />
             </div>
           )
 

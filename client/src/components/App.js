@@ -18,11 +18,11 @@ function App() {
       <div className="mainBody">
         <Switch>
           <AuthRoute exact path="/dashboard" component={Dashboard} />
+          {/* <AuthRoute exact path="/wish_lists/:id" component={WishList} /> */}
           <AuthRoute exact path="/newExchange" component={ExchangeForm} />
           <AuthRoute exact path="/exchanges/:id" component={ExchangeNacelle} />
         </Switch>
       </div>
-
     </div>
   );
 }
