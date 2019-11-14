@@ -44,9 +44,11 @@ class SearchUser extends React.Component {
 
   addToList(user) {
     const list = this.state.invite_list;
+    if (!this.state.invite_list.includes(user)){
     list.push(user);
     this.setState({ invite_list: list }, () => { console.log(this.state.invite_list); });
     document.getElementById(user._id).style.display = "block";
+    }
   }
   
   removeFromList(user) {
@@ -54,6 +56,17 @@ class SearchUser extends React.Component {
     pull(list, user);
     this.setState({ invite_list: list }, () => { console.log(this.state.invite_list); });
     document.getElementById(user._id).style.display = "none";
+  }
+
+  listDiv(){
+   return(
+     this.state.invite_list.map(user =>{
+       console.log(user)
+       return (
+       <div>{user.name}</div>
+       )
+     })
+   )
   }
 
   sendInvite(e, addInvite) {
@@ -95,12 +108,14 @@ class SearchUser extends React.Component {
       
       <div className="search-user-main">
         <img src={elephant} className="elenav" />
+        
         <input
           type="search"
           placeholder="Search User by Name or Email"
           onChange={this.update()}
           value={this.state.search_input}
         />
+        <div>
         {this.state.key_word && 
         <Query query={SEARCH_USER} variables={{ key_word: this.state.key_word }}>
           {({ loading, error, data }) => {
@@ -112,7 +127,6 @@ class SearchUser extends React.Component {
                   <li key={user._id}>
                     <div onClick={() => {this.addToList(user)}} id="user-item">
                       <div>{user.name}</div>
-                      <div>Email: {user.email}</div>
                     </div>
                     <i className="fas fa-check-circle" onClick={() => { this.removeFromList(user) }} id={user._id} />
                   </li>
@@ -120,25 +134,12 @@ class SearchUser extends React.Component {
               );
                 
               return (
-                <Mutation
-                  mutation={INVITE_USER}
-                  onError={err => this.setState({ message: err.message })}
-                  onCompleted={data => {
-                    this.setState({
-                      message: "Invitations Sent!"
-                    });
-                  }}
-                >
-                  {(addInvite, { data }) => (
-                    <div className="search-list">
-                      <div onClick={this.clearList}>X</div>
-                      <ul>
-                        {user_lis}
-                      </ul>
-                      <button onClick={e => this.sendInvite(e, addInvite)}>Send Invitations!</button>
-                    </div>
-                  )}
-                </Mutation>
+                <div className="search-list">
+                <ul>
+                  {user_lis}
+                </ul>
+                </div>
+                
               );
             } else if (data && data.searchUser.length === 0) {
               return "No User Found.";
@@ -146,8 +147,30 @@ class SearchUser extends React.Component {
           }}
         </Query>
         }
+        </div>
+        <div className="searchUserlist">
+          {this.listDiv()}
+        </div>
+        <div>
+          <Mutation
+            mutation={INVITE_USER}
+            onError={err => this.setState({ message: err.message })}
+            onCompleted={data => {
+              this.setState({
+                message: "Invitations Sent!"
+              });
+            }}
+          >
+            {(addInvite, { data }) => (
+              
+              <button onClick={e => this.sendInvite(e, addInvite)} className="searchButton">Send Invitations!</button>
+              
+            )}
+          </Mutation>
+        <button onClick={this.clearList} className="searchButton">Clear Invites</button>
+        </div>
         <p>{this.state.message}</p>
-        <button onClick={() => {this.props.closeModal()}}>Close</button>
+        <button onClick={() => { this.props.closeModal() }} className="search-user-main-submit">x</button>
       </div>
     );
   }

@@ -8,6 +8,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 }
 
 .fa-check-circle {
@@ -28,12 +29,14 @@
   text-indent: 1px;
 }
 
-.search-user-main button {
-  width: 188px;
+.search-user-main-submit{
+  position: absolute;
+  width: 30px;
   font-size: 20px;
   background-color: aliceblue;
   border-radius: 5px;
   cursor: pointer;
+  right: -107px;
 }
 
 .search-user-main img {
@@ -45,7 +48,9 @@
 }
 
 .search-list {
+  position: relative;
   display: flex;
+
   flex-direction: column;
   align-items: center;
 }
@@ -77,4 +82,20 @@
 
 #user-item div:last-child {
   color: grey;
+}
+
+.searchUserlist{
+  width: 90%;
+  height: 100px;
+}
+
+.searchButton{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 136px;
+  margin-right: 10px;
+  font-size: 16px;
+  background-color: aliceblue;
+  border-radius: 5px;
+  cursor: pointer;
 }
