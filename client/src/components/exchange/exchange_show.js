@@ -106,15 +106,13 @@ class ExchangeShow extends Component {
               >
 
                 {(removeExchange, data2) => (
-                  <button
-                    onClick={ e => {
-                      e.preventDefault();
-                      removeExchange({
-                        variables: { exchange_id: data.exchange._id  }
-                      }).then(console.log("worked!"))
-                    }}>
-                    Kill Me
-                  </button>
+                  <i class="fas fa-trash-alt remove-exchange" onClick={e => {
+                    e.preventDefault();
+                    removeExchange({
+                      variables: { exchange_id: data.exchange._id }
+                    })
+                  }}></i>
+                  
                 )
 
                 }

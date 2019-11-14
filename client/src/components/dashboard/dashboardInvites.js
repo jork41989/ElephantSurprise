@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Mutations from "../../graphql/mutations";
 import Queries from "../../graphql/queries";
 import {Mutation} from "react-apollo";
+import './dashboard.css'
 const {ACCEPT_INVITE_A} = Mutations;
 const {DELETE_INVITE} = Mutations;
 const {FETCH_USER} = Queries;
@@ -24,14 +25,15 @@ class DashboardInvites extends Component{
       console.log(this.state.invites)
       return(
 
-        <ul>
+        <div >
           {this.state.invites.map(invite => {
             // count++;
             return(
-            <li key={invite._id}>
+              <div key={invite._id} className="invitationDiv">
                 {invite.name}
-              <p>Accept this Invite?</p>
-
+              <p>Join this exchange?</p>
+                
+              <div>
              <Mutation 
               mutation={ACCEPT_INVITE_A}
                   refetchQueries={() => {
@@ -45,47 +47,48 @@ class DashboardInvites extends Component{
 
              >
                   {(acceptAndUpdate, data) => (
-                  <button onClick={e=>{
-                    e.preventDefault();
-                      acceptAndUpdate({
-                      variables: { exchange_id: invite._id, user_id: this.props.user._id }
-                      })
-                      .then(data => {
-                        console.log(data);
-                        this.setState({ invites: data.data.mutation2.pending_invites })
-                      })
-                  }}>
-                  Yes
-                  </button>
+                    <i class="fas fa-smile -green"
+                      onClick={e => {
+                        e.preventDefault();
+                        acceptAndUpdate({
+                          variables: { exchange_id: invite._id, user_id: this.props.user._id }
+                        })
+                          .then(data => {
+                            console.log(data);
+                            this.setState({ invites: data.data.mutation2.pending_invites })
+                          })
+                      }}
+                    ></i>
+                 
                 )}
               </Mutation>
 
               <Mutation mutation={DELETE_INVITE}>
                   {(deleteInvite, data) => (
-                   
-                  <button onClick={e => {
-                    e.preventDefault();
+                    <i class="fas fa-meh -purple"
+                      onClick={e => {
+                        e.preventDefault();
 
-                      console.log("invite", invite._id);
+                        console.log("invite", invite._id);
 
-                      deleteInvite({
-                      variables: { exchange_id: invite._id, user_id: this.props.user._id }
-                      
-                      }).then(data => {
-                        console.log(data);
-                        this.setState({invites: data.data.deleteInvite.pending_invites })
-                      })
-            }}>
-              No
-                </button>
+                        deleteInvite({
+                          variables: { exchange_id: invite._id, user_id: this.props.user._id }
+
+                        }).then(data => {
+                          console.log(data);
+                          this.setState({ invites: data.data.deleteInvite.pending_invites })
+                        })
+                      }}
+                    > </i>
+                 
                 )}
               </Mutation>
+                </div>
 
-
-              </li>)
+              </div>)
             
           })}
-        </ul>
+        </div>
 
       ) 
     }

@@ -99,3 +99,26 @@
     opacity: 0;
   }
 }
+
+.-green{
+  color:#3e60f8;
+  font-size: 40px;
+  padding-right: 5px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.-purple{
+  color:rgb(255, 255, 255);
+  font-size: 40px;
+  padding-right: 5px;
+  cursor: pointer;
+}
+
+.invitationDiv{
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10px;
+  align-items: center;
+}
+
