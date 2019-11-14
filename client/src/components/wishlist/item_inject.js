@@ -15,7 +15,8 @@ class ItemInject extends Component{
     this.state ={
       url: "",
       price: "",
-      errors: ""
+      errors: null,
+      message: ""
     }
 
     this.errorTips = this.errorTips.bind(this);
@@ -40,6 +41,7 @@ class ItemInject extends Component{
 
     return(
       <div>
+        <h3>{this.state.message}</h3>
         <h2>Update Your List with an Item</h2>
         <Mutation mutation={ADD_ITEM}
           refetchQueries={() => {
@@ -50,8 +52,18 @@ class ItemInject extends Component{
               }
             ];
           }}
+          onCompleted={data => {
+
+            this.setState({
+              url: "",
+              price: "",
+              errors: null,
+              message: "Item added!"
+            })
+          }}  
         >
 
+          
 
           {(newItem, data)=>(
 
@@ -59,7 +71,8 @@ class ItemInject extends Component{
            className="item-inject"
            onSubmit={e =>{
             e.preventDefault();
-            this.setState({errors: null});
+            this.setState({
+              errors: null});
             newItem({
               variables: {
                 url: this.state.url,
@@ -68,8 +81,8 @@ class ItemInject extends Component{
                 wish_list_id: this.props.wishlist
               }
             })
-            
-          }}>
+          }}
+          >
             {this.errorTips()}
 
             <input value={this.state.url}
