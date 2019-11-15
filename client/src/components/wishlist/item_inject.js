@@ -46,7 +46,7 @@ class ItemInject extends Component{
             return [
               {
                 query: FETCH_WISHLIST,
-                variables: { _id: "5dcc9aadb61a8950f661eae3" }
+                variables: { _id: this.props.wishlist }
               }
             ];
           }}

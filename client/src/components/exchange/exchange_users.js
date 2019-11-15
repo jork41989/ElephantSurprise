@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./exchange_users.css";
 import MemberOption from "./member_option/member_option";
 
 

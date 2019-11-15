@@ -4,6 +4,7 @@ import { Query } from "react-apollo";
 import Queries from "../../graphql/queries";
 import ItemsIndex from "./items_index";
 import ItemInject from "./item_inject";
+import ShippingAddress from './shipping_address';
 const { CURRENT_USER, FETCH_USER, FETCH_WISHLIST} = Queries;
 
 class WishlistShow extends Component{
@@ -43,13 +44,17 @@ class WishlistShow extends Component{
                       return `Error! ${error.message}`;
 
 
-                      // console.log("Wishlist", data)
+                      // console.log(data)
                     
                     return (
                       <div className="ExchangeNacelle">
                         <h1>My Wish List</h1>
+                        <ShippingAddress 
+                          wish_list_id={data.wish_list._id} 
+                          shipping_address={data.wish_list.shipping_address}
+                        />
                         <ItemsIndex items={data.wish_list.items} />
-                        <ItemInject user={user} wishlist="5dcc9aadb61a8950f661eae3"/> 
+                        <ItemInject user={user} wishlist={data.wish_list._id}/> 
                       </div>
 
                     )

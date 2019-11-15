@@ -3,6 +3,7 @@ import { Query } from "react-apollo";
 import Queries from "../../../graphql/queries";
 import MemberOptionMenu from "./member_option_menu";
 import RemoveMember from "./remove_member";
+import "./member_option.css";
 const { FETCH_USER } = Queries;
 
 class MemberOption extends Component {
@@ -54,14 +55,14 @@ class MemberOption extends Component {
 
         if (this.props.fireRefetch) {
           return (
-            <div>
+            <div className="member-option-main">
               <p onClick={this.openMemberOption}>{data.user.name}</p>
               {this.state.component}
             </div>
           );
         } else {
           return (
-            <div>
+            <div className="member-option-main">
               <p>{data.user.name}</p>
             </div>
           );

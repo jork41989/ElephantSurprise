@@ -20,7 +20,7 @@ class MemberOptionMenu extends Component {
 
       if (this.props.host_id && this.props.host_id !== this.props.user_id) {
         return (
-          <div>
+          <div className="member-option-menu">
             <div>
               <Link to={`/wish_lists/${data.fetch_wish_list._id}`}>
                 <button>See Wish List</button>
@@ -32,7 +32,7 @@ class MemberOptionMenu extends Component {
         ) 
       } else {
         return (
-          <div>
+          <div className="member-option-menu">
             <div>
               <Link to={`/wish_lists/${data.fetch_wish_list._id}`}>
                 <button>See Wish List</button>

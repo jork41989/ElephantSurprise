@@ -163,6 +163,14 @@ REMOVE_MEMBER: gql`
       name
     }
   }
+`,
+UPDATE_SHIPPING: gql`
+  mutation updateShipping($wish_list_id: ID!, $shipping_address: String!) {
+    updateWishList(wish_list_id: $wish_list_id, shipping_address: $shipping_address) {
+      _id
+      shipping_address
+    }
+  }
 `
 
 }

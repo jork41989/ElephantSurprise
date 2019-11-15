@@ -20,7 +20,7 @@ class RemoveMember extends Component {
 
   render() {
     return (
-      <div>
+      <div className="remove-member-main">
         <div>Remove {this.props.user.name} from Exchange?</div>
         <div>
           <Mutation
