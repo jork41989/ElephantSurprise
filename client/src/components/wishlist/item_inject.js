@@ -7,7 +7,7 @@ import Queries from "../../graphql/queries";
 import Query from "react-apollo";
 
 const {ADD_ITEM} = Mutations;
-const {FETCH_WISHLIST} = Queries;
+const { FETCH_WISHLIST} = Queries;
 
 class ItemInject extends Component{
   constructor(props){
@@ -15,7 +15,8 @@ class ItemInject extends Component{
     this.state ={
       url: "",
       price: "",
-      errors: ""
+      errors: null,
+      message: ""
     }
 
     this.errorTips = this.errorTips.bind(this);
@@ -40,6 +41,7 @@ class ItemInject extends Component{
 
     return(
       <div>
+        <h3>{this.state.message}</h3>
         <h2>Update Your List with an Item</h2>
         <Mutation mutation={ADD_ITEM}
           refetchQueries={() => {
@@ -50,16 +52,25 @@ class ItemInject extends Component{
               }
             ];
           }}
+          onCompleted={data => {
+
+            this.setState({
+              url: "",
+              price: "",
+              errors: null,
+              message: "Item added!"
+            })
+          }}  
         >
 
-
           {(newItem, data)=>(
-
+            
           <form
            className="item-inject"
            onSubmit={e =>{
             e.preventDefault();
-            this.setState({errors: null});
+            this.setState({
+              errors: null});
             newItem({
               variables: {
                 url: this.state.url,
@@ -68,8 +79,8 @@ class ItemInject extends Component{
                 wish_list_id: this.props.wishlist
               }
             })
-            
-          }}>
+          }}
+          >
             {this.errorTips()}
 
             <input value={this.state.url}
@@ -89,10 +100,7 @@ class ItemInject extends Component{
         </Mutation>
 
       </div>
-
-      
     )
-
   }
 
 }

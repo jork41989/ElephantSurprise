@@ -37,8 +37,8 @@ class InviteUser extends Component{
       </ReactTooltip>
     )
       
+    }
   }
-}
 
 
   render() {
