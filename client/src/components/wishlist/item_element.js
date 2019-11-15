@@ -6,7 +6,7 @@ import Mutations from "../../graphql/mutations";
 import ReactTooltip from 'react-tooltip'
 
 const { FETCH_WISHLIST } = Queries;
-const { UPDATE_ITEM } = Mutations;
+const { UPDATE_ITEM, REMOVE_ITEM } = Mutations;
 
 
 class ItemElement extends Component{
@@ -48,13 +48,8 @@ class ItemElement extends Component{
     if (this.state.editing){
     return(
       <div>
-        <button
-          onClick={this.handleEdit}
-          style={{ fontSize: "10px", cursor: "pointer", display: "inline" }}
-        >
-          ✎
-          </button>
-      
+        
+        <i class="fas fa-window-close" onClick={this.handleEdit}></i>
 
       <Mutation mutation={UPDATE_ITEM}
         refetchQueries={() => {
@@ -122,13 +117,36 @@ class ItemElement extends Component{
     )
     }else{
       return (
-        <div>
-          <button
-            onClick={this.handleEdit}
-            // style={{ fontSize: "10px", cursor: "pointer", display: "inline" }}
-          >
-            ✎
-          </button>
+        <div className="itemDiv">
+          <div className="editIcon">
+             <i class="fas fa-edit " onClick={this.handleEdit}></i>
+            <Mutation mutation={REMOVE_ITEM}
+              refetchQueries={() => {
+                return [
+                  {
+                    query: FETCH_WISHLIST,
+                    variables: { _id: this.props.wishlist }
+                  }
+                ];
+              }}
+
+            >
+              {(deleteItem, data) => (
+
+                <i class="fas fa-trash-alt" onClick={e => {
+                  e.preventDefault();
+                  deleteItem({
+                    variables: { item_id: this.props.item._id }
+                  })
+                }}></i>
+                
+              )}
+            </Mutation>
+           
+          </div>
+          
+         
+          
           <p>{this.state.url}</p>
           <p>{this.state.price}</p>
         </div>

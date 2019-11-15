@@ -21,55 +21,31 @@ class ItemsIndex extends Component{
 
     if(this.props.owner===this.props.user){
     return(
-      <ul>
+      <div>
 
         {this.props.items.map(item => (
-          <li key={item._id}>
+          <div key={item._id}>
 
             <ItemElement item={item} wishlist={this.props.wishlist}/>
 
-            <Mutation mutation={REMOVE_ITEM}
-              refetchQueries={() => {
-                return [
-                  {
-                    query: FETCH_WISHLIST,
-                    variables: { _id: this.props.wishlist }
-                  }
-                ];
-              }}
-
-            >
-              {(deleteItem, data) => (
-                <button onClick={e => {
-                  e.preventDefault();
-                  deleteItem({
-                    variables: { item_id: item._id}
-                  })
-                }}>
-                  Delete Item
-                </button>
-              )}
-            </Mutation>
-
-
-          </li>
+          </div>
         ))}
 
 
 
 
-      </ul>
+      </div>
     )
    }else{
      return(
-       <ul>
+       <div>
         {this.props.items.map(item => (
-          <li key={item._id}>
+          <div key={item._id}>
             <p>{item.url}</p>
             <p>{item.price}</p>
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
     )
    }
   }

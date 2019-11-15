@@ -5,6 +5,7 @@ import Queries from "../../graphql/queries";
 import ItemsIndex from "./items_index";
 import ItemInject from "./item_inject";
 import ShippingAddress from './shipping_address';
+import './wishlist_show.css'
 const { CURRENT_USER, FETCH_USER, FETCH_WISHLIST} = Queries;
 
 class WishlistShow extends Component{
@@ -48,7 +49,7 @@ class WishlistShow extends Component{
                     if (data.wish_list.owner._id === user._id){
 
                       return (
-                        <div className="ExchangeNacelle">
+                        <div className="whishlistShowBody">
                         <h1>My Wish List</h1>
                         <ShippingAddress 
                           wish_list_id={data.wish_list._id} 

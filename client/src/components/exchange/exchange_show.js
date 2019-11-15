@@ -17,7 +17,8 @@
   import { some } from 'lodash';
   const { REMOVE_EXCHANGE } = Mutations
 const { FETCH_EXCHANGE, CURRENT_USER, FETCH_USER } = Queries;
-
+const BACKGROUND_IMAGES = {office: 'office'}
+const ELEPHANT_ICONS = {office: elephantOffice, christmas: elephantChristmas, channukah: elephantChannukah }
 
 class ExchangeShow extends Component {
 
@@ -39,24 +40,11 @@ class ExchangeShow extends Component {
   themeRender(theme){
     let bgDiv = document.getElementById("ExchangeShowHeader")
     console.log(bgDiv)
-    if(theme){
-      if (theme === "office"){
+    if(theme && ELEPHANT_ICONS[theme]){
         return (
-          <img src={elephantOffice} className="elepahntExchange"/>
+          <img src={ELEPHANT_ICONS[theme]} className="elepahntExchange" />
         )
-      } else if ( theme === "christmas"){
-        return (
-          <img src={elephantChristmas} className="elepahntExchange"/>
-        )
-      } else if (theme === "hanukkah") {
-        return (
-          <img src={elephantChannukah} className="elepahntExchange" />
-        )
-      } else{
-        return (
-          <img src={elephant} className="elepahntExchange" />
-        )
-      }
+      
     } else {
       return (
         <img src={elephant}  className="elepahntExchange"/>
