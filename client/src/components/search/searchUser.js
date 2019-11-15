@@ -125,7 +125,7 @@ class SearchUser extends React.Component {
                 user => { return (
                   <li key={user._id}>
                     <div onClick={() => {this.addToList(user)}} id="user-item">
-                      <div>{user.name}</div>
+                      {user.name}
                     </div>
                     <i className="fas fa-check-circle" onClick={() => { this.removeFromList(user) }} id={user._id} />
                   </li>
@@ -166,9 +166,8 @@ class SearchUser extends React.Component {
               
             )}
           </Mutation>
-        <button onClick={this.clearList} className="searchButton">Clear Invites</button>
+        <button onClick={this.clearList} className="searchButton">Clear Selected</button>
         </div>
-        <p>{this.state.message}</p>
         <button onClick={() => { this.props.closeModal() }} className="search-user-main-submit">x</button>
       </div>
     );

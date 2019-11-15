@@ -39,7 +39,7 @@ class ExchangeShow extends Component {
 
   themeRender(theme){
     let bgDiv = document.getElementById("ExchangeShowHeader")
-    console.log(bgDiv)
+    // console.log(bgDiv)
     if(theme && ELEPHANT_ICONS[theme]){
         return (
           <img src={ELEPHANT_ICONS[theme]} className="elepahntExchange" />
@@ -102,7 +102,7 @@ class ExchangeShow extends Component {
             santaRead = <div> <div>Elephant isn't ready yet!</div><div>Gifties have not been assigned </div></div>
           }
         if (this.props.user._id === data.exchange.host._id){
-          console.log(data.exchange)
+          // console.log(data.exchange)
         return(
           <div className="ExchangeShow">
 

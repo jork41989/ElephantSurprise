@@ -17,12 +17,12 @@ class ExchangeUsers extends Component {
         <h3 className="ExchangeMembersHeader"> Members of the Exchange </h3>
         <div className="participants-list" >
           {this.props.participants.map(participant => {
-            return <MemberOption 
+            return <MemberOption
+              key={participant._id} 
               participant={participant} 
               host_id={this.props.host_id}
               current_user={this.props.current_user} 
-              exchange_id={this.props.exchange_id} 
-              key={participant._id}
+              exchange_id={this.props.exchange_id}
               fireRefetch={this.props.fireRefetch}
             />
           })}

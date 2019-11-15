@@ -51,7 +51,7 @@ class MemberOption extends Component {
         <div className="member-option-main">
           <p>{this.props.participant.name}</p>
           {this.state.component}
-          <i class="fas fa-bars optionsMenu" onClick={this.openMemberOption}></i>
+          <i className="fas fa-bars optionsMenu" onClick={this.openMemberOption}></i>
         </div>
       );
     } else if (this.props.current_user._id === this.props.participant._id) {
