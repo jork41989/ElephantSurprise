@@ -7,6 +7,11 @@
   import Mutations from "../../graphql/mutations";
   import InviteUser from "./invite_user";
   import WishlistShow from "../wishlist/wishlist_show";
+  import elephant from '../../images/logo-v1.png'
+  import elephantChristmas from '../../images/logo-v1-christmas.png'
+  import elephantChannukah from '../../images/logo-v1-channukah.png'
+  import elephantOffice from '../../images/logo-v1-office.png'
+  import snowbg from '../../images/snowbg.gif'
   import './exchange_show.css';
   import Modal from '../modal/modal';
   import { some } from 'lodash';
@@ -23,12 +28,39 @@ class ExchangeShow extends Component {
       modal: false,
       type: ""
     }
-
+    this.themeRender = this.themeRender.bind(this)
     this.closeModal = this.closeModal.bind(this);
   }
 
   closeModal() {
     this.setState({ modal: false, type: false })
+  }
+
+  themeRender(theme){
+    console.log(theme)
+    if(theme){
+      if (theme === "office"){
+        return (
+          <img src={elephantOffice} className="elepahntExchange"/>
+        )
+      } else if ( theme === "christmas"){
+        return (
+          <img src={elephantChristmas} className="elepahntExchange"/>
+        )
+      } else if (theme === "hanukkah") {
+        return (
+          <img src={elephantChannukah} className="elepahntExchange" />
+        )
+      } else{
+        return (
+          <img src={elephant} className="elepahntExchange" />
+        )
+      }
+    } else {
+      return (
+        <img src={elephant}  className="elepahntExchange"/>
+      )
+    }
   }
 
   updateCache(cache, { data: { deleteExchange: oldExchange } }) {
@@ -81,13 +113,13 @@ class ExchangeShow extends Component {
             santaRead = <div> <div>Elephant isn't ready yet!</div><div>Gifties have not been assigned </div></div>
           }
         if (this.props.user._id === data.exchange.host._id){
-
+          console.log(data.exchange)
         return(
           <div className="ExchangeShow">
 
             <div className="ExchangeShowBody">
               <div className="ExchangeShowHeader">
-                <p>Themed elephant goes here!</p>
+                {this.themeRender(data.exchange.type)}
                 <h1>Welcome to the {data.exchange.name} Exchange!</h1>
               </div>
               <ExchangeUsers
@@ -134,7 +166,7 @@ class ExchangeShow extends Component {
             <div className="ExchangeShow">
               <div className="ExchangeShowBodyNotHost">
                 <div className="ExchangeShowHeader">
-                  <p>Themed elephant goes here!</p>
+                  {this.themeRender(data.exchange.type)}
                   <h1>Welcome to the {data.exchange.name} Exchange!</h1>
                 </div>
                 <ExchangeUsers
