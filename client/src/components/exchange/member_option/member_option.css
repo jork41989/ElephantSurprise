@@ -1,10 +1,14 @@
 .member-option-main {
   position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
-
-.member-option-main p {
+.optionsMenu{
+  align-self: center;
   cursor: pointer;
 }
+
 
 .member-option-menu {
   position: absolute;
@@ -46,6 +50,7 @@
   border-radius: 5px;
   box-shadow: 0 4px 12px 0px grey;
   z-index: 2;
+  
 }
 
 .remove-member-main > div {

@@ -56,8 +56,9 @@ class MemberOption extends Component {
         if (this.props.fireRefetch) {
           return (
             <div className="member-option-main">
-              <p onClick={this.openMemberOption}>{data.user.name}</p>
+              <p >{data.user.name}</p>
               {this.state.component}
+              <i class="fas fa-bars optionsMenu" onClick={this.openMemberOption}></i>
             </div>
           );
         } else {
