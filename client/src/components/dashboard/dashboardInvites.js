@@ -22,7 +22,7 @@ class DashboardInvites extends Component{
     console.log(this.props.user.pending_invites)
 
     if (this.state.invites.length > 0){
-      console.log(this.state.invites)
+
       return(
 
         <div >
@@ -54,7 +54,7 @@ class DashboardInvites extends Component{
                           variables: { exchange_id: invite._id, user_id: this.props.user._id }
                         })
                           .then(data => {
-                            console.log(data);
+
                             this.setState({ invites: data.data.mutation2.pending_invites })
                           })
                       }}
@@ -69,13 +69,13 @@ class DashboardInvites extends Component{
                       onClick={e => {
                         e.preventDefault();
 
-                        console.log("invite", invite._id);
+                        
 
                         deleteInvite({
                           variables: { exchange_id: invite._id, user_id: this.props.user._id }
 
                         }).then(data => {
-                          console.log(data);
+                          
                           this.setState({ invites: data.data.deleteInvite.pending_invites })
                         })
                       }}

@@ -10,6 +10,7 @@ const ExchangeType = new GraphQLObjectType({
   fields: () => ({
     _id: { type: GraphQLID },
     name: { type: GraphQLString },
+    type: { type: GraphQLString },
     start_date: { type: GraphQLDate },
     ship_date: { type: GraphQLDate },
     budget: { type: GraphQLInt },

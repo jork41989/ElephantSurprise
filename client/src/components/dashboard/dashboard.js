@@ -39,7 +39,7 @@ class Dashboard extends Component {
             return "Loading...";
           if (error)
             return `Error! first ${error.message}`;
-            console.log(data.CurrentUserID)
+            
           return(
           <Query query={FETCH_USER}
             variables={{_id: data.CurrentUserID}}

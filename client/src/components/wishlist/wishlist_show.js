@@ -25,7 +25,7 @@ class WishlistShow extends Component{
                   return "Loading...";
                 if (error)
                   return `Error! ${error.message}`;
-                // console.log(data)
+                
 
                 this.props.exchange
 

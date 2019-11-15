@@ -18,6 +18,10 @@ const ExchangeSchema = new Schema({
     type: Number,
     required: true
   },
+  type: {
+    type: String,
+    default: ""
+  },
   santa_assigned: {
     type: Boolean,
     default: false

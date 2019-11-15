@@ -4,7 +4,7 @@ import { Query } from "react-apollo";
 const { FETCH_USER } = Queries;
 
 const ExchangeUsers = (props) => {
-  console.log(props.participants);
+  
   return(
     <div>
       <h3 className="ExchangeMembersHeader"> Members of the Exchange </h3>
@@ -14,7 +14,7 @@ const ExchangeUsers = (props) => {
           return (<Query key={i} query={FETCH_USER} variables={{ _id: participant._id }}>
 
             {({loading, error, data})=> {
-              // console.log("member data", data)
+              
 
               if (loading) return <p>Loading...</p>;
               if (error) return <p>Error</p>;

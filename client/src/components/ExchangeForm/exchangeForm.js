@@ -14,6 +14,7 @@ class ExchangeForm extends Component {
       name: "",
       start_date: '',
       ship_date: '',
+      type: 'none',
       budget: 0
     };
   }
@@ -51,7 +52,10 @@ class ExchangeForm extends Component {
 
 
   update(field) {
-    return e => this.setState({ [field]: e.target.value });
+    return e =>{
+  
+       this.setState({ [field]: e.target.value });
+    }
   }
   handleSubmit(e, newExchange) {
     e.preventDefault();
@@ -61,7 +65,8 @@ class ExchangeForm extends Component {
         start_date: this.state.start_date,
         ship_date: this.state.ship_date,
         budget: parseInt(this.state.budget),
-        santa_assigned: this.state.santa_assigned
+        santa_assigned: this.state.santa_assigned,
+        type: this.state.type
       }
     });
   }
@@ -99,6 +104,15 @@ class ExchangeForm extends Component {
                 className='FormTextFeild'
                 id='name'
               />
+              <label htmlFor="type" className='FormLabel'>Exchange Type</label>
+              <select id="type" className='FormTextFeild' onChange={this.update("type")} value={this.state.type}>
+                <option value="none" disabled>Choose one</option>
+                <option value="hanukkah">Hanukkah</option>
+                <option value="christmas">Christmas</option>
+                <option value="office">Office Exchange</option>
+                <option value="">other</option>
+              </select>
+              
               <label htmlFor="start_name" className='FormLabel'>Start Date</label>
               <input
                 onChange={this.update("start_date")}

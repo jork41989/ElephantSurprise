@@ -31,8 +31,8 @@ mutation VerifyUser($token: String!) {
 }
 `,
 NEW_EXCHANGE: gql`
-mutation createExchange($name: String!, $start_date: Date!, $ship_date: Date!, $budget: Int!){
-  newExchange(name: $name, start_date: $start_date, ship_date: $ship_date, budget: $budget){
+mutation createExchange($name: String!, $start_date: Date!, $ship_date: Date!, $budget: Int!, $type: String){
+  newExchange(name: $name, start_date: $start_date, ship_date: $ship_date, budget: $budget, type: $type){
     name
     _id
   }

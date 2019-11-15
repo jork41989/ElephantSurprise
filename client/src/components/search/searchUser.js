@@ -61,7 +61,6 @@ class SearchUser extends React.Component {
   listDiv(){
    return(
      this.state.invite_list.map(user =>{
-       console.log(user)
        return (
        <div>{user.name}</div>
        )
