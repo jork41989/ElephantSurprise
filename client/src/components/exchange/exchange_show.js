@@ -11,7 +11,7 @@
   import elephantChristmas from '../../images/logo-v1-christmas.png'
   import elephantChannukah from '../../images/logo-v1-channukah.png'
   import elephantOffice from '../../images/logo-v1-office.png'
-  import snowbg from '../../images/snow.gif'
+  
   import './exchange_show.css';
   import Modal from '../modal/modal';
   import { some } from 'lodash';
@@ -37,7 +37,7 @@ class ExchangeShow extends Component {
   }
 
   themeRender(theme){
-    console.log(theme)
+    
     if(theme){
       if (theme === "office"){
         return (
@@ -118,9 +118,9 @@ class ExchangeShow extends Component {
           <div className="ExchangeShow">
 
             <div className="ExchangeShowBody">
-              <div className="ExchangeShowHeader">
+              <div className="ExchangeShowHeader" id="ExchangeShowHeader">
                 {this.themeRender(data.exchange.type)}
-                <h1>Welcome to the {data.exchange.name} Exchange!</h1>
+                <h1 className="ExhangeShowHeaderH1">Welcome to the {data.exchange.name} Exchange!</h1>
               </div>
               <ExchangeUsers
                 participants={data.exchange.participants}
@@ -167,7 +167,7 @@ class ExchangeShow extends Component {
               <div className="ExchangeShowBodyNotHost">
                 <div className="ExchangeShowHeader">
                   {this.themeRender(data.exchange.type)}
-                  <h1>Welcome to the {data.exchange.name} Exchange!</h1>
+                  <h1 className="ExhangeShowHeaderH1">Welcome to the {data.exchange.name} Exchange!</h1>
                 </div>
                 <ExchangeUsers
                   participants={data.exchange.participants}
@@ -191,8 +191,8 @@ class ExchangeShow extends Component {
  
               <div className="ExchangeShowBodyNotHost">
                 <div className="ExchangeShowHeader">
-                  <p>Themed elephant goes here!</p>
-                  <h1>Welcome to the {data.exchange.name} Exchange!</h1>
+                  {this.themeRender(data.exchange.type)}
+                  <h1 className="ExhangeShowHeaderH1">Welcome to the {data.exchange.name} Exchange!</h1>
                 </div>
                 <ExchangeUsers
                   participants={data.exchange.participants}
