@@ -37,7 +37,8 @@ class ExchangeShow extends Component {
   }
 
   themeRender(theme){
-    
+    let bgDiv = document.getElementById("ExchangeShowHeader")
+    console.log(bgDiv)
     if(theme){
       if (theme === "office"){
         return (
