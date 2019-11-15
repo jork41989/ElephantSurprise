@@ -6,8 +6,9 @@
   import Mutations from "../../graphql/mutations";
   import InviteUser from "./invite_user";
   import WishlistShow from "../wishlist/wishlist_show";
-  import './exchange_show.css'
+  import './exchange_show.css';
   import Modal from '../modal/modal';
+  import { some } from 'lodash';
   const { REMOVE_EXCHANGE } = Mutations
 const { FETCH_EXCHANGE, CURRENT_USER, FETCH_USER } = Queries;
 
@@ -22,7 +23,7 @@ class ExchangeShow extends Component {
       type: ""
     }
 
-    this.closeModal = this.closeModal.bind(this)
+    this.closeModal = this.closeModal.bind(this);
   }
 
   closeModal() {
@@ -64,7 +65,7 @@ class ExchangeShow extends Component {
       // variables={{ _id: this.props.user.hosted_exchanges[0]._id }} > 
       variables={{ _id: this.props.match.params.id}} > 
       
-       {({ loading, error, data }) => {
+       {({ loading, error, data, refetch }) => {
         if (loading) return <p>Loading...</p>;
         if (error) return <p>Error</p>;
 
@@ -85,14 +86,19 @@ class ExchangeShow extends Component {
           <div className="ExchangeShow">
 
             <div className="ExchangeShowBody">
-              <h1>Welcome to the {data.exchange.name} Exchange!</h1>
-              <ExchangeUsers participants={data.exchange.participants} host_id={data.exchange.host._id} exchange_id={data.exchange._id}/>
+              <h1>Welcome to {data.exchange.name} Exchange!</h1>
+              <ExchangeUsers 
+                participants={data.exchange.participants} 
+                host_id={data.exchange.host._id} 
+                exchange_id={data.exchange._id}
+                fireRefetch={refetch}
+              />
             </div>
 
  
           
           <div className="ExchangeShowSidebar">
-              <h2> Host: {this.props.user.name} </h2>
+              <h2> Host: {data.exchange.host.name} </h2>
               {santaRead}
             <div className="ExchangeMembersInviteButton">
               <button onClick={() => this.setState({ modal: true, type: "search_user" })}>Invite Users!</button>
@@ -107,7 +113,7 @@ class ExchangeShow extends Component {
               >
 
                 {(removeExchange, data2) => (
-                  <i class="fas fa-trash-alt remove-exchange" onClick={e => {
+                  <i className="fas fa-trash-alt remove-exchange" onClick={e => {
                     e.preventDefault();
                     removeExchange({
                       variables: { exchange_id: data.exchange._id }
@@ -127,12 +133,45 @@ class ExchangeShow extends Component {
 
           </div>
         )
+        } else if (some(data.exchange.participants, ['_id', this.props.user._id])) {
+          return (
+            <div className="ExchangeShow">
+              <div className="ExchangeShowBody">
+                <h1>Welcome to {data.exchange.name} Exchange!</h1>
+                <ExchangeUsers
+                  participants={data.exchange.participants}
+                  host_id={null}
+                  exchange_id={data.exchange._id}
+                  fireRefetch={refetch}
+                />
+              </div>
+              <div className="ExchangeShowSidebar">
+                <h2> Host: {data.exchange.host.name} </h2>
+                {santaRead}
+              </div>
+              {/* <LetsSurprise/> */}
+              {/* <Errors /> */}
+            </div>
+          )
         } else {
 
           return(
             <div className="ExchangeShow">
-              <h1> Welcome to {data.exchange.name} Exchange!, {this.props.user.name}</h1>
-              <ExchangeUsers participants={data.exchange.participants} />
+              <div className="ExchangeShowBody">
+                <h1>Welcome to {data.exchange.name} Exchange!</h1>
+                <ExchangeUsers
+                  participants={data.exchange.participants}
+                  host_id={null}
+                  exchange_id={data.exchange._id}
+                  fireRefetch={null}
+                />
+              </div>
+              <div className="ExchangeShowSidebar">
+                <h2> Host: {data.exchange.host.name} </h2>
+                {santaRead}
+              </div>
+              {/* <LetsSurprise/> */}
+              {/* <Errors /> */}
             </div>
           )
 

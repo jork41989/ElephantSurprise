@@ -116,7 +116,7 @@ export default {
       }
     }
   `,
-  FETCH_WISHLIST: gql `
+  FETCH_WISHLIST: gql`
     query fetchWishlist($_id: ID!){
       wish_list(_id: $_id){
           _id
@@ -142,7 +142,7 @@ export default {
       }
     }
   `,
-  FETCH_ITEM: gql `
+  FETCH_ITEM: gql`
     query item($_id: ID!){
       item(_id: $_id){
         _id

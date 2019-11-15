@@ -45,14 +45,14 @@ class SearchUser extends React.Component {
   addToList(user) {
     const list = this.state.invite_list;
     list.push(user);
-    this.setState({ invite_list: list }, () => { console.log(this.state.invite_list); });
+    this.setState({ invite_list: list });
     document.getElementById(user._id).style.display = "block";
   }
   
   removeFromList(user) {
     const list = this.state.invite_list
     pull(list, user);
-    this.setState({ invite_list: list }, () => { console.log(this.state.invite_list); });
+    this.setState({ invite_list: list });
     document.getElementById(user._id).style.display = "none";
   }
 

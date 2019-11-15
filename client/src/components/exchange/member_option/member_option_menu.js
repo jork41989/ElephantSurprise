@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import onClickOutside from "react-onclickoutside";
 import { Query } from "react-apollo";
 import Queries from "../../../graphql/queries";
 import { Link } from "react-router-dom";
@@ -10,10 +9,6 @@ class MemberOptionMenu extends Component {
     super(props);
   }
 
-  handleClickOutside = evt => {
-    this.props.closeMemberOption();
-  };
-
   render() {
     return (
       <Query query={FETCH_WISH_LIST} variables={{ exchange_id: this.props.exchange_id, user_id: this.props.user_id}}>
@@ -22,19 +17,35 @@ class MemberOptionMenu extends Component {
 
       if (loading) return <p>Loading...</p>;
       if (error) return <p>Error</p>;
-      console.log(data);
-      return (
-        <div>
-          <Link to={`/wish_lists/${data.fetch_wish_list._id}`}>
-            <button>See Wish List</button>
-          </Link>
-          <button>Remove Member</button>
-        </div>
-      );
+
+      if (this.props.host_id && this.props.host_id !== this.props.user_id) {
+        return (
+          <div>
+            <div>
+              <Link to={`/wish_lists/${data.fetch_wish_list._id}`}>
+                <button>See Wish List</button>
+              </Link>
+              <button onClick={() => {this.props.openRemoveMemberOption(data.fetch_wish_list._id)}}>Remove Member</button>
+            </div>
+            <i className="far fa-times-circle" onClick={this.props.closeMemberOption}/>
+          </div>
+        ) 
+      } else {
+        return (
+          <div>
+            <div>
+              <Link to={`/wish_lists/${data.fetch_wish_list._id}`}>
+                <button>See Wish List</button>
+              </Link>
+            </div>
+            <i className="far fa-times-circle" onClick={this.props.closeMemberOption} />
+          </div>
+        ) 
+      }
     }}
       </Query>
     );
   }
 }
 
-export default onClickOutside(MemberOptionMenu);
+export default MemberOptionMenu;

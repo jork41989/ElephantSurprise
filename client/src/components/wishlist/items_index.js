@@ -11,7 +11,7 @@ class ItemsIndex extends Component{
 
 
   render(){
-    console.log(this.props.items)
+    // console.log(this.props.items)
     return(
       <ul>
         {this.props.items.map(item =>(

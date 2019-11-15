@@ -43,7 +43,7 @@ class WishlistShow extends Component{
                       return `Error! ${error.message}`;
 
 
-                      console.log("Wishlist", data)
+                      // console.log("Wishlist", data)
                     
                     return (
                       <div className="ExchangeNacelle">
