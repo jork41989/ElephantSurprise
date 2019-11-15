@@ -17,13 +17,9 @@ class ItemsIndex extends Component{
   }
 
   render(){
-<<<<<<< HEAD
-    // console.log(this.props.items)
-=======
     console.log(this.props.items)
 
     if(this.props.owner===this.props.user){
->>>>>>> 64bdaf8... creates check for current owner of wishlist to allow mutation elements or not
     return(
       <ul>
 
