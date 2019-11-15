@@ -4,27 +4,66 @@
   flex-direction: row;
   justify-content: space-between;
 }
+
 .optionsMenu{
   align-self: center;
   cursor: pointer;
 }
 
+.member-option-main p {
+  width: fit-content;
+  margin-left: 125px;
+}
+
+/* #click-user {
+  cursor: pointer;
+} */
+
+.member-menu-overlay {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  z-index: 1; 
+  left: 0;
+  top: 0; 
+  background-color: transparent;
+  overflow-x: hidden; 
+}
 
 .member-option-menu {
-  position: absolute;
-  left: 104px;
-  width: 164px;
+  top: 37%;
+  margin: 0 auto;
+  position: relative;
+  width: 229px;
   background: whitesmoke;
   padding: 8px 12px;
   border: 1px lightgrey solid;
   border-radius: 5px;
   box-shadow: 0 4px 12px 0px grey;
-  z-index: 2;
+}
+
+.member-option-menu > div {
+  align-items: center;
+}
+
+.member-option-menu button {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 200px;
+  font-size: 20px;
+  background-color: aliceblue;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.member-option-menu > div > button {
+  color: rgb(241, 94, 89);
 }
 
 .member-option-menu i {
-  margin-top: 10px;
+  margin: 10px;
   cursor: pointer;
+  font-size: 27px;
 }
 
 .member-option-menu > div {
@@ -36,35 +75,36 @@
   margin-bottom: 9px;
 }
 
-.member-option-menu button {
-  cursor: pointer;
-}
-
 .remove-member-main {
-  position: absolute;
-  left: 42px;
-  width: 288px;
+  top: 37%;
+  margin: 0 auto;
+  position: relative;
+  width: 229px;
   background: whitesmoke;
-  padding: 8px 12px;
+  padding: 13px 12px;
   border: 1px lightgrey solid;
   border-radius: 5px;
   box-shadow: 0 4px 12px 0px grey;
-  z-index: 2;
-  
 }
 
 .remove-member-main > div {
   margin-bottom: 8px;
 }
 
-.remove-member-main > div button{
-  margin: 0px 20px;
-}
-
 .remove-member-main button {
+  margin: 10px 20px;
+  width: 67px;
+  font-size: 20px;
+  background-color: aliceblue;
+  border-radius: 5px;
   cursor: pointer;
 }
 
 .remove-member-main i {
   cursor: pointer;
+  font-size: 27px;
+}
+
+.remove-member-main div:nth-child(2) {
+  font-weight: bold;
 }
