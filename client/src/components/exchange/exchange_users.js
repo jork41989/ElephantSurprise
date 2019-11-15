@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 import React, { Component } from "react";
 import MemberOption from "./member_option/member_option";
 import React from "react";
+=======
+import React, {Component} from "react";
+>>>>>>> 42b2f57... corrects missing Component in exchange_user.js
 import Queries from "../../graphql/queries";
 import { Query } from "react-apollo";
 import "./exchange_users.css";
