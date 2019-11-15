@@ -37,7 +37,8 @@ class ExchangeShow extends Component {
   }
 
   themeRender(theme){
-    
+    let bgDiv = document.getElementById("ExchangeShowHeader")
+    console.log(bgDiv)
     if(theme){
       if (theme === "office"){
         return (
@@ -124,6 +125,7 @@ class ExchangeShow extends Component {
               </div>
               <ExchangeUsers
                 participants={data.exchange.participants}
+                current_user={this.props.user}
                 host_id={data.exchange.host._id}
                 exchange_id={data.exchange._id}
                 fireRefetch={refetch}
@@ -171,6 +173,7 @@ class ExchangeShow extends Component {
                 </div>
                 <ExchangeUsers
                   participants={data.exchange.participants}
+                  current_user={this.props.user}
                   host_id={null}
                   exchange_id={data.exchange._id}
                   fireRefetch={refetch}
@@ -196,6 +199,7 @@ class ExchangeShow extends Component {
                 </div>
                 <ExchangeUsers
                   participants={data.exchange.participants}
+                  current_user={this.props.user}
                   host_id={null}
                   exchange_id={data.exchange._id}
                   fireRefetch={null}

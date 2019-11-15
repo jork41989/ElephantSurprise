@@ -19,7 +19,8 @@ class ExchangeUsers extends Component {
           {this.props.participants.map(participant => {
             return <MemberOption 
               participant={participant} 
-              host_id={this.props.host_id} 
+              host_id={this.props.host_id}
+              current_user={this.props.current_user} 
               exchange_id={this.props.exchange_id} 
               key={participant._id}
               fireRefetch={this.props.fireRefetch}

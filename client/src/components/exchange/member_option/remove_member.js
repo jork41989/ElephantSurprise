@@ -8,7 +8,8 @@ class RemoveMember extends Component {
     super(props);
   }
 
-  handleRemove(removeMember) {
+  handleRemove(e, removeMember) {
+    e.stopPropagation();
     removeMember({
       variables: {
         wish_list_id: this.props.wish_list_id,
@@ -20,24 +21,28 @@ class RemoveMember extends Component {
 
   render() {
     return (
-      <div className="remove-member-main">
-        <div>Remove {this.props.user.name} from Exchange?</div>
-        <div>
-          <Mutation
-            mutation={REMOVE_MEMBER}
-            onError={err => console.log(err.message)}
-            onCompleted={data => {
-              this.props.closeMemberOption();
-              this.props.fireRefetch();
-            }}
-          >
-            {(removeMember) => (
-              <button onClick={e => this.handleRemove(removeMember)}>Yes</button>
-            )}
-          </Mutation>
-          <button onClick={this.props.closeMemberOption} >No</button>
+      <div onClick={() => { this.props.closeMemberOption() }} className="member-menu-overlay">
+        <div className="remove-member-main">
+          <div>Remove</div>
+          <div>{this.props.user.name}</div> 
+          <div>from Exchange?</div>
+          <div>
+            <Mutation
+              mutation={REMOVE_MEMBER}
+              onError={err => console.log(err.message)}
+              onCompleted={data => {
+                this.props.closeMemberOption();
+                this.props.fireRefetch();
+              }}
+            >
+              {(removeMember) => (
+                <button onClick={e => this.handleRemove(e, removeMember)}>Yes</button>
+              )}
+            </Mutation>
+            <button onClick={this.props.closeMemberOption} >No</button>
+          </div>
+          <i className="far fa-times-circle" onClick={this.props.closeMemberOption} />
         </div>
-        <i className="far fa-times-circle" onClick={this.props.closeMemberOption} />
       </div>
     );
   }

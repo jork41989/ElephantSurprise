@@ -51,8 +51,9 @@ class WishlistShow extends Component{
                         <div className="ExchangeNacelle">
                         <h1>My Wish List</h1>
                         <ShippingAddress 
-                          wish_list_id={data.wish_list._id} 
+                          wish_list={data.wish_list} 
                           shipping_address={data.wish_list.shipping_address}
+                          current_user={user}
                           />
                         <ItemsIndex user={user._id}
                          items={data.wish_list.items} 
@@ -68,8 +69,9 @@ class WishlistShow extends Component{
                         <div className="ExchangeNacelle">
                         <h1>{data.wish_list.owner.name}'s Wish List</h1>
                         <ShippingAddress
-                          wish_list_id={data.wish_list._id}
+                          wish_list={data.wish_list}
                           shipping_address={data.wish_list.shipping_address}
+                          current_user={user}
                         />
                         <ItemsIndex user={user._id}
                         items={data.wish_list.items}

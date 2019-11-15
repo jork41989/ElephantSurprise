@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import { Query } from "react-apollo";
-import Queries from "../../../graphql/queries";
 import MemberOptionMenu from "./member_option_menu";
 import RemoveMember from "./remove_member";
 import "./member_option.css";
-const { FETCH_USER } = Queries;
+
 
 class MemberOption extends Component {
   constructor(props) {
@@ -29,7 +27,8 @@ class MemberOption extends Component {
     /> });
   }
 
-  openRemoveMemberOption(wish_list_id) {
+  openRemoveMemberOption(e, wish_list_id) {
+    e.stopPropagation();
     this.setState({
       component: <RemoveMember
         closeMemberOption={this.closeMemberOption}
@@ -46,31 +45,28 @@ class MemberOption extends Component {
   }
 
   render() {
-    return (<Query query={FETCH_USER} variables={{ _id: this.props.participant._id }}>
-
-      {({ loading, error, data }) => {
-
-        if (loading) return <p>Loading...</p>;
-        if (error) return <p>Error</p>;
-
-        if (this.props.fireRefetch) {
-          return (
-            <div className="member-option-main">
-              <p onClick={this.openMemberOption}>{data.user.name}</p>
-              {this.state.component}
-            </div>
-          );
-        } else {
-          return (
-            <div className="member-option-main">
-              <p>{data.user.name}</p>
-            </div>
-          );
-        }
-        
-        
-      }}
-    </Query>)
+    
+    if (this.props.fireRefetch && this.props.host_id) {
+      return (
+        <div className="member-option-main">
+          <p onClick={this.openMemberOption} id="click-user">{this.props.participant.name}</p>
+          {this.state.component}
+        </div>
+      );
+    } else if (this.props.current_user._id === this.props.participant._id) {
+      return (
+        <div className="member-option-main">
+          <p onClick={this.openMemberOption} id="click-user">{this.props.participant.name}</p>
+          {this.state.component}
+        </div>
+      );
+    } else {
+      return (
+        <div className="member-option-main">
+          <p>{this.props.participant.name}</p>
+        </div>
+      );
+    }
   }
 }
 
