@@ -11,7 +11,7 @@
   import elephantChristmas from '../../images/logo-v1-christmas.png'
   import elephantChannukah from '../../images/logo-v1-channukah.png'
   import elephantOffice from '../../images/logo-v1-office.png'
-  import snowbg from '../../images/snowbg.gif'
+  import snowbg from '../../images/snow.gif'
   import './exchange_show.css';
   import Modal from '../modal/modal';
   import { some } from 'lodash';
