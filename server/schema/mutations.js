@@ -113,15 +113,16 @@ const mutation = new GraphQLObjectType({
       type: ExchangeType,
       args: {
         name: { type: GraphQLString },
+        type: { type: GraphQLString },
         start_date: { type: GraphQLDate },
         ship_date: { type: GraphQLDate },
         budget: { type: GraphQLInt },
       },
-      async resolve(_, { name, start_date, ship_date, budget }, ctx) {
+      async resolve(_, { name, start_date, ship_date, budget, type }, ctx) {
         const validUser = await AuthService.verifyUser({ token: ctx.token });
 
         if (validUser.loggedIn) {
-          return new Exchange({ name, start_date, ship_date, budget, host: validUser._id }).save()
+          return new Exchange({ name, start_date, ship_date, budget, type, host: validUser._id }).save()
             .then(exchange => {
               return User.addHostedExchange(exchange._id, exchange.host)
                 .then(() => new WishList({ owner: exchange.host, exchange: exchange._id }).save()

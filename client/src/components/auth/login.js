@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Mutation } from "react-apollo";
 import Mutations from '../../graphql/mutations'
 import ReactTooltip from 'react-tooltip'
+import elephant from '../../images/logo-v1.png'
 const { LOGIN_USER } = Mutations;
 
 
@@ -88,7 +89,7 @@ render() {
                 });
               }}
             >
-              <img src="https://img.icons8.com/carbon-copy/100/000000/elephant.png" className="elenav" /><h1>Elephant Surprise</h1>
+              <img src={elephant} className="elenav" /><h1>Elephant Surprise</h1>
               {this.errorTips()}
               <input
                 className="Authinput"

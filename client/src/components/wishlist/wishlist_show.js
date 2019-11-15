@@ -28,7 +28,7 @@ class WishlistShow extends Component{
                   return "Loading...";
                 if (error)
                   return `Error! ${error.message}`;
-                // console.log(data)
+                
 
                 let user = data.user;
 
