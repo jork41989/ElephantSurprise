@@ -49,15 +49,17 @@ class MemberOption extends Component {
     if (this.props.fireRefetch && this.props.host_id) {
       return (
         <div className="member-option-main">
-          <p onClick={this.openMemberOption} id="click-user">{this.props.participant.name}</p>
+          <p>{this.props.participant.name}</p>
           {this.state.component}
+          <i class="fas fa-bars optionsMenu" onClick={this.openMemberOption}></i>
         </div>
       );
     } else if (this.props.current_user._id === this.props.participant._id) {
       return (
         <div className="member-option-main">
-          <p onClick={this.openMemberOption} id="click-user">{this.props.participant.name}</p>
+          <p>{this.props.participant.name}</p>
           {this.state.component}
+          <i class="fas fa-bars optionsMenu" onClick={this.openMemberOption}></i>
         </div>
       );
     } else {
