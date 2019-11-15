@@ -4,8 +4,12 @@ import { Query } from "react-apollo";
 import Queries from "../../graphql/queries";
 import ItemsIndex from "./items_index";
 import ItemInject from "./item_inject";
+<<<<<<< HEAD
 import ShippingAddress from './shipping_address';
 const { CURRENT_USER, FETCH_USER, FETCH_WISHLIST} = Queries;
+=======
+const { CURRENT_USER, FETCH_USER, FETCH_WISHLIST } = Queries;
+>>>>>>> f130ce7... creates working WishlistShow Component linked from Host Exchange member
 
 class WishlistShow extends Component{
   constructor(props){

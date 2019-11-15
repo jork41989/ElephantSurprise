@@ -90,7 +90,11 @@ export default {
         }
       }
     }
+<<<<<<< HEAD
   `,
+=======
+  `,  
+>>>>>>> f130ce7... creates working WishlistShow Component linked from Host Exchange member
   FETCH_WISH_LIST: gql`
     query fetch_wish_list($exchange_id: ID!, $user_id: ID!) {
       fetch_wish_list(exchange_id: $exchange_id, user_id: $user_id) {

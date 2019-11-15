@@ -7,7 +7,7 @@ import Queries from "../../graphql/queries";
 import Query from "react-apollo";
 
 const {ADD_ITEM} = Mutations;
-const {FETCH_WISHLIST} = Queries;
+const { FETCH_WISHLIST} = Queries;
 
 class ItemInject extends Component{
   constructor(props){
