@@ -11,13 +11,13 @@ class ItemsIndex extends Component{
 
 
   render(){
-
+    // console.log(this.props.items)
     return(
       <ul>
         {this.props.items.map(item =>(
           <li>
             {item.url}
-            {item.price}
+            <p>${item.price}</p>
           </li>
         ))}
       </ul>

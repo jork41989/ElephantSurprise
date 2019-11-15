@@ -236,7 +236,7 @@ const mutation = new GraphQLObjectType({
             User.addParticipatedExchange(exchange_id, user_id);
             return exchange;
         })        
-    }
+      }
     },
     removeParticipant: {
       type: ExchangeType,
@@ -344,6 +344,33 @@ const mutation = new GraphQLObjectType({
       }
     },
     // additional mutations
+    removeMember: {
+      type: UserType,
+      args: {
+        wish_list_id: { type: GraphQLID },
+        user_id: { type: GraphQLID },
+        exchange_id: { type: GraphQLID }
+      },
+      resolve(_, { wish_list_id, user_id, exchange_id }) {
+        return WishList.findOneAndDelete({ _id: wish_list_id }).then(
+          wish_list => {
+            return Item.deleteMany({ _id: wish_list.items }).then(
+              () => {
+                return Exchange.findOneAndUpdate(
+                  { _id: exchange_id },
+                  { $pull: { participants: user_id, wish_lists: wish_list_id } }
+                ).then(
+                  () => User.findOneAndUpdate(
+                    { _id: user_id },
+                    { $pull: { participated_exchanges: exchange_id, owned_lists: wish_list_id } }
+                  ).then(user => user)
+                );
+              }
+            );
+          }
+        );
+      }
+    }
   }
 });
 

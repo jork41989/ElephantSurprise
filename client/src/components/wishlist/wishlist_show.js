@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
 import { Query } from "react-apollo";
 import Queries from "../../graphql/queries";
-const {CURRENT_USER, FETCH_USER} = Queries;
+import ItemsIndex from "./items_index";
+import ItemInject from "./item_inject";
+import ShippingAddress from './shipping_address';
+const { CURRENT_USER, FETCH_USER, FETCH_WISHLIST} = Queries;
 
 class WishlistShow extends Component{
   constructor(props){
@@ -27,12 +30,37 @@ class WishlistShow extends Component{
                   return `Error! ${error.message}`;
                 
 
-                this.props.exchange
+                let user = data.user;
 
-                return (
-                  <div className="ExchangeNacelle">
-                    <ItemsIndex items={data.user.owned_lists} />
-                  </div>
+                return(
+
+                  <Query query={FETCH_WISHLIST}
+                    variables={{ _id: this.props.match.params.id}} // this.props.match.params.id
+                    >
+                  {({loading, error, data}) => {
+                    if (loading)
+                      return "Loading...";
+                    if (error)
+                      return `Error! ${error.message}`;
+
+
+                      // console.log(data)
+                    
+                    return (
+                      <div className="ExchangeNacelle">
+                        <h1>My Wish List</h1>
+                        <ShippingAddress 
+                          wish_list_id={data.wish_list._id} 
+                          shipping_address={data.wish_list.shipping_address}
+                        />
+                        <ItemsIndex items={data.wish_list.items} />
+                        <ItemInject user={user} wishlist={data.wish_list._id}/> 
+                      </div>
+
+                    )
+                  }}  
+
+                </Query>
                 )
               }
               }

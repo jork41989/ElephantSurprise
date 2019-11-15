@@ -1,0 +1,65 @@
+.member-option-main {
+  position: relative;
+}
+
+.member-option-main p {
+  cursor: pointer;
+}
+
+.member-option-menu {
+  position: absolute;
+  left: 104px;
+  width: 164px;
+  background: whitesmoke;
+  padding: 8px 12px;
+  border: 1px lightgrey solid;
+  border-radius: 5px;
+  box-shadow: 0 4px 12px 0px grey;
+  z-index: 2;
+}
+
+.member-option-menu i {
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.member-option-menu > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.member-option-menu a {
+  margin-bottom: 9px;
+}
+
+.member-option-menu button {
+  cursor: pointer;
+}
+
+.remove-member-main {
+  position: absolute;
+  left: 42px;
+  width: 288px;
+  background: whitesmoke;
+  padding: 8px 12px;
+  border: 1px lightgrey solid;
+  border-radius: 5px;
+  box-shadow: 0 4px 12px 0px grey;
+  z-index: 2;
+}
+
+.remove-member-main > div {
+  margin-bottom: 8px;
+}
+
+.remove-member-main > div button{
+  margin: 0px 20px;
+}
+
+.remove-member-main button {
+  cursor: pointer;
+}
+
+.remove-member-main i {
+  cursor: pointer;
+}

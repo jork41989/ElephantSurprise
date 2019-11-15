@@ -90,6 +90,76 @@ export default {
         }
       }
     }
-  `,  
+  `,
+  FETCH_WISH_LIST: gql`
+    query fetch_wish_list($exchange_id: ID!, $user_id: ID!) {
+      fetch_wish_list(exchange_id: $exchange_id, user_id: $user_id) {
+        _id
+        owner{
+          _id
+          name
+        }
+        shipping_address
+        santa{
+          _id
+          name
+        }
+        exchange{
+          _id
+          name
+        }
+        items{
+          _id
+          url
+          price
+          purchased
+        }
+      }
+    }
+  `,
+  FETCH_WISHLIST: gql`
+    query fetchWishlist($_id: ID!){
+      wish_list(_id: $_id){
+          _id
+        owner{
+          _id
+          name
+        }
+        shipping_address
+        santa{
+          _id
+          name
+        }
+        exchange{
+          _id
+          name
+        }
+        items{
+          _id
+          url
+          price
+          purchased
+        }
+      }
+    }
+  `,
+  FETCH_ITEM: gql`
+    query item($_id: ID!){
+      item(_id: $_id){
+        _id
+        url
+        price
+        purchased
+        owner
+        wish_list{
+          _id
+          owner
+          shipping_address
+          santa
+          exchange
+        }
+      }
+    }
+  `
 }
 

@@ -110,7 +110,17 @@ const RootQueryType = new GraphQLObjectType({
           return [];
         }
       }
-    }
+    },
+    fetch_wish_list: {
+      type: WishListType,
+      args: {
+        exchange_id: { type: new GraphQLNonNull(GraphQLID) },
+        user_id: { type: new GraphQLNonNull(GraphQLID) }
+      },
+      resolve(_, args) {
+        return WishList.findOne({ $and: [{ exchange: args.exchange_id }, { owner: args.user_id }] });
+      }
+    },
   })
 });
 

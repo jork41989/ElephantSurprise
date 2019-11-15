@@ -6,6 +6,7 @@ import ExchangeNacelle from './exchange/exchange-nacelle'
 import elephant from '../images/logo-v1.png'
 import AuthRoute from '../util/route_util';
 import Nav from './nav';
+import WishlistShow from './wishlist/wishlist_show';
 import "./nav.css"
 
 function App() {
@@ -18,11 +19,11 @@ function App() {
       <div className="mainBody">
         <Switch>
           <AuthRoute exact path="/dashboard" component={Dashboard} />
+          <AuthRoute exact path="/wish_lists/:id" component={WishlistShow} />
           <AuthRoute exact path="/newExchange" component={ExchangeForm} />
           <AuthRoute exact path="/exchanges/:id" component={ExchangeNacelle} />
         </Switch>
       </div>
-
     </div>
   );
 }

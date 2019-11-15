@@ -38,7 +38,7 @@ mutation createExchange($name: String!, $start_date: Date!, $ship_date: Date!, $
   }
 }
   `,
-  REMOVE_EXCHANGE: gql ` 
+  REMOVE_EXCHANGE: gql` 
   mutation deleteExchange($exchange_id: ID!){
     deleteExchange(exchange_id: $exchange_id){
       _id
@@ -57,7 +57,7 @@ mutation addInvite($exchange_id: ID!, $user_ids: [ID!]) {
   }
 }
 `,
-DELETE_INVITE: gql `
+DELETE_INVITE: gql`
 mutation deleteInvite($exchange_id: ID!, $user_id: ID!) {
   deleteInvite( exchange_id: $exchange_id, user_id: $user_id){
     _id
@@ -69,7 +69,7 @@ mutation deleteInvite($exchange_id: ID!, $user_id: ID!) {
   }
 }
 `,
-ACCEPT_INVITE: gql `
+ACCEPT_INVITE: gql`
 mutation addParticipant($exchange_id: ID!, $user_id: ID!){
   addParticipant(exchange_id: $exchange_id, user_id: $user_id){
     _id
@@ -84,7 +84,7 @@ mutation addParticipant($exchange_id: ID!, $user_id: ID!){
   }
 }
 `,
-ACCEPT_INVITE_A: gql `
+ACCEPT_INVITE_A: gql`
 mutation acceptAndUpdate($exchange_id: ID!, $user_id: ID!){
   mutation1: addParticipant(exchange_id: $exchange_id, user_id: $user_id){
     _id
@@ -106,6 +106,71 @@ mutation acceptAndUpdate($exchange_id: ID!, $user_id: ID!){
     }
   }
 }
+`,
+ADD_ITEM: gql`
+mutation newItem(
+  $url: String!,
+  $price: Float!,
+  $owner_id: ID!,
+  $wish_list_id: ID!){
+    newItem(
+      url: $url,
+      price: $price,
+      owner_id: $owner_id,
+      wish_list_id: $wish_list_id
+    ){
+      _id
+      url
+      price
+      purchased
+    }
+
+  }
+`,
+UPDATE_ITEM: gql`
+mutation updateItem(
+  $item_id: ID!,
+  $url: String!,
+  $price: Float!,
+  $purchased: Boolean!){
+    updateItem(
+      item_id: $item_id,
+      url: $url,
+      price: $price,
+      purchased: $purchased){
+        _id
+        url
+        price
+        purchased
+    }
+  }
+`,
+
+REMOVE_ITEM: gql`
+mutation deleteItem( $item_id: ID!){
+  deleteItem(item_id: $item_id){
+    _id
+    url
+    price
+    purchased
+  }
+}
+`,
+REMOVE_MEMBER: gql`
+  mutation removeMember($wish_list_id: ID!, $user_id: ID!, $exchange_id: ID!) {
+    removeMember(wish_list_id: $wish_list_id, user_id: $user_id, exchange_id: $exchange_id) {
+      _id
+      name
+    }
+  }
+`,
+UPDATE_SHIPPING: gql`
+  mutation updateShipping($wish_list_id: ID!, $shipping_address: String!) {
+    updateWishList(wish_list_id: $wish_list_id, shipping_address: $shipping_address) {
+      _id
+      shipping_address
+    }
+  }
 `
 
 }

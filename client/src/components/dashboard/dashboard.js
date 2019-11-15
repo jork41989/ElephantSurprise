@@ -67,7 +67,7 @@ class Dashboard extends Component {
                     </div>
                   </div>
             
-                  <div onClick={this.renderHelp} className='sidebarButton'><i class="fas fa-envelope"></i></div>
+                  <div onClick={this.renderHelp} className='sidebarButton'><i className="fas fa-envelope"></i></div>
                   <div className="DashboardSidebar" id="dashSidebar">
                     <h3>Pending Invites</h3>
                     <DashboardInvites user={data.user} />
