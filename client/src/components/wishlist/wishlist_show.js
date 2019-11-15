@@ -49,19 +49,39 @@ class WishlistShow extends Component{
 
 
                       // console.log(data)
-                    
-                    return (
-                      <div className="ExchangeNacelle">
+                    if (data.wish_list.owner._id === user._id){
+
+                      return (
+                        <div className="ExchangeNacelle">
                         <h1>My Wish List</h1>
                         <ShippingAddress 
                           wish_list_id={data.wish_list._id} 
                           shipping_address={data.wish_list.shipping_address}
-                        />
-                        <ItemsIndex items={data.wish_list.items} wishlist={this.props.match.params.id} />
+                          />
+                        <ItemsIndex user={user._id}
+                         items={data.wish_list.items} 
+                         wishlist={this.props.match.params.id}
+                         owner={data.wish_list.owner._id} />
                         <ItemInject user={user} wishlist={this.props.match.params.id}/> 
                       </div>
 
-                    )
+                      )
+                    }else{
+                      return(
+
+                        <div className="ExchangeNacelle">
+                        <h1>{data.wish_list.owner.name}'s Wish List</h1>
+                        <ShippingAddress
+                          wish_list_id={data.wish_list._id}
+                          shipping_address={data.wish_list.shipping_address}
+                        />
+                        <ItemsIndex user={user._id}
+                        items={data.wish_list.items}
+                        wishlist={this.props.match.params.id}
+                        owner={data.wish_list.owner._id} />
+                      </div>
+                      )
+                    }
                   }}  
 
                 </Query>

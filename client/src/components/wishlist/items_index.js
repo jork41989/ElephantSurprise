@@ -17,7 +17,13 @@ class ItemsIndex extends Component{
   }
 
   render(){
+<<<<<<< HEAD
     // console.log(this.props.items)
+=======
+    console.log(this.props.items)
+
+    if(this.props.owner===this.props.user){
+>>>>>>> 64bdaf8... creates check for current owner of wishlist to allow mutation elements or not
     return(
       <ul>
 
@@ -58,7 +64,18 @@ class ItemsIndex extends Component{
 
       </ul>
     )
-
+   }else{
+     return(
+       <ul>
+        {this.props.items.map(item => (
+          <li key={item._id}>
+            <p>{item.url}</p>
+            <p>{item.price}</p>
+          </li>
+        ))}
+      </ul>
+    )
+   }
   }
 
 }
