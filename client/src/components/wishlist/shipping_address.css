@@ -2,6 +2,10 @@
   position: relative;
 }
 
+.shipping-main button {
+  cursor: pointer;
+}
+
 .shipping-form {
   position: absolute;
   top: 2px;

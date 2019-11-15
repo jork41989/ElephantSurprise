@@ -2,6 +2,10 @@
   position: relative;
 }
 
+.member-option-main p {
+  cursor: pointer;
+}
+
 .member-option-menu {
   position: absolute;
   left: 104px;
@@ -16,6 +20,7 @@
 
 .member-option-menu i {
   margin-top: 10px;
+  cursor: pointer;
 }
 
 .member-option-menu > div {
@@ -25,6 +30,10 @@
 
 .member-option-menu a {
   margin-bottom: 9px;
+}
+
+.member-option-menu button {
+  cursor: pointer;
 }
 
 .remove-member-main {
@@ -47,3 +56,10 @@
   margin: 0px 20px;
 }
 
+.remove-member-main button {
+  cursor: pointer;
+}
+
+.remove-member-main i {
+  cursor: pointer;
+}
