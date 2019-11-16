@@ -11,7 +11,7 @@
   import elephantChristmas from '../../images/logo-v1-christmas.png'
   import elephantChannukah from '../../images/logo-v1-channukah.png'
   import elephantOffice from '../../images/logo-v1-office.png'
-  
+  import SantaRoulette from './santa_roulette/santa_roulette';
   import './exchange_show.css';
   import Modal from '../modal/modal';
   import { some } from 'lodash';
@@ -123,6 +123,7 @@ class ExchangeShow extends Component {
             <div className="ExchangeShowSidebar">
               <h2>Host: {data.exchange.host.name}</h2>
               {santaRead}
+              <SantaRoulette participants={data.exchange.participants} exchange_id={data.exchange._id}/>
               <div className="ExchangeMembersInviteButton">
                 <button onClick={() => this.setState({ modal: true, type: "search_user" })} className='exchangeButton'>Invite Users!</button>
               </div>

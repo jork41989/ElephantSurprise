@@ -17,7 +17,7 @@ class ItemsIndex extends Component{
   }
 
   render(){
-    console.log(this.props.items)
+    // console.log(this.props.items)
 
     if(this.props.owner===this.props.user){
     return(

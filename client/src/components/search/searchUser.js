@@ -62,7 +62,7 @@ class SearchUser extends React.Component {
    return(
      this.state.invite_list.map(user =>{
        return (
-       <div>{user.name}</div>
+       <div key={user._id}>{user.name}</div>
        )
      })
    )
@@ -150,6 +150,7 @@ class SearchUser extends React.Component {
         <div className="searchUserlist">
           {this.listDiv()}
         </div>
+        <p>{this.state.message}</p>
         <div>
           <Mutation
             mutation={INVITE_USER}
@@ -158,6 +159,7 @@ class SearchUser extends React.Component {
               this.setState({
                 message: "Invitations Sent!"
               });
+              this.clearList();
             }}
           >
             {(addInvite, { data }) => (
