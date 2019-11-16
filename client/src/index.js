@@ -34,7 +34,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 
 let uri;
 if (process.env.NODE_ENV === "production") {
-  uri = `/graphql`;
+  uri = `http://elephantsurprise.herokuapp.com/graphql`;
 } else {
   uri = "http://localhost:5000/graphql";
 }

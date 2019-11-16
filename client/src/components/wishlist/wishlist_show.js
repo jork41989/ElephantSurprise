@@ -11,7 +11,9 @@ const { CURRENT_USER, FETCH_USER, FETCH_WISHLIST} = Queries;
 class WishlistShow extends Component{
   constructor(props){
     super(props)
-    // sacrifice
+    this.state = {
+      sidebar: false
+    }
   }
 
   render(){
@@ -51,6 +53,7 @@ class WishlistShow extends Component{
                       return (
                         <div className="whishlistShowBody">
                         <h1>My Wish List</h1>
+                          
                         <ShippingAddress 
                           wish_list={data.wish_list} 
                           shipping_address={data.wish_list.shipping_address}
@@ -60,6 +63,7 @@ class WishlistShow extends Component{
                          items={data.wish_list.items} 
                          wishlist={this.props.match.params.id}
                          owner={data.wish_list.owner._id} />
+                          <i class="fas fa-plus-square"></i>
                         <ItemInject user={user} wishlist={this.props.match.params.id}/> 
                       </div>
 
@@ -74,6 +78,7 @@ class WishlistShow extends Component{
                           shipping_address={data.wish_list.shipping_address}
                           current_user={user}
                         />
+                        
                         <ItemsIndex user={user._id}
                         items={data.wish_list.items}
                         wishlist={this.props.match.params.id}
