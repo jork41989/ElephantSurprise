@@ -1,6 +1,7 @@
 .dashboardGreeting{
   text-align: center;
   margin-bottom: 0px;
+  font-family: Lato,Arial,Helvetica,sans-serif;
 }
 
 .dashboardExchangeDiv{
@@ -56,9 +57,10 @@
   align-items: center;
   justify-content: space-between;
   align-self: flex-start;
-  background: lightskyblue;
+  background-color: #7b105a;
   height: 100%;
   animation: fade-out 1s;
+  color: white;
 }
 
 .-showSide{
@@ -72,7 +74,7 @@
  
 .sidebarButton{
   font-size: 25px;
-  color: lightskyblue;
+  color:  #7b105a;
   align-self: flex-start;
   margin-right: 19px;
 }
