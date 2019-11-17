@@ -4,6 +4,7 @@ import { Query } from "react-apollo";
 import { Mutation } from "react-apollo";
 import Mutations from "../../graphql/mutations";
 import ItemElement from "./item_element";
+import Microlink from '@microlink/react';
 
 const { FETCH_WISHLIST } = Queries;
 const { UPDATE_ITEM, REMOVE_ITEM } = Mutations;
@@ -41,7 +42,7 @@ class ItemsIndex extends Component{
        <div>
         {this.props.items.map(item => (
           <div key={item._id}>
-            <p>{item.url}</p>
+            <Microlink url={item.url} />
             <p>{item.price}</p>
           </div>
         ))}
