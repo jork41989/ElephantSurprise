@@ -22,7 +22,7 @@ class ExchangeUsers extends Component {
               participant={participant} 
               host_id={this.props.host_id}
               current_user={this.props.current_user} 
-              exchange_id={this.props.exchange_id}
+              exchange={this.props.exchange}
               fireRefetch={this.props.fireRefetch}
             />
           })}

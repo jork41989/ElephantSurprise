@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import MemberOptionMenu from "./member_option_menu";
 import RemoveMember from "./remove_member";
 import "./member_option.css";
+import { Query } from "react-apollo";
+import Queries from "../../../graphql/queries";
+const { FETCH_WISH_LIST } = Queries;
 
 
 class MemberOption extends Component {
@@ -21,7 +24,7 @@ class MemberOption extends Component {
     this.setState({ component: <MemberOptionMenu
       closeMemberOption={this.closeMemberOption}
       openRemoveMemberOption={this.openRemoveMemberOption}
-      exchange_id={this.props.exchange_id}
+      exchange={this.props.exchange}
       user_id={this.props.participant._id}
       host_id={this.props.host_id}
     /> });
@@ -32,7 +35,7 @@ class MemberOption extends Component {
     this.setState({
       component: <RemoveMember
         closeMemberOption={this.closeMemberOption}
-        exchange_id={this.props.exchange_id}
+        exchange={this.props.exchange}
         user={this.props.participant}
         wish_list_id={wish_list_id}
         fireRefetch={this.props.fireRefetch}
@@ -62,6 +65,14 @@ class MemberOption extends Component {
           <i className="fas fa-bars optionsMenu" onClick={this.openMemberOption}></i>
         </div>
       );
+    } else if (this.props.current_user._id === this.state.wish_list_santa_id) {
+      return (
+        <div className="member-option-main">
+          <p>{this.props.participant.name}</p>
+          {this.state.component}
+          <i className="fas fa-gift optionsMenu" onClick={this.openMemberOption}></i>
+        </div>
+      ); 
     } else {
       return (
         <div className="member-option-main">

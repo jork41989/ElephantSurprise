@@ -11,14 +11,13 @@ class MemberOptionMenu extends Component {
 
   render() {
     return (
-      <Query query={FETCH_WISH_LIST} variables={{ exchange_id: this.props.exchange_id, user_id: this.props.user_id}}>
+      <Query query={FETCH_WISH_LIST} variables={{ exchange_id: this.props.exchange._id, user_id: this.props.user_id}}>
 
     {({ loading, error, data }) => {
 
       if (loading) return <p>Loading...</p>;
       if (error) return <p>Error</p>;
-          // onClick = {() => {this.props.closeMemberOption()}}
-      if (this.props.host_id && this.props.host_id !== this.props.user_id) {
+      if (this.props.host_id && this.props.host_id !== this.props.user_id && !this.props.exchange.santa_assigned) {
         return (
           <div onClick={() => { this.props.closeMemberOption() }} className="member-menu-overlay">
             <div className="member-option-menu">

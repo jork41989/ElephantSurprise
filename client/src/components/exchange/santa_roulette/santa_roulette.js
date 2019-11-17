@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { shuffle } from "lodash";
 import AssignSanta from "./assign_santa";
+import "./santa_roulette.css";
 
 
 class SantaRoulette extends Component {
@@ -22,6 +23,7 @@ class SantaRoulette extends Component {
       this.setState({ button: <AssignSanta 
         user_list={user_list}
         exchange_id={this.props.exchange_id}
+        fireRefetch={this.props.fireRefetch}
       /> });
     }
   }
@@ -35,7 +37,7 @@ class SantaRoulette extends Component {
               <li key={user._id}>
                 <div>{user.name}</div>
                 <i className="fas fa-gift"/>
-                <i className="fas fa-arrow-right"/>
+                <i className="fas fa-arrow-down"/>
                 <div>{this.state.user_list[i + 1].name}</div>
               </li>
             );
@@ -44,7 +46,7 @@ class SantaRoulette extends Component {
               <li key={user._id}>
                 <div>{user.name}</div>
                 <i className="fas fa-gift" />
-                <i className="fas fa-arrow-right" />
+                <i className="fas fa-arrow-down" />
                 <div>{this.state.user_list[0].name}</div>
               </li>
             );
@@ -57,9 +59,11 @@ class SantaRoulette extends Component {
 
   render() {
     return (
-      <div>
+      <div className="roulette-main">
         <button onClick={this.startRoulette}>Santa Roulette!</button>
-        {this.showList()}
+        <ul>
+          {this.showList()}
+        </ul>
         {this.state.button}
       </div>
     );
