@@ -3,6 +3,7 @@ import { Mutation } from "react-apollo";
 import Mutations from '../../graphql/mutations'
 import ReactTooltip from 'react-tooltip'
 import elephant from '../../images/logo-v1.png'
+import DemoLogin from './demo_login'
 const { LOGIN_USER } = Mutations;
 
 
@@ -109,6 +110,7 @@ render() {
                 data-tip data-for={'password'}
               />
               <button type="submit" className="authButton">Log In</button>
+              <DemoLogin />
             </form>
           </div>
         )}

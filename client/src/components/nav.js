@@ -49,7 +49,7 @@ class Nav extends Component {
             } else {
               return (
                 <div>
-                  <DemoLogin />
+                  
                   <button onClick={() => this.setState({ modal: true, type: "login" })} className="navBtn">Login</button>
                   < button onClick={() => this.setState({ modal: true, type: "signup" })} className="navBtn"> Sign Up </ button>
                   <Modal closeModal={this.closeModal} type={this.state.type}/>

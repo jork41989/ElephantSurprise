@@ -28,6 +28,7 @@ export default {
       pending_invites{
         _id
         name
+        type
       }
       owned_lists{
         _id
