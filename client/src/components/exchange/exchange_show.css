@@ -3,7 +3,6 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
 }
 
 .ExchangeShowBody{
@@ -22,7 +21,14 @@
   align-items: center;
   justify-content: space-between;
   align-self: flex-start;
-  padding: 5px;
+  padding: 0 25px;
+  width: 273px;
+}
+
+.ExchangeShowSidebar > p {
+  align-self: flex-start;
+  font-weight: bold;
+  margin-left: 10px;
 }
 
 .participants-list{
