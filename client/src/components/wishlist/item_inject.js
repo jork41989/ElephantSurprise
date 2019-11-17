@@ -80,6 +80,10 @@ class ItemInject extends Component{
               }
             })
           }}
+          onCompleted={
+            this.props.renderHelper
+
+          }
           >
             {this.errorTips()}
 

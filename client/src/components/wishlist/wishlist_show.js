@@ -14,7 +14,25 @@ class WishlistShow extends Component{
     this.state = {
       sidebar: false
     }
+    this.renderHelp = this.renderHelp.bind(this)
   }
+
+
+  renderHelp() {
+    let bodyDiv = document.getElementById('wishBody')
+    let sideDiv = document.getElementById('wishSidebar')
+
+    if (this.state.sidebar) {
+      bodyDiv.style.width = "100%"
+      sideDiv.classList.remove('-showSide')
+      this.setState({ sidebar: false })
+    } else {
+      bodyDiv.style.width = "75%"
+      sideDiv.classList.add('-showSide')
+      this.setState({ sidebar: true })
+    }
+  }
+
 
   render(){
 
@@ -51,20 +69,25 @@ class WishlistShow extends Component{
                     if (data.wish_list.owner._id === user._id){
 
                       return (
-                        <div className="whishlistShowBody">
-                        <h1>My Wish List</h1>
-                          
-                        <ShippingAddress 
-                          wish_list={data.wish_list} 
-                          shipping_address={data.wish_list.shipping_address}
-                          current_user={user}
-                          />
-                        <ItemsIndex user={user._id}
-                         items={data.wish_list.items} 
-                         wishlist={this.props.match.params.id}
-                         owner={data.wish_list.owner._id} />
-                          <i class="fas fa-plus-square"></i>
-                        <ItemInject user={user} wishlist={this.props.match.params.id}/> 
+                        <div className="whishlistShowMain">
+                        <div className="whishlistShowBody" id="wishBody">
+                          <h1>My Wish List</h1>
+                            <i class="fas fa-plus-square sidebarButtonAlt" onClick={this.renderHelp}></i>
+                          <ShippingAddress 
+                            wish_list={data.wish_list} 
+                            shipping_address={data.wish_list.shipping_address}
+                            current_user={user}
+                            />
+                          <ItemsIndex user={user._id}
+                          items={data.wish_list.items} 
+                          wishlist={this.props.match.params.id}
+                          owner={data.wish_list.owner._id} />
+                       
+                      </div>
+                      <div className="whishlistShowSideBar" id="wishSidebar">
+                           
+                            <ItemInject user={user} wishlist={this.props.match.params.id} renderHelp={this.renderHelp} /> 
+                      </div>
                       </div>
 
                       )

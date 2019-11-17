@@ -3,9 +3,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-
-
-  border-bottom: rgba(0, 0, 0, 0.493) 1px solid;
+  background-color: #7b105a;
 }
 .mainBody{
   padding: 20px;
@@ -13,7 +11,7 @@
 }
 
 .logoNav{
-  color: black;
+  color: white;
   text-decoration: none;
   text-decoration-line: none;
   margin-left: 2%;
@@ -33,7 +31,7 @@
   background: none;
   cursor: pointer;
   text-decoration: none;
-  color: black;
+  color: white;
 }
 
 
