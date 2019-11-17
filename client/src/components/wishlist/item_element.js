@@ -3,7 +3,8 @@ import Queries from "../../graphql/queries";
 import { Query } from "react-apollo";
 import { Mutation } from "react-apollo";
 import Mutations from "../../graphql/mutations";
-import ReactTooltip from 'react-tooltip'
+import ReactTooltip from 'react-tooltip';
+import Microlink from '@microlink/react';
 
 const { FETCH_WISHLIST } = Queries;
 const { UPDATE_ITEM, REMOVE_ITEM } = Mutations;
@@ -147,7 +148,7 @@ class ItemElement extends Component{
           
          
           
-          <p>{this.state.url}</p>
+          <Microlink url={this.state.url} />
           <p>{this.state.price}</p>
         </div>
       );      
