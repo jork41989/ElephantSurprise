@@ -14,7 +14,7 @@ class RemoveMember extends Component {
       variables: {
         wish_list_id: this.props.wish_list_id,
         user_id: this.props.user._id,
-        exchange_id: this.props.exchange_id
+        exchange_id: this.props.exchange._id
       }
     });
   }

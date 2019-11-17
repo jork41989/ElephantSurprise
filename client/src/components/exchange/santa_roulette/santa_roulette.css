@@ -1,0 +1,39 @@
+.roulette-main {
+  width: 200px;
+}
+
+.roulette-main button {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 200px;
+  font-size: 20px;
+  background-color: aliceblue;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.roulette-main li {
+  list-style: none;
+  border-bottom: 1px solid grey;
+  margin-bottom: 6px;
+  margin-left: 7px;
+  padding-bottom: 6px;
+}
+
+.roulette-main li:last-child {
+  list-style: none;
+  border-bottom: none;
+}
+
+.roulette-main ul {
+  padding: 0px 7px;
+}
+
+.roulette-main i.fa-gift {
+  color: #ff9933;
+  margin: 3px 5px;
+}
+
+.roulette-main i.fa-arrow-down {
+  color: #009933;
+}

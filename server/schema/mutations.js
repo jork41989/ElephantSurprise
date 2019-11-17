@@ -180,6 +180,7 @@ const mutation = new GraphQLObjectType({
         ship_date: { type: GraphQLDate },
         budget: { type: GraphQLInt },
         santa_assigned: { type: GraphQLBoolean },
+        type: { type: GraphQLString },
         host: { type: GraphQLID }
       },
       resolve(_, args) {
@@ -368,6 +369,26 @@ const mutation = new GraphQLObjectType({
                 );
               }
             );
+          }
+        );
+      }
+    },
+    assignSanta: {
+      type: WishListType,
+      args: {
+        owner_id: { type: GraphQLID },
+        exchange_id: { type: GraphQLID },
+        santa_id: { type: GraphQLID }
+      },
+      resolve(_, { owner_id, exchange_id, santa_id }) {
+        return WishList.findOneAndUpdate(
+          { $and: [{ exchange: exchange_id }, { owner: owner_id }] },
+          { santa: santa_id },
+          { new: true }
+        ).then(
+          wish_list => {
+            return Exchange.findOneAndUpdate({ _id: exchange_id }, { santa_assigned: true })
+              .then(() => wish_list);
           }
         );
       }

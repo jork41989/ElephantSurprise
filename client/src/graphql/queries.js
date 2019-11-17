@@ -64,6 +64,14 @@ export default {
         }
         wish_lists{
           _id
+          owner{
+            _id
+            name
+          }
+          santa{
+            _id
+            name
+          }
         }
         type
       

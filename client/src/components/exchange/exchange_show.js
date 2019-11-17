@@ -11,7 +11,8 @@
   import elephantChristmas from '../../images/logo-v1-christmas.png'
   import elephantChannukah from '../../images/logo-v1-channukah.png'
   import elephantOffice from '../../images/logo-v1-office.png'
-  
+  import SantaRoulette from './santa_roulette/santa_roulette';
+  import SantaList from './santa_roulette/santa_list';
   import './exchange_show.css';
   import Modal from '../modal/modal';
   import { some } from 'lodash';
@@ -39,7 +40,7 @@ class ExchangeShow extends Component {
 
   themeRender(theme){
     let bgDiv = document.getElementById("ExchangeShowHeader")
-    console.log(bgDiv)
+    // console.log(bgDiv)
     if(theme && ELEPHANT_ICONS[theme]){
         return (
           <img src={ELEPHANT_ICONS[theme]} className="elepahntExchange" />
@@ -95,14 +96,26 @@ class ExchangeShow extends Component {
 
         
         let santaRead;
+        let roulette;
+        let invite_button;
           
           if (data.exchange.santa_assigned){
-            santaRead = <div> Elephants have been assigned </div>
+            santaRead = <div> Elephants have been assigned </div>;
+            roulette = <SantaList wish_lists={data.exchange.wish_lists}/>;
+            invite_button = null;
           } else {
-            santaRead = <div> <div>Elephant isn't ready yet!</div><div>Gifties have not been assigned </div></div>
+            santaRead = <div> <div>Elephant isn't ready yet!</div><div>Gifties have not been assigned </div></div>;
+            roulette = <SantaRoulette
+              participants={data.exchange.participants}
+              exchange_id={data.exchange._id}
+              fireRefetch={refetch}
+            />;
+            invite_button = <div className="ExchangeMembersInviteButton">
+              <button onClick={() => this.setState({ modal: true, type: "search_user" })} className='exchangeButton'>Invite Users!</button>
+            </div>;
           }
         if (this.props.user._id === data.exchange.host._id){
-          console.log(data.exchange)
+          // console.log(data.exchange)
         return(
           <div className="ExchangeShow">
 
@@ -115,7 +128,7 @@ class ExchangeShow extends Component {
                 participants={data.exchange.participants}
                 current_user={this.props.user}
                 host_id={data.exchange.host._id}
-                exchange_id={data.exchange._id}
+                exchange={data.exchange}
                 fireRefetch={refetch}
               />
             </div>
@@ -123,9 +136,8 @@ class ExchangeShow extends Component {
             <div className="ExchangeShowSidebar">
               <h2>Host: {data.exchange.host.name}</h2>
               {santaRead}
-              <div className="ExchangeMembersInviteButton">
-                <button onClick={() => this.setState({ modal: true, type: "search_user" })} className='exchangeButton'>Invite Users!</button>
-              </div>
+              {roulette}
+              {invite_button}
               <Modal closeModal={this.closeModal} type={this.state.type} exchange_id={data.exchange._id} />
               <Mutation 
                 mutation={REMOVE_EXCHANGE}
@@ -163,7 +175,7 @@ class ExchangeShow extends Component {
                   participants={data.exchange.participants}
                   current_user={this.props.user}
                   host_id={null}
-                  exchange_id={data.exchange._id}
+                  exchange={data.exchange}
                   fireRefetch={refetch}
                 />
               </div>
@@ -189,7 +201,7 @@ class ExchangeShow extends Component {
                   participants={data.exchange.participants}
                   current_user={this.props.user}
                   host_id={null}
-                  exchange_id={data.exchange._id}
+                  exchange={data.exchange}
                   fireRefetch={null}
                 />
               </div>

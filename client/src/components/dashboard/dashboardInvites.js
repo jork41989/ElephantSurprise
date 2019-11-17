@@ -46,7 +46,7 @@ class DashboardInvites extends Component{
 
              >
                   {(acceptAndUpdate, data) => (
-                    <i class="fas fa-smile -green"
+                    <i className="fas fa-smile -green"
                       onClick={e => {
                         e.preventDefault();
                         acceptAndUpdate({
@@ -64,7 +64,7 @@ class DashboardInvites extends Component{
 
               <Mutation mutation={DELETE_INVITE}>
                   {(deleteInvite, data) => (
-                    <i class="fas fa-meh -purple"
+                    <i className="fas fa-meh -purple"
                       onClick={e => {
                         e.preventDefault();
 
