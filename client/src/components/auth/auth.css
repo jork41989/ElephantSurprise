@@ -29,3 +29,15 @@
   background-color: aliceblue;
   border-radius: 25px;
 }
+
+.demo-button {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 136px;
+  font-size: 20px;
+  background-color: aliceblue;
+  border-radius: 25px;
+  cursor: pointer;
+  color: #7b105a;
+  margin-right: 26px;
+}
