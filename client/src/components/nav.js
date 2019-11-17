@@ -4,7 +4,7 @@ import { Query } from "react-apollo";
 import Queries from "../graphql/queries";
 import { ApolloConsumer } from 'react-apollo';
 import Modal from './modal/modal'
-
+import DemoLogin from './auth/demo_login';
 const { IS_LOGGED_IN } = Queries;
 
 class Nav extends Component {
@@ -49,6 +49,7 @@ class Nav extends Component {
             } else {
               return (
                 <div>
+                  <DemoLogin />
                   <button onClick={() => this.setState({ modal: true, type: "login" })} className="navBtn">Login</button>
                   < button onClick={() => this.setState({ modal: true, type: "signup" })} className="navBtn"> Sign Up </ button>
                   <Modal closeModal={this.closeModal} type={this.state.type}/>
