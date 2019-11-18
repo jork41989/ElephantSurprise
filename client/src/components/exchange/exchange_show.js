@@ -40,7 +40,7 @@ class ExchangeShow extends Component {
 
   themeRender(theme){
     let bgDiv = document.getElementById("ExchangeShowHeader")
-    // console.log(bgDiv)
+
     if(theme && ELEPHANT_ICONS[theme]){
         return (
           <img src={ELEPHANT_ICONS[theme]} className="elepahntExchange" />

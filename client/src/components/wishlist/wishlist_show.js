@@ -64,6 +64,7 @@ class WishlistShow extends Component{
                     if (error)
                       return `Error! ${error.message}`;
 
+
                     let total_amount = 0;
                     if (data.wish_list.items.length > 0) {
                       data.wish_list.items.forEach(
@@ -75,7 +76,7 @@ class WishlistShow extends Component{
                       );
                     }
                     
-                      // console.log(data)
+                    
                     if (data.wish_list.owner._id === user._id){
 
                       return (
