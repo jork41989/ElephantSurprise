@@ -11,6 +11,10 @@
   position: relative;
 }
 
+.search-user-main p {
+  color: black;
+}
+
 .fa-check-circle {
   display: none;
   color: #82c91e;
@@ -79,18 +83,23 @@
 #user-item {
   padding: 11px;
   cursor: pointer;
+  color: black;
 }
 
 #user-item div:last-child {
   color: grey;
 }
 
-.searchUserlist{
+.searchUserlist {
   width: 90%;
   margin-bottom: 10px;
 }
 
-.searchButton{
+.searchUserlist > div {
+  color: black;
+}
+
+.searchButton {
   padding: 5px 0;
   margin-top: 10px;
   margin-bottom: 10px;
