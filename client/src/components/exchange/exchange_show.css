@@ -16,13 +16,16 @@
 }
 
 .ExchangeShowSidebar{
+  color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   align-self: flex-start;
   padding: 0 25px;
-  width: 273px;
+  width: 25%;
+  background-color: #7b105a;
+  padding-bottom: 10px;
 }
 
 .ExchangeShowSidebar > p {
