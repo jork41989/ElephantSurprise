@@ -143,6 +143,10 @@ export default {
         exchange{
           _id
           name
+          host{
+            _id
+            name
+          }
         }
         items{
           _id
