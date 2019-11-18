@@ -95,7 +95,7 @@ class DashboardInvites extends Component{
       return(
 
         
-        <p>No pending invites!</p>
+        <p>No pending invites! </p>
       
       )
     }
