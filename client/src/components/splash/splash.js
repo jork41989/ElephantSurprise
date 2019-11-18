@@ -108,9 +108,26 @@ class Splash extends Component {
                       </div>
                     </Carousel>
                     <Modal closeModal={this.closeModal} type={this.state.type} />
-                    <div>
-                      Meet
+
+                    <div className="splashGitDiv">
+                      <p className="gitHeader">Meet the Developers</p>
+                      <div className="splashGitDivLinks">
+                        <a className="gitLink" href="https://github.com/jork41989/">
+                          <i class="fab fa-github splashGit"></i>
+                          <p>Jordan Ackerman</p>
+                        </a>
+                        <a className="gitLink" href="https://github.com/G07Watch/">
+                          <i class="fab fa-github splashGit"></i>
+                          <p>Garvin Ming</p>
+                        </a>
+                        <a className="gitLink" href="https://github.com/AlbertgitC/">
+                          <i class="fab fa-github splashGit"></i>
+                          <p>Albert Cheng</p>
+                        </a>
+                      </div>
+
                     </div>
+                  </div>
                   </div>
                 );
               }
