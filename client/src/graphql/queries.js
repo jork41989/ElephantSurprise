@@ -21,6 +21,7 @@ export default {
       participated_exchanges{
         name
         _id
+        type
       }
       hosted_exchanges{
         _id
@@ -28,7 +29,7 @@ export default {
       pending_invites{
         _id
         name
-        type
+        
       }
       owned_lists{
         _id
