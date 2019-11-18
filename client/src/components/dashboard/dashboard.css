@@ -154,3 +154,11 @@
   align-items: center;
 }
 
+.createButton{
+    width: 300px;
+    font-size: 20px;
+    background-color: aliceblue;
+    border-radius: 25px;
+    text-decoration: none;
+    text-align: center;
+}

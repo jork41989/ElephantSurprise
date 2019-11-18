@@ -61,7 +61,7 @@ class Dashboard extends Component {
                     <div className="dashboardExchangeDiv">
                       <p> Your hosted exchanges are identified with a <i className="fas fa-gift"></i> </p>
                       <DashboardExchanges exchanges={data.user.participated_exchanges} hosted={hosted} />
-                      <Link to="/newExchange"> Create a New Exchange</Link>
+                      <Link to="/newExchange" className="createButton"> Create a New Exchange</Link>
                       
                     </div>
                   </div>

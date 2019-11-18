@@ -61,7 +61,9 @@ class DashboardExchanges extends Component {
       return (
         
         <Link to={`/exchanges/${exchange._id}`} key={exchange._id} className="ExchangeListItemDiv" style={bg}>
+          <div className="exchangeItemInfoDiv">
           <p className="ExchangeLink">{exchange.name}</p>
+          </div>
         </Link>)
     }
   }
