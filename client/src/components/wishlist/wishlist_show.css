@@ -17,10 +17,11 @@ position: relative;
 
 .sidebarButtonAlt{
   font-size: 25px;
-  color: lightskyblue;
+  color:  #7b105a;
   align-self: flex-end;
   margin-right: 19px;
   position: absolute;
+  padding-right: 5px;
 }
 
 .whishlistShowSideBar{
@@ -31,7 +32,8 @@ position: relative;
   align-items: center;
   justify-content: space-between;
   align-self: flex-start;
-  background: lightskyblue;
+  background-color: #7b105a;
+  color:white;
   height: 100%;
   animation: fade-out 1s;
 }
@@ -42,14 +44,14 @@ position: relative;
     opacity: 0;
   }
   to {
-    width: 20%;
+    width: 30%;
     opacity: 1;
   }
 }
 
 @keyframes fade-out {
   from {
-    width: 20%;
+    width: 30%;
     opacity: 1;
     display: flex;
   }
@@ -61,10 +63,11 @@ position: relative;
 
 
 .-showSide{
-  width: 20%;
+  width: 30%;
   opacity: 1;
   display: flex;
   transition-property: all;
   transition-duration: 1s;
   animation: fade-in 1s;
+  padding-bottom: 50px;
 }

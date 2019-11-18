@@ -5,36 +5,74 @@ import elephantChristmas from '../../images/logo-v1-christmas.png'
 import elephantChannukah from '../../images/logo-v1-channukah.png'
 import elephantOffice from '../../images/logo-v1-office.png'
 import channukahBG from '../../images/chanukah.jpg'
+import officeBG from '../../images/officeHoliday.jpg'
+import christmasBG from '../../images/xmasBG.jpg'
+import otherBG from '../../images/Other.jpg'
 const ELEPHANT_ICONS = { office: elephantOffice, christmas: elephantChristmas, channukah: elephantChannukah }
-
+const THEME_BG = { office: officeBG, christmas: christmasBG, channukah: channukahBG }
 class DashboardExchanges extends Component {
   constructor(props) {
     super(props);
     this.renderExchanges = this.renderExchanges.bind(this)
   }
+
+  elephantRender(theme){
+     if (theme && ELEPHANT_ICONS[theme]) {
+      return (
+        <img src={ELEPHANT_ICONS[theme]} className="dashElephant"  />
+      )
+
+    } else {
+      return (
+        <img src={elephant} className="dashElephant" />
+      )
+    }
+  }
+  
   createExhangeDiv(exchange){
-    console.log(exchange)
+    if (this.props.hosted.includes(exchange._id)) {
+      let bg;
+      if (exchange.type && THEME_BG[exchange.type]){
+      bg = {backgroundImage: `url('${THEME_BG[exchange.type]}')`}
+      } else {
+        bg = { backgroundImage: `url('${otherBG}')` }
+      }
+      console.log(exchange.type)
+      return (
+        <div key={exchange._id} className="ExchangeListItemDiv" style={bg} >
+          <div>
+            {this.elephantRender(exchange.type)}
+          </div>
+          <div className="exchangeItemInfoDiv">
+            <Link to={`/exchanges/${exchange._id}`} className="ExchangeLink">{exchange.name}</Link>
+            <i className="fas fa-gift"></i>
+          </div>
+        </div>
+
+      )
+    } else {
+      let bg;
+      if (exchange.type && THEME_BG[exchange.type]) {
+        bg = { backgroundImage: `url('${THEME_BG[exchange.type]}')` }
+      } else {
+        bg = { backgroundImage: `url('${otherBG}')` }
+      }
+      console.log(bg)
+      return (
+        
+        <div key={exchange._id} className="ExchangeListItemDiv" style={bg}>
+          <Link to={`/exchanges/${exchange._id}`} className="ExchangeLink">{exchange.name}</Link>
+        </div>)
+    }
   }
   renderExchanges(){
     
     if(this.props.exchanges){
       return(<div className="ExchangesLinks">
       {this.props.exchanges.map(exchange =>{
-        if (this.props.hosted.includes(exchange._id))  {
-          this.createExhangeDiv(exchange)
-          return (
-        
-        <div key={exchange._id} className="ExchangeListItemDiv">
-          <Link to={`/exchanges/${exchange._id}`} className="ExchangeLink">{exchange.name}</Link>
-          <i className="fas fa-gift"></i>
-        </div>
-      )
-        } else {
-         return (
-           <div key={exchange._id} className="ExchangeListItemDiv"> 
-             <Link to={`/exchanges/${exchange._id}`} className="ExchangeLink">{exchange.name}</Link> 
-          </div>)
-        }
+
+        return this.createExhangeDiv(exchange) 
+       
     })}
       </div>)
     }

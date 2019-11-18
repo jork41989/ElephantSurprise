@@ -90,14 +90,16 @@ class ItemInject extends Component{
             <input value={this.state.url}
               onChange={this.update("url")}
               placeholder="Link here to the item"
+                className="FormTextFeild"
               ></input>
 
             <input value={this.state.price}
               onChange={this.update("price")}
               placeholder="Price of your item here(stay in budget!)"
+                className="FormTextFeild"
               ></input>
 
-            <button type="submit" value="Add Item">Add Item</button>
+              <button type="submit" value="Add Item" className="authButton">Add Item</button>
 
           </form>
           )}

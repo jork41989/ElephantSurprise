@@ -26,3 +26,10 @@
 .fa-trash-alt{
   cursor: pointer;
 }
+
+.item-inject{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

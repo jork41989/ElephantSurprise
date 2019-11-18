@@ -7,6 +7,7 @@ import elephant from '../images/logo-v1.png'
 import AuthRoute from '../util/route_util';
 import Nav from './nav';
 import WishlistShow from './wishlist/wishlist_show';
+import Splash from '../components/splash/splash'
 import "./nav.css"
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <AuthRoute exact path="/wish_lists/:id" component={WishlistShow} />
           <AuthRoute exact path="/newExchange" component={ExchangeForm} />
           <AuthRoute exact path="/exchanges/:id" component={ExchangeNacelle} />
+          <Route exact path="/" component={Splash} />
         </Switch>
       </div>
     </div>
