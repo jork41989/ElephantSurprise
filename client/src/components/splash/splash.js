@@ -128,7 +128,7 @@ class Splash extends Component {
 
                     </div>
                   </div>
-                  </div>
+                  
                 );
               }
             }}
