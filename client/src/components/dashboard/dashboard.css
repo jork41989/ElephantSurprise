@@ -27,20 +27,35 @@
 }
 
 .ExchangeListItemDiv{
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 5px;
-  height:200px;
-  width: 200px;
+  height:400px;
+  width: 400px;
   margin-right: 10px;
   background-position: center;
   background-size: cover;
+  position: relative;
 }
+.ExchangeListItemDiv:hover{
+  border: 5px solid #7b105a;
+}
+
+
 .exchangeItemInfoDiv{
+  display: flex;
+  flex-direction: row;
+  position: absolute;
   background: rgba(255, 251, 251, 0.876);
-  padding: 2px;
+
+  width: 98%;
+  bottom: 5px;
+  justify-content: center;
+  align-items: center;
+  
 }
 .ExchangeLink{
   text-decoration: none;
@@ -48,6 +63,8 @@
   font-size: 20px;
   cursor: pointer;
   margin-right: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 .DashboardMain{

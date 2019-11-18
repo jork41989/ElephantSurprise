@@ -52,6 +52,13 @@ class Splash extends Component {
                           <Link to='/dashboard' className="sliderLink">Dashboard</Link>
                         </div>
                       </div>
+                      <div>
+                        <img src={channukahBG} className="HomeImg" />
+                        <div className="sliderButtons">
+                          <h1>Welcome to Elephant Surprise</h1>
+                          <Link to='/dashboard' className="sliderLink">Dashboard</Link>
+                        </div>
+                      </div>
                     </Carousel>
 
                 </div>

@@ -39,15 +39,15 @@ class DashboardExchanges extends Component {
       }
       console.log(exchange.type)
       return (
-        <div key={exchange._id} className="ExchangeListItemDiv" style={bg} >
+        <Link to={`/exchanges/${exchange._id}`}className="ExchangeListItemDiv" style={bg} >
           <div>
             {this.elephantRender(exchange.type)}
           </div>
           <div className="exchangeItemInfoDiv">
-            <Link to={`/exchanges/${exchange._id}`} className="ExchangeLink">{exchange.name}</Link>
+            <p className="ExchangeLink">{exchange.name}</p>
             <i className="fas fa-gift"></i>
           </div>
-        </div>
+        </Link>
 
       )
     } else {
@@ -60,9 +60,9 @@ class DashboardExchanges extends Component {
       console.log(bg)
       return (
         
-        <div key={exchange._id} className="ExchangeListItemDiv" style={bg}>
-          <Link to={`/exchanges/${exchange._id}`} className="ExchangeLink">{exchange.name}</Link>
-        </div>)
+        <Link to={`/exchanges/${exchange._id}`} key={exchange._id} className="ExchangeListItemDiv" style={bg}>
+          <p className="ExchangeLink">{exchange.name}</p>
+        </Link>)
     }
   }
   renderExchanges(){
