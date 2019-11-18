@@ -130,9 +130,9 @@ export default {
   UPDATE_ITEM: gql`
   mutation updateItem(
     $item_id: ID!,
-    $url: String!,
-    $price: Float!,
-    $purchased: Boolean!){
+    $url: String,
+    $price: Float,
+    $purchased: Boolean){
       updateItem(
         item_id: $item_id,
         url: $url,

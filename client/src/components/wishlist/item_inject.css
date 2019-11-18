@@ -33,3 +33,17 @@
   justify-content: center;
   align-items: center;
 }
+
+.purchase-status {
+  display: flex;
+  align-items: center;
+}
+
+.purchase-status i {
+  margin-right: 23px;
+}
+
+.purchase-status p {
+  margin: 0;
+  margin-right: 6px;
+}

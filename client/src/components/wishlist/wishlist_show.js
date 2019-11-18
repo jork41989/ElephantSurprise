@@ -65,6 +65,18 @@ class WishlistShow extends Component{
                       return `Error! ${error.message}`;
 
 
+                    let total_amount = 0;
+                    if (data.wish_list.items.length > 0) {
+                      data.wish_list.items.forEach(
+                        item => {
+                          if (item.purchased) {
+                            total_amount += item.price;
+                          }
+                        }
+                      );
+                    }
+                    
+                    
                     if (data.wish_list.owner._id === user._id){
 
                       return (
@@ -90,7 +102,7 @@ class WishlistShow extends Component{
                       </div>
 
                       )
-                    }else{
+                    } else {
                       return(
 
                         <div className="ExchangeNacelle">
@@ -100,11 +112,13 @@ class WishlistShow extends Component{
                           shipping_address={data.wish_list.shipping_address}
                           current_user={user}
                         />
-                        
+                        <div>Total purchased amount: ${total_amount}</div>
                         <ItemsIndex user={user._id}
                         items={data.wish_list.items}
                         wishlist={this.props.match.params.id}
-                        owner={data.wish_list.owner._id} />
+                        owner={data.wish_list.owner._id}
+                        santa={data.wish_list.santa} 
+                        host={data.wish_list.exchange.host}/>
                       </div>
                       )
                     }
