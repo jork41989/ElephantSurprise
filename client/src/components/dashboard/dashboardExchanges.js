@@ -37,7 +37,7 @@ class DashboardExchanges extends Component {
       } else {
         bg = { backgroundImage: `url('${otherBG}')` }
       }
-      console.log(exchange.type)
+  
       return (
         <Link to={`/exchanges/${exchange._id}`}className="ExchangeListItemDiv" style={bg} >
           <div>
@@ -57,7 +57,7 @@ class DashboardExchanges extends Component {
       } else {
         bg = { backgroundImage: `url('${otherBG}')` }
       }
-      console.log(bg)
+
       return (
         
         <Link to={`/exchanges/${exchange._id}`} key={exchange._id} className="ExchangeListItemDiv" style={bg}>

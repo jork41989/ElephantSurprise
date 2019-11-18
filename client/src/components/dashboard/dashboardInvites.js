@@ -19,7 +19,6 @@ class DashboardInvites extends Component{
   render(){
     // let count = 0
 
-    // console.log(this.props.user.pending_invites)
 
     if (this.state.invites.length > 0){
       return(
@@ -96,7 +95,7 @@ class DashboardInvites extends Component{
       return(
 
         
-      <p>Invites not here</p>
+        <p>No pending invites</p>
       
       )
     }

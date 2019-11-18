@@ -65,7 +65,6 @@ class WishlistShow extends Component{
                       return `Error! ${error.message}`;
 
 
-                      // console.log(data)
                     if (data.wish_list.owner._id === user._id){
 
                       return (

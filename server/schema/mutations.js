@@ -53,7 +53,6 @@ const mutation = new GraphQLObjectType({
         password: { type: GraphQLString }
       },
       resolve(_, args) {
-        console.log("hello")
         return AuthService.login(args);
       }
     },
