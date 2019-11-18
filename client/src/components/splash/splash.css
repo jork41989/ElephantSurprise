@@ -24,3 +24,37 @@
   color: #7b105a;
   text-decoration: none;
 }
+
+.splashGitDiv{
+  background:  #7b105a;
+  color: white;
+  text-align: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.splashGitDivLinks{
+   display: flex;
+  flex-direction: row;
+  padding-top: 40px;
+}
+
+.gitHeader{
+  font-size: 20px;
+  margin: 0px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.gitLink{
+  width: 33.33%;
+  height: 400px;
+  color: white;
+  text-decoration: none;
+}
+
+.splashGit{
+  color:white;
+  font-size: 100px;
+}
