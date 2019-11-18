@@ -43,7 +43,7 @@ class ItemsIndex extends Component{
       <div>
 
         {this.props.items.map(item => (
-          <div key={item._id}>
+          <div key={item._id} className="item-li">
 
             <ItemElement item={item} wishlist={this.props.wishlist}/>
 
@@ -69,7 +69,7 @@ class ItemsIndex extends Component{
             noColor = "rgb(241, 94, 89)";
           }
           return (
-            <div key={item._id}>
+            <div key={item._id} className="item-li">
               <Microlink url={item.url} />
               <p>{item.price}</p>
               <p>Purchased?</p>
@@ -107,7 +107,7 @@ class ItemsIndex extends Component{
               noColor = "rgb(241, 94, 89)";
             }
             return (
-              <div key={item._id}>
+              <div key={item._id} className="item-li">
                 <Microlink url={item.url} />
                 <p>{item.price}</p>
                 <p>Purchased?</p>
@@ -126,7 +126,7 @@ class ItemsIndex extends Component{
       return (
         <div>
           {this.props.items.map(item => (
-            <div key={item._id}>
+            <div key={item._id} className="item-li">
               <Microlink url={item.url} />
               <p>{item.price}</p>
             </div>

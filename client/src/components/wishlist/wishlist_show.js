@@ -104,22 +104,23 @@ class WishlistShow extends Component{
                       )
                     } else {
                       return(
-
-                        <div className="ExchangeNacelle">
-                        <h1>{data.wish_list.owner.name}'s Wish List</h1>
-                        <ShippingAddress
-                          wish_list={data.wish_list}
-                          shipping_address={data.wish_list.shipping_address}
-                          current_user={user}
-                        />
-                        <div>Total purchased amount: ${total_amount}</div>
-                        <ItemsIndex user={user._id}
-                        items={data.wish_list.items}
-                        wishlist={this.props.match.params.id}
-                        owner={data.wish_list.owner._id}
-                        santa={data.wish_list.santa} 
-                        host={data.wish_list.exchange.host}/>
-                      </div>
+                        <div className="whishlistShowMain">
+                          <div className="whishlistShowBody" id="wishBody">
+                            <h1>{data.wish_list.owner.name}'s Wish List</h1>
+                            <ShippingAddress
+                              wish_list={data.wish_list}
+                              shipping_address={data.wish_list.shipping_address}
+                              current_user={user}
+                            />
+                            <div>Total purchased amount: ${total_amount.toFixed(2)}</div>
+                            <ItemsIndex user={user._id}
+                            items={data.wish_list.items}
+                            wishlist={this.props.match.params.id}
+                            owner={data.wish_list.owner._id}
+                            santa={data.wish_list.santa} 
+                            host={data.wish_list.exchange.host}/>
+                          </div>
+                        </div>
                       )
                     }
                   }}  

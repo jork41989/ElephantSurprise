@@ -182,6 +182,7 @@ class ExchangeShow extends Component {
               </div>
               <div className="ExchangeShowSidebar">
                 <h2> Host: {data.exchange.host.name} </h2>
+                <p>Budget: ${data.exchange.budget}</p>
                 {santaRead}
               </div>
               {/* <LetsSurprise/> */}
@@ -208,6 +209,7 @@ class ExchangeShow extends Component {
               </div>
               <div className="ExchangeShowSidebar">
                 <h2> Host: {data.exchange.host.name} </h2>
+                <p>Budget: ${data.exchange.budget}</p>
                 {santaRead}
               </div>
               {/* <LetsSurprise/> */}
