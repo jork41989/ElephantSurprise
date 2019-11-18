@@ -24,6 +24,7 @@
   flex-direction: row;
   align-items: left;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .ExchangeListItemDiv{
@@ -39,6 +40,7 @@
   background-position: center;
   background-size: cover;
   position: relative;
+  margin-top: 5px;
 }
 .ExchangeListItemDiv:hover{
   border: 5px solid #7b105a;
@@ -50,7 +52,6 @@
   flex-direction: row;
   position: absolute;
   background: rgba(255, 251, 251, 0.876);
-
   width: 98%;
   bottom: 5px;
   justify-content: center;

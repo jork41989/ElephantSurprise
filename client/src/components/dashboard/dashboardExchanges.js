@@ -8,8 +8,8 @@ import channukahBG from '../../images/chanukah.jpg'
 import officeBG from '../../images/officeHoliday.jpg'
 import christmasBG from '../../images/xmasBG.jpg'
 import otherBG from '../../images/Other.jpg'
-const ELEPHANT_ICONS = { office: elephantOffice, christmas: elephantChristmas, channukah: elephantChannukah }
-const THEME_BG = { office: officeBG, christmas: christmasBG, channukah: channukahBG }
+const ELEPHANT_ICONS = { office: elephantOffice, christmas: elephantChristmas, hanukkah: elephantChannukah }
+const THEME_BG = { office: officeBG, christmas: christmasBG, hanukkah: channukahBG }
 class DashboardExchanges extends Component {
   constructor(props) {
     super(props);

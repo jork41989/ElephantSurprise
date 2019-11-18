@@ -19,7 +19,7 @@
   const { REMOVE_EXCHANGE } = Mutations
 const { FETCH_EXCHANGE, CURRENT_USER, FETCH_USER } = Queries;
 const BACKGROUND_IMAGES = {office: 'office'}
-const ELEPHANT_ICONS = {office: elephantOffice, christmas: elephantChristmas, channukah: elephantChannukah }
+const ELEPHANT_ICONS = { office: elephantOffice, christmas: elephantChristmas, hanukkah: elephantChannukah }
 
 class ExchangeShow extends Component {
 
