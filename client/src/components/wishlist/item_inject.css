@@ -13,7 +13,7 @@
 .itemDiv{
   display: flex;
   flex-direction: column;
-  width: 80%;
+  width: 100%;
   padding-left: 10%;
   align-self: center;
 }

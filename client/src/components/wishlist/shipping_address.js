@@ -45,7 +45,7 @@ class ShippingAddress extends Component {
           <p>Shipping Address:</p>
           <p>{this.props.shipping_address}</p>
           <div>
-            <button onClick={this.openUpdate}>Update Shipping Address</button>
+            <button onClick={this.openUpdate} className="exchangeButton">Update Shipping Address</button>
             <Mutation 
               mutation={UPDATE_SHIPPING}
               onError={err => console.log(err.message)}

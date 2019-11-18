@@ -6,9 +6,9 @@ import Queries from "../../graphql/queries";
 import { ApolloConsumer } from 'react-apollo';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel'
-import channukahBG from '../../images/chanukah.jpg'
-import officeBG from '../../images/officeHoliday.jpg'
-import christmasBG from '../../images/xmasBG.jpg'
+import channukahBG from '../../images/slide2.jpg'
+import officeBG from '../../images/slide3.jpeg'
+import christmasBG from '../../images/slide1.jpg'
 import otherBG from '../../images/Other.jpg'
 import "./splash.css"
 const { IS_LOGGED_IN } = Queries;
