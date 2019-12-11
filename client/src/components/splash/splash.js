@@ -10,6 +10,7 @@ import channukahBG from '../../images/slide2.jpg'
 import officeBG from '../../images/slide3.jpeg'
 import christmasBG from '../../images/slide1.jpg'
 import otherBG from '../../images/Other.jpg'
+import DemoLogin from '../auth/demo_login'
 import "./splash.css"
 const { IS_LOGGED_IN } = Queries;
 
@@ -89,21 +90,21 @@ class Splash extends Component {
                       <img src={officeBG} className="HomeImg" />
                       <div className="sliderButtons">
                         <h1>Welcome to Elephant Surprise</h1>
-                          <button onClick={() => this.setState({ modal: true, type: "login" })} className="authButton">Log In</button>
+                          <div className="slideDemo"><DemoLogin /></div> 
                       </div>
                     </div>
                       <div>
                         <img src={christmasBG} className="HomeImg" />
                         <div className="sliderButtons">
                           <h1>Welcome to Elephant Surprise</h1>
-                          <button onClick={() => this.setState({ modal: true, type: "login" })} className="authButton">Log In</button>
+                          <div className="slideDemo"><DemoLogin /></div> 
                         </div>
                       </div>
                       <div>
                         <img src={channukahBG} className="HomeImg" />
                         <div className="sliderButtons">
                           <h1>Welcome to Elephant Surprise</h1>
-                          <button onClick={() => this.setState({ modal: true, type: "login" })} className="authButton">Log In</button>
+                          <div className="slideDemo"><DemoLogin /></div> 
                         </div>
                       </div>
                     </Carousel>
