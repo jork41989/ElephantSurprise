@@ -51,7 +51,8 @@ class SearchUser extends React.Component {
     }
   }
   
-  removeFromList(user) {
+  removeFromList(user, e) {
+    e.stopPropagation();
     const list = this.state.invite_list
     pull(list, user);
     this.setState({ invite_list: list });
@@ -123,11 +124,11 @@ class SearchUser extends React.Component {
             if (data && data.searchUser.length > 0) {
               const user_lis = data.searchUser.map(
                 user => { return (
-                  <li key={user._id}>
-                    <div onClick={() => {this.addToList(user)}} id="user-item">
+                  <li key={user._id} onClick={() => { this.addToList(user) }}>
+                    <div id="user-item">
                       {user.name}
                     </div>
-                    <i className="fas fa-check-circle" onClick={() => { this.removeFromList(user) }} id={user._id} />
+                    <i className="fas fa-check-circle" onClick={(e) => { this.removeFromList(user, e) }} id={user._id} />
                   </li>
                 );}
               );

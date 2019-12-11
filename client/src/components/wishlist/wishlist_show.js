@@ -82,7 +82,7 @@ class WishlistShow extends Component{
                       return (
                         <div className="whishlistShowMain">
                         <div className="whishlistShowBody" id="wishBody">
-                          <h1>My Wish List</h1>
+                            <h1>My Wish List for {data.wish_list.exchange.name}</h1>
                             <i class="fas fa-plus-square sidebarButtonAlt" onClick={this.renderHelp}></i>
                           <ShippingAddress 
                             wish_list={data.wish_list} 
@@ -106,7 +106,7 @@ class WishlistShow extends Component{
                       return(
                         <div className="whishlistShowMain">
                           <div className="whishlistShowBody" id="wishBody">
-                            <h1>{data.wish_list.owner.name}'s Wish List</h1>
+                            <h1>{data.wish_list.owner.name}'s Wish List for {data.wish_list.exchange.name}</h1>
                             <ShippingAddress
                               wish_list={data.wish_list}
                               shipping_address={data.wish_list.shipping_address}
