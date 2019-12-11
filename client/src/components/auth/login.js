@@ -37,20 +37,25 @@ class Login extends Component {
 
 
   errorTips(){
+    let emailDiv = document.getElementById("email")
+    let pwDiv = document.getElementById("password")
     if(this.state.errors){
       if (this.state.errors[0].message === "Email is invalid"){
+        emailDiv.style.border = "1px solid red"
         return (
           <ReactTooltip id="email" place="top" type="error" effect="solid">
             <span>{this.state.errors[0].message}</span>
           </ReactTooltip>
         )
       } else if (this.state.errors[0].message === "Password field is required"){
+        pwDiv.style.border = "1px solid red"
         return (
           <ReactTooltip id="password" place="top" type="error" effect="solid">
             <span>{this.state.errors[0].message}</span>
           </ReactTooltip>
         )
       } else if (this.state.errors[0].message === "There is no account associated with this email") {
+        emailDiv.style.border = "1px solid red"
         return (
           <ReactTooltip id="email" place="top" type="error" effect="solid">
             <span>{this.state.errors[0].message}</span>

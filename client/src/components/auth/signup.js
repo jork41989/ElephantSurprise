@@ -36,8 +36,12 @@ class Signup extends Component {
     }
   errorTips() {
     let errArr = []
+    let emailDiv = document.getElementById("emailD")
+    let pwDiv = document.getElementById("pwD")
+    let nameDiv = document.getElementById("nameD")
     if (this.state.errors) {
       if (this.state.errors.email){
+        emailDiv.style.border = "1px solid red"
         errArr.push(
         <ReactTooltip id="email" place="top" type="error" effect="solid">
           <span>{this.state.errors.email}</span>
@@ -45,6 +49,7 @@ class Signup extends Component {
         )
       }
       if (this.state.errors.name) {
+        nameDiv.style.border = "1px solid red"
         errArr.push(
         <ReactTooltip id="name" place="top" type="error" effect="solid">
           <span>{this.state.errors.name}</span>
@@ -52,6 +57,7 @@ class Signup extends Component {
         )
       } 
       if (this.state.errors.password) {
+        pwDiv.style.border = "1px solid red"
         errArr.push(
         <ReactTooltip id="password" place="top" type="error" effect="solid">
           <span>{this.state.errors.password}</span>
@@ -98,6 +104,7 @@ class Signup extends Component {
                   onChange={this.update("name")}
                   placeholder="Name"
                   data-tip data-for={'name'}
+                  id={"nameD"}
                 />
                 <input
                   className="Authinput"
@@ -105,6 +112,7 @@ class Signup extends Component {
                   onChange={this.update("email")}
                   placeholder="Email"
                   data-tip data-for={'email'}
+                  id={"emailD"}
                 />
                 <input
                   className="Authinput"
@@ -113,6 +121,7 @@ class Signup extends Component {
                   type="password"
                   placeholder="Password"
                   data-tip data-for={'password'}
+                  id={"pwD"}
                 />
                 <button type="submit" className="authButton">Register</button>
               </form>
