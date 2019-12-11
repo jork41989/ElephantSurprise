@@ -79,6 +79,11 @@
   width: 100%;
 }
 
+.exchange-synopsis{
+  min-width: 300px;
+  width: 50%;
+}
+
 .DashboardSidebar{
   width: 0%;
   opacity: 0;

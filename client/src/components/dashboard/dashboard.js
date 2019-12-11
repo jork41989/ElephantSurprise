@@ -59,6 +59,12 @@ class Dashboard extends Component {
                   <div className="DashboardBody" id="dashBody">
                     <h2 className="dashboardGreeting">Hello {data.user.name}</h2>
                     <div className="dashboardExchangeDiv">
+                      < p className="exchange-synopsis">
+                        Here you can create new Gift Exchange for parties and special occasions!
+                        Anyone you invite to the Exchange will be able to participate in giving and recieving 
+                        gifts.  To create the exchange, please click on the "Create a New Exchange" button near
+                        the bottom of the page.
+                      </p>
                       <p> Your hosted exchanges are identified with a <i className="fas fa-gift"></i> </p>
                       <DashboardExchanges exchanges={data.user.participated_exchanges} hosted={hosted} />
                       <Link to="/newExchange" className="createButton"> Create a New Exchange</Link>
