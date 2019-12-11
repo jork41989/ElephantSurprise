@@ -96,6 +96,12 @@ class ExchangeForm extends Component {
           <div className='FormDiv'>
             <form onSubmit={e => this.handleSubmit(e, newExchange)} className='FormArea'>
               <h2>Create a New Exchange</h2>
+              < p className="exchange-synopsis">
+                Here you can create new Gift Exchange for parties and special occasions!
+                Anyone you invite to the Exchange will be able to participate in giving and recieving
+                gifts.  To create the exchange, please click on the "Create Exchange" button near
+                the bottom of the page.
+                </p>
               <label htmlFor="name" className='FormLabel'>Exchange Name</label>
               <input
                 onChange={this.update("name")}
