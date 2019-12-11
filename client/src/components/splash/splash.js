@@ -37,7 +37,7 @@ class Splash extends Component {
               if (data.isLoggedIn) {
                 return (
                  <div>
-                    <Carousel showThumbs={false} autoPlay={true}>
+                    <Carousel showThumbs={false} autoPlay={true} infiniteLoop={true}>
                     <div>
                       <img src={officeBG}  className="HomeImg"/>
                       <div className="sliderButtons">
@@ -84,7 +84,7 @@ class Splash extends Component {
               } else {
                 return (
                   <div>
-                    <Carousel showThumbs={false} autoPlay={true}>
+                    <Carousel showThumbs={false} autoPlay={true} infiniteLoop={true}>
                     <div>
                       <img src={officeBG} className="HomeImg" />
                       <div className="sliderButtons">
