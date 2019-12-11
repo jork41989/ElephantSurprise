@@ -1,6 +1,10 @@
 .item-inject >input{
   width: 80%;
+  font-size: 15px;
+}
 
+.item-inject button {
+  cursor: pointer;
 }
 
 .editIcon{

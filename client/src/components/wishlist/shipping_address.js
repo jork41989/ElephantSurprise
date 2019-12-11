@@ -31,7 +31,7 @@ class ShippingAddress extends Component {
   }
 
   openUpdate() {
-    this.setState({display: "block"});
+    this.setState({display: "flex"});
   }
 
   closeUpdate() {
@@ -60,7 +60,7 @@ class ShippingAddress extends Component {
                     <input
                       onChange={e => this.update(e)}
                       value={this.state.shipping_address}
-                      placeholder="Shipping Address"
+                      placeholder="New Shipping Address"
                     />
                     <button>Update Shipping Address</button>
                   </form>

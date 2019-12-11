@@ -95,7 +95,7 @@ class ItemInject extends Component{
 
             <input value={this.state.price}
               onChange={this.update("price")}
-              placeholder="Price of your item here(stay in budget!)"
+              placeholder="Value(stay in budget!)"
                 className="FormTextFeild"
               ></input>
 

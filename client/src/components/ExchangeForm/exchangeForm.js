@@ -89,7 +89,7 @@ class ExchangeForm extends Component {
           this.setState({
             message: `New exchange ${name} created successfully`
           });
-          this.props.history.push('/dashboard');
+          this.props.history.push(`/exchanges/${data.newExchange._id}`);
         }}
       >
         {(newExchange, { data }) => (
