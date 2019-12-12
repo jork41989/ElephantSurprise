@@ -49,107 +49,104 @@ class ItemElement extends Component{
     if (this.state.editing){
     return(
       <div>
-        
-        <i class="fas fa-window-close" onClick={this.handleEdit}></i>
+        <Microlink url={this.state.url} />
+        <i class="fas fa-window-close" onClick={this.handleEdit}/>
+        <Mutation mutation={UPDATE_ITEM}
+          refetchQueries={() => {
+            return [
+              {
+                query: FETCH_WISHLIST,
+                variables: { _id: this.props.wishlist }
+              }
+            ];
+          }}
+          onError={err => this.setState({ message: err.message })}
+          onCompleted={ data => {
+            this.setState({
+              url: this.props.item.url,
+              price: this.props.item.price,
+              editing: false,
+              errors: null
+            })
+          }}
+        >
+          {(updateItem, data) => (
 
-      <Mutation mutation={UPDATE_ITEM}
-        refetchQueries={() => {
-          return [
-            {
-              query: FETCH_WISHLIST,
-              variables: { _id: this.props.wishlist }
-            }
-          ];
-        }}
-        onError={err => this.setState({ message: err.message })}
-        onCompleted={ data => {
-          this.setState({
-            url: this.props.item.url,
-            price: this.props.item.price,
-            editing: false,
-            errors: null
-          })
-        }}
-    >
-
-        {(updateItem, data) => (
-
-          <form
-            className="item-update"
-            onSubmit={e => {
-              e.preventDefault();
-              this.setState({
-                errors: null
-              });
-              updateItem({
-                variables: {
-                  item_id: this.props.item._id,
-                  url: this.state.url,
-                  price: parseFloat(this.state.price),
-                  purchased: this.props.item.purchased
-                }
-              })
-            }}
-          >
-
-        {this.errorTips()}
-        <input
-          value={this.state.url}
-          onChange={this.update("url")}
-          id={'email'}
-          data-tip data-for={'url'}
-        />
-        <input
-          value={ "$", this.state.price}
-          onChange={this.update("price")}
-          id={'email'}
-          data-tip data-for={'price'}
-        />
-        
-
-        <button type="submit">Update Item</button>
-
-      </form>
-    )}
-      </Mutation>
-
+            <form
+              className="item-update"
+              onSubmit={e => {
+                e.preventDefault();
+                this.setState({
+                  errors: null
+                });
+                updateItem({
+                  variables: {
+                    item_id: this.props.item._id,
+                    url: this.state.url,
+                    price: parseFloat(this.state.price),
+                    purchased: this.props.item.purchased
+                  }
+                })
+              }}
+            >
+              {this.errorTips()}
+              <label>Item URL:
+                <input
+                  value={this.state.url}
+                  onChange={this.update("url")}
+                  id={'email'}
+                  data-tip data-for={'url'}
+                />
+              </label>
+              <label>Value:
+                <input
+                  value={ "$", this.state.price}
+                  onChange={this.update("price")}
+                  id={'email'}
+                  data-tip data-for={'price'}
+                />
+              </label>
+              <button type="submit">Update Item</button>
+            </form>
+          )}
+        </Mutation>
       </div>
 
     )
     }else{
       return (
         <div className="itemDiv">
-          <div className="editIcon">
-             <i class="fas fa-edit " onClick={this.handleEdit}></i>
-            <Mutation mutation={REMOVE_ITEM}
-              refetchQueries={() => {
-                return [
-                  {
-                    query: FETCH_WISHLIST,
-                    variables: { _id: this.props.wishlist }
-                  }
-                ];
-              }}
+          <Microlink url={this.state.url} />
+          <div>
+            <p>${this.state.price}</p>
+            <div className="editIcon">
+              <i class="fas fa-edit " onClick={this.handleEdit}></i>
+              <Mutation mutation={REMOVE_ITEM}
+                refetchQueries={() => {
+                  return [
+                    {
+                      query: FETCH_WISHLIST,
+                      variables: { _id: this.props.wishlist }
+                    }
+                  ];
+                }}
 
-            >
-              {(deleteItem, data) => (
+              >
+                {(deleteItem, data) => (
 
-                <i class="fas fa-trash-alt" onClick={e => {
-                  e.preventDefault();
-                  deleteItem({
-                    variables: { item_id: this.props.item._id }
-                  })
-                }}></i>
-                
-              )}
-            </Mutation>
-           
+                  <i class="fas fa-trash-alt" onClick={e => {
+                    e.preventDefault();
+                    deleteItem({
+                      variables: { item_id: this.props.item._id }
+                    })
+                  }}></i>
+
+                )}
+              </Mutation>
+
+            </div>
           </div>
           
-         
-          
-          <Microlink url={this.state.url} />
-          <p>${this.state.price}</p>
         </div>
       );      
     }
