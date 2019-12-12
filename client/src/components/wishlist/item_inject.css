@@ -7,19 +7,22 @@
   cursor: pointer;
 }
 
-.editIcon{
-  align-self: flex-end;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+.editIcon i {
+  font-size: 25px;
 }
 
 .itemDiv{
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding-left: 10%;
   align-self: center;
+}
+
+.itemDiv > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 46px;
 }
 
 .fa-edit{
@@ -55,5 +58,34 @@
 .item-li {
   border-bottom: 2px solid lightgrey;
   margin: 10px 0;
-  padding-bottom: 10px;
+  width: 500px;
+}
+
+.item-li > div > i {
+  font-size: 25px;
+  margin-left: 95%;
+  margin-top: 5px;
+}
+
+.item-update {
+  display: flex;
+  justify-content: space-between;
+}
+
+.item-update input {
+  font-size: 15px;
+}
+
+.item-update button {
+  width: 132px;
+  background-color: aliceblue;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 12px 0;
+  padding: 6px 0;
+}
+
+.item-update label {
+  padding-top: 5px;
 }
