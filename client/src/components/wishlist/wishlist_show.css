@@ -69,5 +69,9 @@ position: relative;
   transition-property: all;
   transition-duration: 1s;
   animation: fade-in 1s;
-  padding-bottom: 50px;
+  padding: 0 10px 20px 10px;
+}
+
+.whishlistShowBody i {
+  cursor: pointer;
 }

@@ -8,6 +8,13 @@
 
 .shipping-form {
   position: absolute;
+  flex-direction: column;
+  width: 315px;
+  height: 150px;
+  z-index: 2;
+  align-items: center;
+  left: 50%;
+  transform: translate(-50%);
   top: 2px;
   background: whitesmoke;
   padding: 8px 12px;
@@ -15,3 +22,22 @@
   border-radius: 5px;
   box-shadow: 0 4px 12px 0px grey;
 }
+
+.shipping-form form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 14px;
+}
+
+.shipping-form button {
+  margin-top: 20px;
+  height: 27px;
+  width: 260px;
+  font-size: 18px;
+}
+
+.shipping-form input {
+  width: 254px;
+  font-size: 18px;
+}
+

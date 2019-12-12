@@ -149,7 +149,7 @@ class ItemElement extends Component{
          
           
           <Microlink url={this.state.url} />
-          <p>{this.state.price}</p>
+          <p>${this.state.price}</p>
         </div>
       );      
     }

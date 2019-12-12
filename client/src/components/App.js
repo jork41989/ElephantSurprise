@@ -32,7 +32,7 @@ class App extends Component {
         {({ data }) => {
           if (data.isLoggedIn) {
             return (
-              <div>
+              <div className={"mainBG"}>
                 <div className={"navBarMain"}>
                   <Link to='/' className={"logoNav"}><img src={elephant} className="elenav" /><h1>Elephant Surprise</h1></Link>
                   <Nav />

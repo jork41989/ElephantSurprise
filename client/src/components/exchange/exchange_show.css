@@ -37,6 +37,24 @@
   margin-left: 10px;
 }
 
+.remove-confirm {
+  flex-direction: column;
+}
+
+.remove-confirm button {
+  margin-bottom: 10px;
+  width: 66px;
+  font-size: 16px;
+  background-color: aliceblue;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.remove-confirm > div {
+  display: flex;
+  justify-content: space-around;
+}
+
 .participants-list{
   display: flex;
   flex-direction: column;

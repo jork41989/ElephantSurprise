@@ -78,11 +78,11 @@
   border: 1px solid lightgrey;
   border-radius: 6px;
   justify-content: space-between;
+  cursor: pointer;
 }
 
 #user-item {
   padding: 11px;
-  cursor: pointer;
   color: black;
 }
 

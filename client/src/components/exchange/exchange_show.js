@@ -28,10 +28,13 @@ class ExchangeShow extends Component {
 
     this.state = {
       modal: false,
-      type: ""
+      type: "",
+      display_remove: "none"
     }
     this.themeRender = this.themeRender.bind(this)
     this.closeModal = this.closeModal.bind(this);
+    this.openRemove = this.openRemove.bind(this);
+    this.closeRemove = this.closeRemove.bind(this);
   }
 
   closeModal() {
@@ -81,6 +84,18 @@ class ExchangeShow extends Component {
         data: { user: userData }
       })
     }
+  }
+
+  openRemove() {
+    if (this.state.display_remove === "none") {
+      this.setState({ display_remove: "flex" });
+    } else {
+      this.setState({ display_remove: "none" });
+    }
+  }
+
+  closeRemove() {
+    this.setState({ display_remove: "none" });
   }
 
   render(){
@@ -140,6 +155,7 @@ class ExchangeShow extends Component {
               {roulette}
               {invite_button}
               <Modal closeModal={this.closeModal} type={this.state.type} exchange_id={data.exchange._id} />
+              <i className="fas fa-trash-alt remove-exchange" onClick={this.openRemove} />
               <Mutation 
                 mutation={REMOVE_EXCHANGE}
                 update={(cache, data) => this.updateCache(cache, data)}
@@ -147,14 +163,22 @@ class ExchangeShow extends Component {
                   this.props.history.push('/dashboard');
                 }}
               >
-                {(removeExchange, data2) => (
-                  <i className="fas fa-trash-alt remove-exchange" onClick={e => {
-                    e.preventDefault();
-                    removeExchange({
-                      variables: { exchange_id: data.exchange._id }
-                    })
-                  }}></i>
-                )}
+                {(removeExchange, data2) => {
+                  return (
+                    <div className="remove-confirm" style={{display: this.state.display_remove}}>
+                      <p>Delete {data.exchange.name}?</p>
+                      <div>
+                        <button onClick={e => {
+                          e.preventDefault();
+                          removeExchange({
+                          variables: { exchange_id: data.exchange._id }
+                        })
+                        }}>Yes</button>
+                        <button onClick={this.closeRemove}>No</button>
+                      </div>
+                    </div>
+                  )
+                }}
               </Mutation>
             </div>
           

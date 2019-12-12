@@ -8,7 +8,7 @@
 .mainBody{
 
   padding-bottom: 10px;
-  height: 100%;
+
 }
 
 .logoNav{
@@ -51,4 +51,9 @@ font-family: Lato,Arial,Helvetica,sans-serif;
 }
 body p h2 h3 {
   font-family: Lato,Arial,Helvetica,sans-serif;
+}
+
+.mainBG{
+  padding-bottom: 50px;
+  background: whitesmoke;
 }
