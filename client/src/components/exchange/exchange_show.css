@@ -16,6 +16,7 @@
 }
 
 .ExchangeShowSidebar{
+  z-index: 3;
   color: white;
   display: flex;
   flex-direction: column;
@@ -24,6 +25,8 @@
   align-self: flex-start;
   padding: 0 25px;
   width: 25%;
+  height: 100%;
+  overflow: auto;
   background-color: #7b105a;
   padding-bottom: 10px;
 }
