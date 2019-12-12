@@ -123,9 +123,8 @@ const mutation = new GraphQLObjectType({
 
         if (validUser.loggedIn) {
           let startDate = new Date(start_date)
-            // console.log(startDate)
           let dateNow = Date.now()
-            // console.log(dateNow)
+
           if(dateNow < startDate){            
             return new Exchange({ name, start_date, ship_date, budget, type, host: validUser._id }).save()
               .then(exchange => {
