@@ -51,8 +51,17 @@ class Dashboard extends Component {
                 return `Error! second ${error.message}`;
               
               let hosted = data.user.hosted_exchanges.map(exchange => (exchange._id))
+              let inviteCount
+              let inviteDiv
+              if (data.user.pending_invites) {
+                  inviteCount = data.user.pending_invites.length
+              }
               
+              if (inviteCount > 0){
+                inviteDiv = <div className={"inviteCount"}>{data.user.pending_invites.length}</div>
+              }
               
+
               return (
                 <div className="DashboardMain">
                   
@@ -70,7 +79,7 @@ class Dashboard extends Component {
                     </div>
                   </div>
             
-                  <div onClick={this.renderHelp} className='sidebarButton'><i className="fas fa-envelope"></i></div>
+                  <div onClick={this.renderHelp} className='sidebarButtonDiv'> <div className='sidebarButton'><i className="fas fa-envelope"></i></div>{inviteDiv}</div>
                   <div className="DashboardSidebar" id="dashSidebar">
                     <h3>Pending Invites</h3>
                     <DashboardInvites user={data.user} />
