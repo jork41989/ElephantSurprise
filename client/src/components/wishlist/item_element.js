@@ -50,7 +50,7 @@ class ItemElement extends Component{
     return(
       <div>
         <Microlink url={this.state.url} />
-        <i class="fas fa-window-close" onClick={this.handleEdit}/>
+        <i class="fas fa-window-close" id="window-close" onClick={this.handleEdit}/>
         <Mutation mutation={UPDATE_ITEM}
           refetchQueries={() => {
             return [
