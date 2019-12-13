@@ -4,7 +4,14 @@
 }
 
 .item-inject button {
+  font-size: 20px;
+  font-weight: 600;
+  background-color: #00b05a;
+  border-radius: 50px;
+  padding: 5px;
+  width: 83%;
   cursor: pointer;
+  color: white;
 }
 
 .editIcon i {
@@ -50,6 +57,10 @@
   margin-right: 23px;
 }
 
+.purchase-status i:hover {
+  cursor: default;
+}
+
 .purchase-status p {
   margin: 0;
   margin-right: 6px;
@@ -61,7 +72,7 @@
   width: 500px;
 }
 
-.item-li > div > i {
+#window-close {
   font-size: 25px;
   margin-left: 95%;
   margin-top: 5px;
@@ -70,6 +81,8 @@
 .item-update {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
 .item-update input {
@@ -77,13 +90,15 @@
 }
 
 .item-update button {
-  width: 132px;
-  background-color: aliceblue;
-  border-radius: 25px;
-  cursor: pointer;
   font-size: 16px;
-  margin: 12px 0;
-  padding: 6px 0;
+  font-weight: 600;
+  background-color: #00b05a;
+  border-radius: 50px;
+  padding: 5px;
+  width: 145px;
+  cursor: pointer;
+  color: white;
+  height: 35px;
 }
 
 .item-update label {
