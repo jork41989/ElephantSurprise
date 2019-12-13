@@ -1,5 +1,5 @@
 # Elephant Surprise
-**[The Elephant Surprise Demo Site](http://elephantsurprise.herokuapp.com/#/)**
+**[The Elephant Surprise Demo Site](https://elephantsurprise.com/#/)**
 ### Background and Overview
 Elephant Surprise is a gift exchange site designed to enhance the atmosphere of gift giving for any special occasion!
 Once signed up, a user can become a host.  Hosts can invite other members of the service to partake in an Exchange of Gifts.  
