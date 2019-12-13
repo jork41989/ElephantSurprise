@@ -122,15 +122,23 @@ const mutation = new GraphQLObjectType({
         const validUser = await AuthService.verifyUser({ token: ctx.token });
 
         if (validUser.loggedIn) {
-          return new Exchange({ name, start_date, ship_date, budget, type, host: validUser._id }).save()
-            .then(exchange => {
-              return User.addHostedExchange(exchange._id, exchange.host)
-                .then(() => new WishList({ owner: exchange.host, exchange: exchange._id }).save()
-                  .then(wishList => {
-                    return User.addWishList(exchange._id , wishList._id, exchange.host).then(() => {return exchange});
-                   
-                  }))
+          let startDate = new Date(start_date)
+          let dateNow = Date.now()
+
+          if(dateNow < startDate){            
+            return new Exchange({ name, start_date, ship_date, budget, type, host: validUser._id }).save()
+              .then(exchange => {
+                return User.addHostedExchange(exchange._id, exchange.host)
+                  .then(() => new WishList({ owner: exchange.host, exchange: exchange._id }).save()
+                    .then(wishList => {
+                      return User.addWishList(exchange._id , wishList._id, exchange.host).then(() => {return exchange});
+                    
+                    }))
             });
+          }else{
+            console.log("Bad start date");
+            throw new Error('Your start date needs to be after the current date')
+          }
         } else {
           throw new Error('Sorry, you need to be logged in to do that.');
         }

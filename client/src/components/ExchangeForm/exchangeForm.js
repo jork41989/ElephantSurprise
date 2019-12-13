@@ -76,6 +76,7 @@ class ExchangeForm extends Component {
     if (datePickerId){
       datePickerId.min = new Date().toISOString().split("T")[0];
     }
+   
     return (
       <Mutation
         mutation={NEW_EXCHANGE}
@@ -120,11 +121,12 @@ class ExchangeForm extends Component {
               </select>
               
               <label htmlFor="start_name" className='FormLabel'>Start Date</label>
+              <p>Disclaimer: Do not enter dates prior to the current day</p>
               <input
                 onChange={this.update("start_date")}
                 value={this.state.start_date}
                 type="date"
-                id="StartDate"
+                id="datePickerId"
                 className='FormDateFeild'
               />
               <label htmlFor="ship_date" className='FormLabel'>Shipping Date</label>

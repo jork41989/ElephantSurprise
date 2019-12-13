@@ -147,7 +147,7 @@ class ExchangeShow extends Component {
                 fireRefetch={refetch}
               />
             </div>
-          
+            <div className="ExchangeShowSidebarScroll">
             <div className="ExchangeShowSidebar">
               <h2>Host: {data.exchange.host.name}</h2>
               <p>Budget: ${data.exchange.budget}</p>
@@ -181,7 +181,7 @@ class ExchangeShow extends Component {
                 }}
               </Mutation>
             </div>
-          
+            </div>
             {/* <LetsSurprise/> */}
               
             {/* <Errors /> */}
@@ -204,10 +204,13 @@ class ExchangeShow extends Component {
                   fireRefetch={refetch}
                 />
               </div>
+              <div className="ExchangeShowSidebarScroll">
+
               <div className="ExchangeShowSidebar">
                 <h2> Host: {data.exchange.host.name} </h2>
                 <p>Budget: ${data.exchange.budget}</p>
                 {santaRead}
+              </div>
               </div>
               {/* <LetsSurprise/> */}
               {/* <Errors /> */}
@@ -231,10 +234,13 @@ class ExchangeShow extends Component {
                   fireRefetch={null}
                 />
               </div>
-              <div className="ExchangeShowSidebar">
-                <h2> Host: {data.exchange.host.name} </h2>
-                <p>Budget: ${data.exchange.budget}</p>
-                {santaRead}
+              <div className="ExchangeShowSidebarScroll">
+
+                <div className="ExchangeShowSidebar">
+                  <h2> Host: {data.exchange.host.name} </h2>
+                  <p>Budget: ${data.exchange.budget}</p>
+                  {santaRead}
+                </div>
               </div>
               {/* <LetsSurprise/> */}
               {/* <Errors /> */}

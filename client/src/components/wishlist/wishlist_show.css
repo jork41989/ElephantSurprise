@@ -67,8 +67,8 @@ position: relative;
   opacity: 1;
   display: flex;
   transition-property: all;
-  transition-duration: 1s;
-  animation: fade-in 1s;
+  transition-duration: .5s;
+  animation: fade-in .5s;
   padding: 0 10px 20px 10px;
 }
 
